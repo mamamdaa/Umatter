@@ -15,7 +15,7 @@ const addUser = {
             type: new GraphQLNonNull(GraphQLString)
         },
         password: { type: new GraphQLNonNull(GraphQLString)
-        }
+        },
     },
     resolve: async function (root, params) {
         const userModel = new User(params);

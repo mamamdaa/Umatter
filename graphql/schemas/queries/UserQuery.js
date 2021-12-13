@@ -8,6 +8,7 @@ const {
 } = graphql
 const User = require('../../../models/UserModel');
 const UserType = require('../types/UserType');
+const generateToken = require('../../../utils/generateToken');
 
 const getUsers = {
   name: 'addUser',
@@ -42,6 +43,7 @@ const authUser = {
       }
       else{
         let convertedUser = user.toJSON()
+        convertedUser.token = generateToken(convertedUser._id);
         delete convertedUser.password
         return convertedUser
       }
