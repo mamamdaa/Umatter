@@ -37,12 +37,21 @@ form .form-control {
   background-color: #c4c4c4;
 }
 
-.sign-in .btn {
+.sign-up .btn {
   background-color: #c4c4c4;
   color: black;
 }
 
-.sign-in .btn2 {
+.sign-up .btn2 {
   background-color: #e0e0e0;
   color: black;
+}
+
+.sign-in {
+  flex-wrap: wrap;
+}
+
+.sign-in-container {
+  overflow: hidden;
+  position: relative;
 }

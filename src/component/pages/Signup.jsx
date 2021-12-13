@@ -69,7 +69,7 @@ export default function Signup() {
                   </label>
                 </div>
 
-                <div class="sign-in d-grid gap-2 mt-5">
+                <div class="sign-up d-grid gap-2 mt-5">
                   <button class="btn rounded-pill" type="button">
                     Create account
                   </button>
@@ -82,16 +82,20 @@ export default function Signup() {
                 </div>
               </form>
 
-              <span class="sign-in ms-5">
-                Already have an account?
-                <a
-                  class="btn btn-light m-4 rounded-pill "
-                  href="#"
-                  role="button"
-                >
-                  Sign in
-                </a>
-              </span>
+              <div className="sign-in d-flex justify-content-center">
+                {" "}
+                <span class="sign-in-container ms-sm-5">
+                  <a>Already have an account?</a>
+
+                  <a
+                    class="btn btn-light m-4 rounded-pill "
+                    href="#"
+                    role="button"
+                  >
+                    Sign in
+                  </a>
+                </span>
+              </div>
             </div>
 
             <div class="container con1 "></div>
