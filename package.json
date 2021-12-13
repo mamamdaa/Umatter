@@ -4,11 +4,24 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+<<<<<<< HEAD
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",
     "graphql": "^16.1.0",
     "mongoose": "^6.1.1"
+=======
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "bootstrap": "^5.1.3",
+    "react": "^17.0.2",
+    "react-bootstrap": "^2.0.3",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.0.1"
+>>>>>>> marlou-branch
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
