@@ -3,31 +3,10 @@
 .container {
   padding-top: 10;
 }
-.about-first {
-  background-color: #84878b;
-  height: calc(70vh - 60px);
-  text-align: center;
-}
 
-.about-first .header {
+.Home-box .Home {
   padding-top: 60px;
-  width: 40%;
-  top: 1rem;
 }
-
-.about-first .gdsc {
-  font-size: 35px;
-  color: white;
-}
-.about-first .usa {
-  font-size: 18px;
-  color: white;
-}
-.about-first p {
-  font-size: 15px;
-  color: #484a52;
-}
-
 .mission-flex {
   padding: 2vh;
   flex-wrap: wrap;
