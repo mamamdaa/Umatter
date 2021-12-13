@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+.container {
+  padding-top: 10;
+}
+.about-first {
+  background-color: #84878b;
+  height: calc(70vh - 60px);
+  text-align: center;
+}
+
+.about-first .header {
+  padding-top: 60px;
+  width: 40%;
+  top: 1rem;
+}
+
+.about-first .gdsc {
+  font-size: 35px;
+  color: white;
+}
+.about-first .usa {
+  font-size: 18px;
+  color: white;
+}
+.about-first p {
+  font-size: 15px;
+  color: #484a52;
+}
+
+.mission-flex {
+  padding: 2vh;
+  flex-wrap: wrap;
+}
+
+.mission-flex .container {
+  overflow: hidden;
+  color: #202124;
+  position: relative;
+  width: 90vh;
+}
+
+.mission-flex .con1 img {
+  width: 100%;
+}
+.mission-flex .container h1 {
+  font-size: 50px;
+}
+.mission-flex .container p {
+  font-size: 15px;
+}
