@@ -19,7 +19,6 @@ const Mutation = new GraphQLObjectType({
     fields: UserMutation
 });
 
-
 const schema = new graphql.GraphQLSchema({query:Query,mutation:Mutation});
 
 module.exports = schema;

@@ -13,7 +13,8 @@ const getUsers = {
   name: 'addUser',
   type: new GraphQLList(UserType),
   args: {
-    name: {type: GraphQLString},
+    first_name: {type: GraphQLString},
+    last_name: {type: GraphQLString},
     email: {type: GraphQLString},
     password: {type: GraphQLString},
   },
@@ -23,8 +24,28 @@ const getUsers = {
   //   return "User added"
   // }
   resolve(parentValue, args) {
-    return userData
+    return User.find({})
   }
 }
 
-module.exports = {getUsers}
+const authUser = {
+  name: 'authUser',
+  type: UserType,
+  args: {
+    email: {type: GraphQLString},
+    password: {type: GraphQLString},
+  },
+  async resolve(parentValue, args) {
+      const user = await User.findOne({email: args.email})
+      if(!user || !(await user.isMatchPassword(args.password))) {
+        throw new Error('User not found')
+      }
+      else{
+        let convertedUser = user.toJSON()
+        delete convertedUser.password
+        return convertedUser
+      }
+    }
+}
+
+module.exports = {getUsers,authUser}

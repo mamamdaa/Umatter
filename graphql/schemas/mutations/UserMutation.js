@@ -5,17 +5,16 @@ const User = require('../../../models/UserModel');
 const addUser = {
     type: UserType,
     args: {
-        name: {
-            name: 'name',
+        first_name: {
             type: new GraphQLNonNull(GraphQLString)
         },
-        email: {
-            name: 'email',
+        last_name: {
             type: new GraphQLNonNull(GraphQLString)
         },
-        password: {
-            name: 'password',
+        email: { 
             type: new GraphQLNonNull(GraphQLString)
+        },
+        password: { type: new GraphQLNonNull(GraphQLString)
         }
     },
     resolve: async function (root, params) {
@@ -28,38 +27,38 @@ const addUser = {
     }
 }
 
-// const updateUser = {
-//     type: UserType,
-//     args: {
-//         _id: {
-//             name: '_id',
-//             type: new GraphQLNonNull(GraphQLString)
-//         },
-//         name: {
-//             name: 'name',
-//             type: GraphQLString
-//         },
-//         email: {
-//             name: 'email',
-//             type: GraphQLString
-//         }
-//     },
-//     resolve: async function(root, param) {
-//        let updateUser = {};
-//        if(param.name) {
-//            updateUser.name = param.name
-//        }
-//        if(param.email) {
-//            updateUser.email = param.email
-//        }
-//        const uUser = await User.findByIdAndUpdate(param._id, updateUser, {new: true})
-//        console.log(uUser)
-//        if(!uUser) {
-//            throw new Error('Error')
-//        }
-//        return uUser
-//     }
-// }
+const updateUser = {
+    type: UserType,
+    args: {
+        _id: {
+            name: '_id',
+            type: new GraphQLNonNull(GraphQLString)
+        },
+        name: {
+            name: 'name',
+            type: GraphQLString
+        },
+        email: {
+            name: 'email',
+            type: GraphQLString
+        }
+    },
+    resolve: async function(root, param) {
+       let updateUser = {};
+       if(param.name) {
+           updateUser.name = param.name
+       }
+       if(param.email) {
+           updateUser.email = param.email
+       }
+       const uUser = await User.findByIdAndUpdate(param._id, updateUser, {new: true})
+       console.log(uUser)
+       if(!uUser) {
+           throw new Error('Error')
+       }
+       return uUser
+    }
+}
 
 // const deleteUser = {
 //     type: UserType,
@@ -78,4 +77,4 @@ const addUser = {
 //     }
 // }
 
-module.exports = {addUser}
+module.exports = {addUser,updateUser}
