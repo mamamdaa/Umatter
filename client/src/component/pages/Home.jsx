@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import "./css/home.css";
 import { useQuery,gql } from "@apollo/client";
 import {GET_USERS} from "../../graphql/Queries";
+import background from "../img/background.svg";
 
 export default function Home() {
   const { loading, error, data } = useQuery(GET_USERS);
@@ -45,6 +46,12 @@ export default function Home() {
               </div>
             )}
           </div>
+
+          <div>
+            <img class="me-4" src={background} alt="background" />
+          </div>
+
+          <div class="container con1"></div>
         </div>
       </div>
     </div>

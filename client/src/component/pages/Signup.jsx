@@ -40,7 +40,7 @@ export default function Signup() {
                     Email
                   </label>
                   <input
-                    type="password"
+                    type="Email"
                     class="form-control rounded-pill"
                     id="exampleInputPassword1"
                   />
@@ -86,14 +86,15 @@ export default function Signup() {
                 {" "}
                 <span class="sign-in-container ms-sm-5">
                   <a>Already have an account?</a>
-
-                  <a
-                    class="btn btn-light m-4 rounded-pill "
-                    href="#"
-                    role="button"
-                  >
-                    Sign in
-                  </a>
+                  <Link to="/Login">
+                    <a
+                      class="btn btn-light m-4 rounded-pill "
+                      href="#"
+                      role="button"
+                    >
+                      Sign in
+                    </a>
+                  </Link>
                 </span>
               </div>
             </div>
