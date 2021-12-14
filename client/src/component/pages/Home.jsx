@@ -1,5 +1,6 @@
 import React from "react";
 import "./css/home.css";
+import background from "../img/background.svg";
 
 export default function Home() {
   return (
@@ -18,6 +19,10 @@ export default function Home() {
               tempus erat hendrerit dictumst sed a tincidunt. Aliquet gravida
               condimentum donec ipsum.
             </p>
+          </div>
+
+          <div>
+            <img class="me-4" src={background} alt="background" />
           </div>
 
           <div class="container con1"></div>
