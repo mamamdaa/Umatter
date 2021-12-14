@@ -1,32 +1,29 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModel')
-const asyncHandler = require('express-async-handler');
-
-const protect = asyncHandler(async (req,res,next) => {
-    let token;
-    if(
-        req.headers.authorization &&
-        req.headers.authorization.startsWith("Bearer")
-    ) {
-        try {
-          
-            token = req.headers.authorization.split(" ")[1];
-            //decodes token id
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            
-            req.user = await User.findById(decoded.id).select("-password");
-
-            next();
-        } catch (error){
-            res.status(401);
-            throw new Error("Not authorized, token failed");       
-        }
+const User = require('../models/UserModel')
+module.exports = (req, res, next) => {
+    const authHeader = req.get('Authorization');
+    // console.log("authHeader",authHeader)
+    if (!authHeader) {
+      req.isAuth = false;
+      return next();
     }
-
-    if(!token){
-        res.status(401);
-        throw new Error("Not authorized, no token")
+    const token = authHeader.split(' ')[1];
+    if (!token || token === '') {
+      req.isAuth = false;
+      return next();
     }
-});
-
-module.exports = {protect};
+    let decodedToken;
+    try {
+      decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
+      req.isAuth = false;
+      return next();
+    }
+    if (!decodedToken) {
+      req.isAuth = false;
+      return next();
+    }
+    req.isAuth = true;
+    req.userId = decodedToken.userId;
+    next();
+  };

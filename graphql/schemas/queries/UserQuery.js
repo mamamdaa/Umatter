@@ -6,6 +6,7 @@ const {
   GraphQLInt,
   GraphQLList
 } = graphql
+const {protect} = require('../../../middlewares/AuthMiddleware');
 const User = require('../../../models/UserModel');
 const UserType = require('../types/UserType');
 const generateToken = require('../../../utils/generateToken');
@@ -19,17 +20,16 @@ const getUsers = {
     email: {type: GraphQLString},
     password: {type: GraphQLString},
   },
-  // resolve: async (parent, args) => {
-  //   const user = new User(args)
-  //   await user.save()
-  //   return "User added"
-  // }
-  resolve(parentValue, args) {
-    return User.find({})
+  resolve: async function (root, params,{req, res}) {
+    if(!req.isAuth) {
+      res.status(401)
+      throw new Error("Not Authenticated");
+    }
+    return User.find({}).select("-password")
   }
 }
 
-const authUser = {
+const login = {
   name: 'authUser',
   type: UserType,
   args: {
@@ -39,6 +39,7 @@ const authUser = {
   async resolve(parentValue, args) {
       const user = await User.findOne({email: args.email})
       if(!user || !(await user.isMatchPassword(args.password))) {
+        res.status(400)
         throw new Error('User not found')
       }
       else{
@@ -50,4 +51,4 @@ const authUser = {
     }
 }
 
-module.exports = {getUsers,authUser}
+module.exports = {getUsers,login}
