@@ -21,10 +21,10 @@ const getUsers = {
     password: {type: GraphQLString},
   },
   resolve: async function (root, params,{req, res}) {
-    if(!req.isAuth) {
-      res.status(401)
-      throw new Error("Not Authenticated");
-    }
+    // if(!req.isAuth) {
+    //   res.status(401)
+    //   throw new Error("Not Authenticated");
+    // }
     return User.find({}).select("-password")
   }
 }

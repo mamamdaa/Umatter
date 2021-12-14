@@ -1,7 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./css/home.css";
+import { useQuery,gql } from "@apollo/client";
+import {GET_USERS} from "../../graphql/Queries";
 
 export default function Home() {
+  const { loading, error, data } = useQuery(GET_USERS);
+  const [users, setUsers] = React.useState([]);
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+      setUsers(data.getUsers);
+    }
+  }, [data,error]);
   return (
     <div className="Home-box ">
       <div className="Home ">
@@ -19,8 +29,22 @@ export default function Home() {
               condimentum donec ipsum.
             </p>
           </div>
-
-          <div class="container con1"></div>
+          <div class="container con1">
+            {loading ? ( <div>Loading...</div> ) : (
+              <div class="row">
+                {users.map((user) => (
+                  <div class="col-md-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">{user.first_name}</h5>
+                        <p class="card-text">{user.email}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
