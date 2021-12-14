@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navbar.css";
 import { Link } from "react-router-dom";
 
 export default function LandingNavbar() {
+  //navbar background
+  const [color, setColor] = useState(false);
+  const changeColor = () => {
+    if (window.scrollY >= 90) {
+      setColor(true);
+    } else {
+      setColor(false);
+    }
+  };
+
+  window.addEventListener("scroll", changeColor);
+
   return (
-    <nav class="navbar  navbar-expand-xl fixed-top navbar-light  border-bottom ">
+    <nav
+      className={
+        color
+          ? "navbar navbar-bg active navbar-expand-xl fixed-top navbar-light"
+          : "navbar active navbar-expand-xl fixed-top navbar-light"
+      }
+    >
       <div class="container-fluid ">
-        <span class="ms-5">LOGO</span>
+        <span class="logo ms-5  fw-bolder">UMMATER</span>
         <button
           class="navbar-toggler"
           type="button"
