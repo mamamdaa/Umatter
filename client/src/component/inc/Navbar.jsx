@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./navbar.css";
-import { Link } from "react-router-dom";
+
 import { useQuery, gql } from "@apollo/client";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../../redux/user";
@@ -69,7 +69,7 @@ export default function Navbar() {
                 Contact
               </Link>
             </li>
-             {/* {!isLoggedIn ?( 
+            {/* {!isLoggedIn ?( 
             //   <li class="nav-item me-5 comp">
             //     <li class="nav-item">
             //       <Link to="/Login" class="nav-link">
@@ -99,7 +99,7 @@ export default function Navbar() {
             //     </li>
             //   </li>
             // )}*/}
-            
+
             <li class="nav-item">
               <Link smooth to="/Login" class="nav-link">
                 Log in
