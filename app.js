@@ -7,7 +7,6 @@ const cors = require('cors')
 const app = express()
 app.use(cors())
 const hostname = '127.0.0.1';
-const port = 5000;
 const schema = require('./graphql/schemas/index');
 const bodyParser = require('body-parser');
 const isAuth = require('./middlewares/AuthMiddleware');
@@ -34,6 +33,6 @@ app.use('/graphql', graphqlHTTP((req, res) => ({
 app.use(NotFound);
 app.use(ErrorHandler);
 
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server running at http://${hostname}:${process.env.PORT}/`);
 });
