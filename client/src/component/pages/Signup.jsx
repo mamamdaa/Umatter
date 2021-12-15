@@ -1,10 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./css/signup.css";
 import exit from "../img/exit.svg";
 import background from "./css/background.svg";
 import { Link } from "react-router-dom";
+import { useMutation} from "@apollo/client";
+import { useHistory } from "react-router-dom";
+import { REGISTER } from "../../graphql/Mutations";
 
 export default function Signup() {
+  const [dataError, setDataError] = React.useState("");
+  const history = useHistory();
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [firstName, setFirstName] = React.useState("");
+  const [lastName, setLastName] = React.useState("");
+  const [register, { error, data }] = useMutation(REGISTER, {
+    onError: (err) => {
+      setDataError(
+        JSON.parse(JSON.stringify(err)).networkError.result.errors[0]
+      );
+    },
+  }); //refactor
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    register({
+      variables: {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        password: password,
+      },
+    });
+  };
+  useEffect(() => {
+    if (data) {
+      history.push("/");
+    }
+  }, [data]);
   return (
     <div className="Singup-box">
       <div className="Signup">
@@ -13,7 +46,6 @@ export default function Signup() {
             {" "}
             <img class="ms-5" src={background} alt="background" />
           </div>
-
           <div className="Form-flex ">
             <div className="container border">
               <ul class="navbar-nav  ">
@@ -31,16 +63,30 @@ export default function Signup() {
                 </button>
                 <p class="text-center mt-3 mb-3 fw-bold">or</p>
               </div>
-              <form>
+              {dataError && <p className="error">{dataError.message}</p>}
+              <form onSubmit={submitHandler}>
                 <div class="mb-3 ">
                   <label for="exampleInputEmail1" class="form-label fw-bolder">
-                    Name
+                    First Name
                   </label>
                   <input
-                    type="email"
+                    type="string"
                     class="form-control fw-bold border border-dark"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
+                    onChange={(e) => setFirstName(e.target.value)}
+                  />
+                </div>
+                <div class="mb-3 ">
+                  <label for="exampleInputEmail1" class="form-label fw-bolder">
+                    Last Name
+                  </label>
+                  <input
+                    type="string"
+                    class="form-control fw-bold border border-dark"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    onChange={(e) => setLastName(e.target.value)}
                   />
                 </div>
                 <div class="mb-3">
@@ -51,6 +97,7 @@ export default function Signup() {
                     type="Email"
                     class="form-control fw-bold border border-dark"
                     id="exampleInputEmail1"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div class="mb-3">
@@ -64,6 +111,7 @@ export default function Signup() {
                     type="password"
                     class="form-control fw-bold border border-dark"
                     id="exampleInputPassword1"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div class="mb-3 form-check">
@@ -78,7 +126,7 @@ export default function Signup() {
                 </div>
 
                 <div class="sign-up d-grid gap-2 mt-5">
-                  <button class="btn fw-bold border border-dark" type="button">
+                  <button class="btn fw-bold border border-dark" type="submit">
                     Create account
                   </button>
                 </div>

@@ -18,7 +18,14 @@ const addUser = {
         password: { type: new GraphQLNonNull(GraphQLString)
         },
     },
-    resolve: async function (root, params) {
+    resolve: async function (root, params,{req, res})  {
+        console.log('params', params);
+        let user = await User.findOne({email: params.email});
+        if (user) {
+            console.log('userexist');
+            res.status(400)
+            throw new Error('User already exists!');
+        }
         const userModel = new User(params);
         const newUser = await userModel.save();
         if(!newUser) {
