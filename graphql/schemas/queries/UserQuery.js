@@ -29,26 +29,5 @@ const getUsers = {
   }
 }
 
-const login = {
-  name: 'authUser',
-  type: UserType,
-  args: {
-    email: {type: GraphQLString},
-    password: {type: GraphQLString},
-  },
-  async resolve(parentValue, args) {
-      const user = await User.findOne({email: args.email})
-      if(!user || !(await user.isMatchPassword(args.password))) {
-        res.status(400)
-        throw new Error('User not found')
-      }
-      else{
-        let convertedUser = user.toJSON()
-        convertedUser.token = generateToken(convertedUser._id);
-        delete convertedUser.password
-        return convertedUser
-      }
-    }
-}
 
-module.exports = {getUsers,login}
+module.exports = {getUsers}

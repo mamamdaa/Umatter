@@ -15,6 +15,9 @@ const { NotFound, ErrorHandler } = require("./middlewares/ErrorMiddleware");
 dotenv.config();
 connectDB();
 
+
+
+
 app.use(bodyParser.json());
 app.use(isAuth);
 
@@ -24,7 +27,9 @@ app.use('/graphql', graphqlHTTP((req, res) => ({
     context: {
         req,
         res
-    }
+    },
+  
+
 })));
 app.use(NotFound);
 app.use(ErrorHandler);

@@ -7,14 +7,17 @@ import Testimonials from "./component/pages/Testimonials";
 import Contact from "./component/pages/Contact";
 import Signup from "./component/pages/Signup.jsx";
 import Login from "./component/pages/Login";
-
+import store from "./redux/store";
+import {Provider} from "react-redux";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   HttpLink,
   from,
+  gql,
 } from "@apollo/client";
+
 import { onError } from "@apollo/client/link/error";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
@@ -22,6 +25,9 @@ const errorLink = onError(({ graphqlErrors, networkError }) => {
     graphqlErrors.map(({ message, location, path }) => {
       alert(`Graphql error ${message}`);
     });
+  }
+  if (networkError) {
+    alert(`Network error ${networkError}`);
   }
 });
 
@@ -33,21 +39,27 @@ const link = from([
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: link,
+  headers: {
+    authorization: localStorage.getItem("token") || ""
+  },
 });
+
 
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <Switch>
-          <Route exact path="/Signup" component={Signup} />
-          <Route exact path="/Login" component={Login} />
-          <div className="navs">
-            <LandingNavbar />
-            <Route exact path="/" component={Home}></Route>
-          </div>
-        </Switch>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Switch>
+            <Route exact path="/Signup" component={Signup} />
+            <Route exact path="/Login" component={Login} />
+            <div className="navs">
+              <LandingNavbar />
+              <Route exact path="/" component={Home}></Route>
+            </div>
+          </Switch>
+        </Router>
+      </Provider>
     </ApolloProvider>
   );
 }

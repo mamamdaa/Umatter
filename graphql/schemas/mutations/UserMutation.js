@@ -1,6 +1,7 @@
 var {GraphQLNonNull, GraphQLString} = require('graphql');
 const UserType = require('../types/UserType');
 const User = require('../../../models/UserModel');
+const generateToken = require('../../../utils/generateToken');
 
 const addUser = {
     type: UserType,
@@ -60,6 +61,32 @@ const updateUser = {
     }
 }
 
+const login = {
+    name: 'login',
+    type: UserType,
+    args: {
+      email: {type: GraphQLString},
+      password: {type: GraphQLString},
+    },
+     resolve: async function (root, params,{req, res}) {
+        console.log("args",params)
+        const user = await User.findOne({email: params.email})
+        if(!user || !(await user.isMatchPassword(params.password))) {
+            console.log("error",user)
+          res.status(400)
+          throw new Error("Invalid email or password")
+        }
+        else{
+          let convertedUser = user.toJSON()
+          convertedUser.token = generateToken(convertedUser._id);
+          delete convertedUser.password
+          console.log(convertedUser)
+          return convertedUser
+        }
+      }
+  }
+  
+
 // const deleteUser = {
 //     type: UserType,
 //     args: {
@@ -77,4 +104,4 @@ const updateUser = {
 //     }
 // }
 
-module.exports = {addUser,updateUser}
+module.exports = {addUser,updateUser,login}

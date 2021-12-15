@@ -1,8 +1,18 @@
-import React from "react";
+import React,{useEffect} from "react";
 import "./navbar.css";
 import { Link } from "react-router-dom";
+import { useQuery,gql } from "@apollo/client";
+import {useSelector,useDispatch} from "react-redux";
+import {userLogout} from "../../redux/user"
+import {Button} from "react-bootstrap";
+ 
+
 
 export default function LandingNavbar() {
+  const {isLoggedIn, user} = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  console.log("navbar",user);
+  console.log("navbar",isLoggedIn);
   return (
     <nav class="navbar  navbar-expand-xl fixed-top navbar-light  border-bottom ">
       <div class="container-fluid ">
@@ -41,6 +51,8 @@ export default function LandingNavbar() {
                 Contact
               </Link>
             </li>
+            {!isLoggedIn ? (
+              <li class="nav-item me-5 comp">
             <li class="nav-item">
               <Link to="/Login" class="nav-link">
                 Log in
@@ -51,6 +63,20 @@ export default function LandingNavbar() {
                 Sign up
               </Link>
             </li>
+            </li>
+            
+            ) : (
+              <li class="nav-item me-5 comp">
+            <li class="nav-item">
+              <Link to="/Profile" class="nav-link">
+                Welcome {user.first_name}
+              </Link>
+            </li>
+            <li class="nav-item">
+            <Button variant="outline-primary" onClick={()=>dispatch(userLogout())}>Logout</Button>{' '}
+            </li>
+            </li>
+            )}
           </ul>
         </div>
       </div>
