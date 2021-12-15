@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div className="Home-box ">
+    <div className="Home-box " id="home">
       <div className="Home ">
         <div class="Home-flex d-flex justify-content-center  ">
           <div class="container container1  mt-md-3">
@@ -37,6 +37,37 @@ export default function Home() {
 
       <div className="Home-works">
         <h1 class="text-center mt-5 mb-5 ">How it Works?</h1>
+        <div class="Home-works d-flex justify-content-center  ">
+          <div class="container container1 text-center mt-md-3">
+            <div class="content ms-5 me-5"></div>
+          </div>
+
+          <div class="container container2  p-5">
+            <h3 class="text-center">Lorem ipsum dolor sit ame</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit
+              massa sociis eu suscipit quam. Aliquet morbi vulputate malesuada
+              gravida hendrerit tellus. Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Elit massa sociis eu suscipit quam. Aliquet morbi
+              vulputate malesuada gravida hendrerit tellus.
+            </p>
+          </div>
+        </div>{" "}
+        <div class="Home-works d-flex justify-content-center  ">
+          <div class="container container2  p-5">
+            <h3 class="text-center">Lorem ipsum dolor sit ame</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit
+              massa sociis eu suscipit quam. Aliquet morbi vulputate malesuada
+              gravida hendrerit tellus. Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Elit massa sociis eu suscipit quam. Aliquet morbi
+              vulputate malesuada gravida hendrerit tellus.
+            </p>
+          </div>
+          <div class="container container1 text-center mt-md-3">
+            <div class="content ms-5 me-5"></div>
+          </div>
+        </div>
         <div class="Home-works d-flex justify-content-center  ">
           <div class="container container1 text-center mt-md-3">
             <div class="content ms-5 me-5"></div>

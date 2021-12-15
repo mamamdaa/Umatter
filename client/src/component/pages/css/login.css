@@ -36,10 +36,11 @@ form .form-control {
   border-radius: 10px;
 }
 
-.sign-in .btn {
+.sign-in .sign-btn {
   background-color: #6a6a6a;
   color: white;
   border-radius: 10px;
+  width: 100%;
 }
 
 .sign-in .btn2 {

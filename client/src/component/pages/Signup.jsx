@@ -11,7 +11,7 @@ export default function Signup() {
         <div class="Signup-flex d-flex justify-content-center p-4 ">
           <div className="container">
             {" "}
-            <img class="ms-5" src={background} alt="background" />
+            <img class="ms-5 bg" src={background} alt="background" />
           </div>
 
           <div className="Form-flex ">
@@ -78,9 +78,14 @@ export default function Signup() {
                 </div>
 
                 <div class="sign-up d-grid gap-2 mt-5">
-                  <button class="btn fw-bold border border-dark" type="button">
-                    Create account
-                  </button>
+                  <Link to="/User">
+                    <button
+                      class="btn create-btn fw-bold border border-dark"
+                      type="button"
+                    >
+                      Create account
+                    </button>
+                  </Link>
                 </div>
               </form>
               <div className="sign-in d-flex justify-content-center">
@@ -88,7 +93,7 @@ export default function Signup() {
                 <span class="sign-in-container ms-sm-5">
                   <a>Already have an account?</a>
                   <Link to="/Login">
-                    <a class="btn btn-light m-4 " href="#" role="button">
+                    <a class="btn btn btn-light m-4 " role="button">
                       Sign in
                     </a>
                   </Link>
