@@ -1,57 +1,68 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 .Login-box {
-  padding: 60px;
 }
 
-.Login {
-  padding: 30px;
-  margin-left: 100px;
-  margin-right: 100px;
-}
-
-.Login-container {
-  background-color: #e0e0e0;
-  border-radius: 50px;
-  width: 100%;
-  color: black;
-}
-
-.wrapper-flex {
+.Login-flex {
+  background: linear-gradient(250deg, #86e7cf 0%, #ffffff 80%);
   flex-wrap: wrap;
+  position: absolute;
+  width: 100% !important;
 }
 
-.wrapper-flex .container {
-  overflow: hidden;
-  position: relative;
-  width: 70vh;
+.Login-flex .container {
+  margin-left: 38rem;
 }
 
-.wrapper-flex .con2 {
-  margin: 0;
-  background-color: #656565;
-  border-radius: 50px;
+.Form-flex {
+  position: absolute;
+  left: 20rem;
+  top: 4rem;
 }
 
+.Form-flex h1 {
+  font-size: 50px;
+}
+
+.Form-flex .container {
+  background-color: white;
+  margin: 0 !important;
+  width: 65vh;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
 form .form-control {
-  background-color: #c4c4c4;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .sign-in .btn {
-  background-color: #c4c4c4;
-  color: black;
+  background-color: #6a6a6a;
+  color: white;
+  border-radius: 10px;
 }
 
 .sign-in .btn2 {
-  background-color: #e0e0e0;
+  background-color: #c4c4c4;
+  border-radius: 10px;
   color: black;
 }
 
-.sign-up {
+.sign-in {
   flex-wrap: wrap;
 }
 
 .sign-up-container {
   overflow: hidden;
   position: relative;
+}
+
+.sign-up-container .btn {
+  border-radius: 10px;
+  color: white;
+  background-color: #b2b2b2;
+}
+
+.forgot a {
+  text-decoration: none;
 }

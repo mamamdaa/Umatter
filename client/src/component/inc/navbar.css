@@ -6,9 +6,15 @@
   font-family: "Poppins", sans-serif;
 }
 
-.navbar {
-  background-color: #c4c4c4;
+.navbar-bg {
+  background-color: #c7f7eb;
 }
+
+.navbar .logo {
+  margin-left: 4.2rem !important;
+  font-size: 20px;
+}
+
 ul .comp a {
   margin-right: 50px;
 }
@@ -20,6 +26,7 @@ ul li a {
 
 .btn-dark {
   border-radius: 20px;
-  background-color: #494949 !important;
+  background-color: #17bdc6 !important;
+  font-weight: normal;
   color: white !important;
 }

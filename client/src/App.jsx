@@ -17,7 +17,7 @@ import {
   from,
   gql,
 } from "@apollo/client";
-
+import ScrollToTop from "./component/inc/ScrollTop.jsx";
 import { onError } from "@apollo/client/link/error";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
