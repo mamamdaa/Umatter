@@ -6,8 +6,8 @@
 .Signup-flex {
   background: linear-gradient(250deg, #86e7cf 0%, #ffffff 80%);
   flex-wrap: wrap;
-  position: absolute;
-  width: 100% !important;
+  width: 150% !important;
+  height: 100vh;
 }
 
 .Signup-flex .container {
@@ -41,6 +41,9 @@ form .form-control {
   color: white;
   border-radius: 10px;
 }
+.sign-up .create-btn {
+  width: 100%;
+}
 
 .sign-up .btn2 {
   background-color: #c4c4c4;
@@ -61,4 +64,49 @@ form .form-control {
   border-radius: 10px;
   color: white;
   background-color: #b2b2b2;
+}
+@media only screen and (max-width: 1100px) {
+  .bg {
+    display: none;
+    margin: 0 auto;
+  }
+
+  .Signup-flex {
+    width: 100% !important;
+    height: 100vh !important;
+  }
+
+  .Signup-flex .container {
+    margin-left: 13rem;
+  }
+  .Form-flex {
+    left: 6rem !important;
+    top: 2rem !important;
+  }
+  .Form-flex .container {
+    width: 50vh !important;
+  }
+}
+
+@media only screen and (max-width: 376px) {
+  .bg {
+    display: none;
+    margin: 0 auto;
+  }
+
+  .Signup-flex {
+    width: 100% !important;
+    height: 120vh !important;
+  }
+
+  .Signup-flex .container {
+    margin-left: 2rem;
+  }
+  .Form-flex {
+    left: 2.5rem !important;
+    top: 2rem !important;
+  }
+  .Form-flex .container {
+    width: 38vh !important;
+  }
 }
