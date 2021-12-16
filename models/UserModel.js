@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    channels:[{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Channel",
+    }]
   },
   {
     timestamps: true,

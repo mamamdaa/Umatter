@@ -1,24 +1,35 @@
 const UserQuery = require('./queries/UserQuery');
+const ChannelQuery = require('./queries/ChannelQuery');
 const UserMutation = require('./mutations/UserMutation');
+const ChannelMutations = require('./mutations/ChannelMutations');
+const MessageMutations = require('./mutations/MessageMutations');
+const UserSubscription = require('./subscriptions/UserSubscription');
 const graphql = require('graphql');
 const {
   GraphQLObjectType,
   GraphQLList,
   GraphQLInt
 } = graphql
-const UserType = require('./types/UserType');
 
 const Query = new GraphQLObjectType({
     name: 'Query',
-    fields: UserQuery
+    fields: {...UserQuery,...ChannelQuery}
     
 })
 
 const Mutation = new GraphQLObjectType({
     name: 'Mutation',
-    fields: UserMutation
+    fields: {...UserMutation,...ChannelMutations,...MessageMutations}
 });
 
-const schema = new graphql.GraphQLSchema({query:Query,mutation:Mutation});
+const Subscription = new GraphQLObjectType({
+    name: 'Subscription',
+    fields: UserSubscription
+});
+// console.log('combine', {
+//   ...MessageMutations,
+//   ...ChannelMutations,
+// });
+const schema = new graphql.GraphQLSchema({query:Query,mutation:Mutation,subscription:Subscription});
 
 module.exports = schema;

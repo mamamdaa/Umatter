@@ -1,5 +1,5 @@
 var {GraphQLNonNull, GraphQLString} = require('graphql');
-const UserType = require('../types/UserType');
+const {UserType} = require('../types/TypeDefs');
 const User = require('../../../models/UserModel');
 const generateToken = require('../../../utils/generateToken');
 
@@ -67,7 +67,7 @@ const updateUser = {
        return uUser
     }
 }
-
+const NEW_LOGIN = 'NEW_LOGIN';
 const login = {
     name: 'login',
     type: UserType,
@@ -75,8 +75,7 @@ const login = {
       email: {type: GraphQLString},
       password: {type: GraphQLString},
     },
-     resolve: async function (root, params,{req, res}) {
-        console.log("args",params)
+     resolve: async function (root, params,{req, res,pubsub}) {
         const user = await User.findOne({email: params.email})
         if(!user || !(await user.isMatchPassword(params.password))) {
             console.log("error",user)
@@ -87,7 +86,9 @@ const login = {
           let convertedUser = user.toJSON()
           convertedUser.token = generateToken(convertedUser._id);
           delete convertedUser.password
-          console.log(convertedUser)
+        //   console.log("convertedUser",pubsub.subscriptions['1'][1])
+          pubsub.publish(NEW_LOGIN, {newLogin:{_id:"123"}} );
+          
           return convertedUser
         }
       }

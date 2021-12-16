@@ -1,5 +1,4 @@
 const graphql = require('graphql');
-const userData = require('../../../userData.json');
 const {
   GraphQLObjectType,
   GraphQLString,
@@ -8,7 +7,7 @@ const {
 } = graphql
 const {protect} = require('../../../middlewares/AuthMiddleware');
 const User = require('../../../models/UserModel');
-const UserType = require('../types/UserType');
+const {UserType} = require('../types/TypeDefs');
 const generateToken = require('../../../utils/generateToken');
 
 const getUsers = {
@@ -28,6 +27,8 @@ const getUsers = {
     return User.find({}).select("-password")
   }
 }
+
+
 
 
 module.exports = {getUsers}
