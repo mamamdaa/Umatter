@@ -34,3 +34,13 @@ ul li a {
 .dropdown-menu {
   width: 1rem !important;
 }
+
+li .user-name {
+  color: #158f96 !important;
+}
+li .user-profile {
+  width: 3vh !important;
+}
+
+ul li .user {
+}

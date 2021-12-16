@@ -1,21 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 .about {
-  background: #e6f1f4;
+  background: #f2f2f2;
   padding-top: 10vh;
 }
 
-.About-flex {
+.about-flex {
   padding: 2vh;
-  flex-wrap: wrap;
 }
 
-.About-flex .container {
-  overflow: hidden;
-  color: #202124;
-  position: relative;
-  width: 100vh;
-  margin: 0 !important;
+.about-flex .container1 {
+  width: 80% !important;
 }
 
 .about h1 {
@@ -24,4 +19,17 @@
 
 .about-flex .container1 h1 {
   font-size: 50px;
+}
+.about-flex .container1 p {
+  font-size: 20px;
+}
+.About-boxes .container {
+  flex-wrap: wrap;
+}
+
+.About-boxes .card {
+  overflow: hidden;
+  position: relative;
+  width: 45vh;
+  background-color: #f2f2f2;
 }
