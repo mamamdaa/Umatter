@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { HashLink as Link } from "react-router-hash-link";
 import "./UserNavbar.css";
 import dropdown from "../img/dropdown.svg";
+import profile from "../img/profile.svg";
 
 export default function UserNavbar() {
   //navbar background
@@ -65,6 +66,7 @@ export default function UserNavbar() {
               </li>
               <li>
                 <div class="dropdown me-5">
+                  <img src={profile} alt="profile" />
                   <button
                     class="btn"
                     type="button"
@@ -75,23 +77,33 @@ export default function UserNavbar() {
                     <img src={dropdown} alt="dropdown" />
                   </button>
                   <ul
-                    class="dropdown-menu "
+                    class="dropdown-menu p-2"
                     aria-labelledby="dropdownMenuButton1"
                   >
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        Profile
+                    <li class="border-bottom">
+                      <a class="dropdown-item user-name" href="#">
+                        <img
+                          class="user-profile me-2"
+                          src={profile}
+                          alt="profile"
+                        />
+                        User
                       </a>
                     </li>
                     <li>
+                      <a class="dropdown-item mt-2" href="#">
+                        Edit Profile
+                      </a>
+                    </li>
+                    <li class="border-bottom">
                       <a class="dropdown-item" href="#">
-                        Setting
+                        Acoount setting
                       </a>
                     </li>
                     <li>
                       <Link to="/">
                         <a class="dropdown-item" href="">
-                          Log out
+                          Sign out
                         </a>
                       </Link>
                     </li>
