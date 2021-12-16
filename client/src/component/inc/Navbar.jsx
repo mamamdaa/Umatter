@@ -26,7 +26,10 @@ export default function Navbar() {
       }
     >
       <div class="container-fluid ">
-        <span class="logo ms-5  fw-bolder">UMMATER</span>
+        <a href="/" class="logo ms-5  fw-bolder">
+          UMMATER
+        </a>
+
         <button
           class="navbar-toggler"
           type="button"

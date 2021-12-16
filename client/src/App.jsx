@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./component/inc/Navbar.jsx";
 import About from "./component/pages/About.jsx";
 import Home from "./component/pages/Home.jsx";
+import Works from "./component/pages/Works.jsx";
 import Testimonials from "./component/pages/Testimonials";
 import Contact from "./component/pages/Contact";
 import Signup from "./component/pages/Signup.jsx";
@@ -20,7 +21,7 @@ function App() {
         <Route exact path="/User" component={User} />
         <div className="navs">
           <Navbar />
-          <Home />
+          <Home /> <Works />
           <About />
         </div>
       </Switch>
