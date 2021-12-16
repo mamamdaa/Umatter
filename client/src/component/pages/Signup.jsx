@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./css/signup.css";
 import exit from "../img/exit.svg";
-import background from "./css/background.svg";
+import background2 from "../img/background2.svg";
 import { Link } from "react-router-dom";
 import { useMutation} from "@apollo/client";
 import { useHistory } from "react-router-dom";
@@ -44,7 +44,7 @@ export default function Signup() {
         <div class="Signup-flex d-flex justify-content-center p-4 ">
           <div className="container">
             {" "}
-            <img class="ms-5 bg" src={background} alt="background" />
+            <img class="ms-5 bg" src={background2} alt="background2" />
           </div>
           <div className="Form-flex ">
             <div className="container border">

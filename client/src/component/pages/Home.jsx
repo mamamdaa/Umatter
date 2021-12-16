@@ -3,10 +3,7 @@ import "./css/home.css";
 import { useQuery,gql } from "@apollo/client";
 import {GET_USERS} from "../../graphql/Queries";
 import background from "../img/background.svg";
-import img1 from "../img/img1.svg";
-import img2 from "../img/img2.svg";
-import img3 from "../img/img3.svg";
-import { Link } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 
 export default function Home() {
   return (
@@ -23,11 +20,14 @@ export default function Home() {
               neque.
             </p>
             <span class="home-sign-up ">
-              <a class="btn btn1 btn-light fw-bold  " href="#" role="button">
-                Sign up for free
-              </a>
-              <Link to="/Signup">
-                <a class="btn btn2 border m-4  " href="#" role="button">
+              <Link smooth to="/Signup">
+                <a class="btn btn1 btn-light fw-bold  " role="button">
+                  Sign up for free
+                </a>
+              </Link>
+
+              <Link smooth to="#Home-works">
+                <a class="btn btn2 border m-4 " role="button">
                   How it works
                 </a>
               </Link>
@@ -39,63 +39,6 @@ export default function Home() {
 
           <div class="container container2">
             <img class="me-4" src={background} alt="background" />
-          </div>
-        </div>
-      </div>
-
-      <div className="Home-works">
-        <h1 class="text-center mt-5 mb-5 ">How it Works?</h1>
-        <div class="Home-works d-flex justify-content-center  ">
-          <div class="container container1 text-center mt-md-3">
-            <div class="content ms-5 me-5">
-              <img class="me-4" src={img1} alt="img1" />
-            </div>
-          </div>
-
-          <div class="container container2  p-5">
-            <h3 class="text-center">Create an account to Umatter</h3>
-            <p>
-              Go to the Umatter Sign In page, Click Create account, Enter your
-              name, Enter your current email address, Click Next, Verify your
-              email address with the code sent to your existing email, Click
-              Verify.
-            </p>
-          </div>
-        </div>{" "}
-        <div class="Home-works d-flex justify-content-center">
-          <div class="container container2 p-5">
-            <h3 class="text-center">Lorem ipsum dolor sit ame</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit
-              massa sociis eu suscipit quam. Aliquet morbi vulputate malesuada
-              gravida hendrerit tellus. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Elit massa sociis eu suscipit quam. Aliquet morbi
-              vulputate malesuada gravida hendrerit tellus.
-            </p>
-          </div>
-          <div class="container container1 text-center mt-md-3">
-            <div class="content ms-5 me-5">
-              <img class="me-4" src={img2} alt="img2" />
-            </div>
-          </div>
-        </div>
-        <div class="Home-works d-flex justify-content-center  ">
-          <div class="container container1 text-center mt-md-3">
-            <div class="content ms-5 me-5">
-              {" "}
-              <img class="me-4" src={img3} alt="img3" />
-            </div>
-          </div>
-
-          <div class="container container2  p-5">
-            <h3 class="text-center">Lorem ipsum dolor sit ame</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit
-              massa sociis eu suscipit quam. Aliquet morbi vulputate malesuada
-              gravida hendrerit tellus. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Elit massa sociis eu suscipit quam. Aliquet morbi
-              vulputate malesuada gravida hendrerit tellus.
-            </p>
           </div>
         </div>
       </div>

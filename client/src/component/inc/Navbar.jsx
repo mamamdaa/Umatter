@@ -31,7 +31,10 @@ export default function Navbar() {
       }
     >
       <div class="container-fluid ">
-        <span class="logo ms-5  fw-bolder">UMMATER</span>
+        <a href="/" class="logo ms-5  fw-bolder">
+          UMMATER
+        </a>
+
         <button
           class="navbar-toggler"
           type="button"
@@ -60,7 +63,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li class="nav-item me-4">
-              <Link smooth to="/Testimonials" class="nav-link">
+              <Link smooth to="#testimonials" class="nav-link">
                 Testimonials
               </Link>
             </li>
