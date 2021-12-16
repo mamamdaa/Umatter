@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./css/login.css";
 import exit from "../img/exit.svg";
-import background from "./css/background.svg";
+import background2 from "../img/background2.svg";
 import { Link } from "react-router-dom";
 import { LOGIN } from "../../graphql/Queries";
 import { useMutation} from "@apollo/client";
@@ -53,7 +53,7 @@ export default function Login() {
         <div class="Login-flex d-flex justify-content-center p-4 ">
           <div className="container">
             {" "}
-            <img class="ms-5" src={background} alt="background" />
+            <img class="ms-5" src={background2} alt="background2" />
           </div>
 
           <div className="Form-flex ">
@@ -66,7 +66,7 @@ export default function Login() {
                   </Link>
                 </li>
               </ul>
-              <h1 class=" fw-bolder text-center">Sign up</h1>
+              <h1 class=" fw-bolder text-center">Sign in</h1>
               <div class="sign-in d-grid gap-2 mt-4">
                 <button class="btn btn2  border  " type="button">
                   Sign in with Google
@@ -107,9 +107,15 @@ export default function Login() {
                 </div>
 
                 <div class="sign-in d-grid gap-2 mt-5">
-                  <button class="btn fw-bold border border-dark" type="submit">
-                    Login
-                  </button>
+                  
+                  <Link to="/User">
+                    <button
+                      class="btn sign-btn fw-bold border border-dark"
+                      type="button"
+                    >
+                      Sign in
+                    </button>
+                  </Link>
                 </div>
               </form>
               <div className="sign-up d-flex justify-content-center">

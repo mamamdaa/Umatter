@@ -1,1 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+.about {
+  background: #f2f2f2;
+  padding-top: 10vh;
+}
+
+.about-flex {
+  padding: 2vh;
+}
+
+.about-flex .container1 {
+  width: 80% !important;
+}
+
+.about h1 {
+  font-size: 60px;
+}
+
+.about-flex .container1 h1 {
+  font-size: 50px;
+}
+.about-flex .container1 p {
+  font-size: 20px;
+}
+.About-boxes .container {
+  flex-wrap: wrap;
+}
+
+.About-boxes .card {
+  overflow: hidden;
+  position: relative;
+  width: 45vh;
+  background-color: #f2f2f2;
+}

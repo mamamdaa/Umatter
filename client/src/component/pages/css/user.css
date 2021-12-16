@@ -1,21 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f1f1f1;
+  position: relative;
 
-.container {
-  padding-top: 10;
+  min-height: 100vh;
 }
-.Home {
+
+.user {
   background: linear-gradient(250deg, #86e7cf 0%, #ffffff 60%);
-  height: 100% !important;
+  font-size: 100px;
 }
-.Home-box .Home {
+
+.user-box .user {
   padding-top: 60px;
 }
-.Home-flex {
+.user-flex {
   padding: 2vh;
   flex-wrap: wrap;
 }
 
-.Home-flex .container {
+.user-flex .container {
   overflow: hidden;
   color: #202124;
   position: relative;
@@ -23,20 +28,21 @@
   margin: 0 !important;
 }
 
-.Home-flex .container1 {
+.user-flex .container1 {
   margin-left: 2.8rem !important;
 }
 
-.Home-flex .container1 h1 {
+.user-flex .container1 h1 {
   font-size: 80px;
 }
-.Home-flex .container1 p {
+.user-flex .container1 p {
   font-size: 20px;
   font-weight: 300;
 }
-.home-sign-up .btn1 {
+
+.user-sign-up .btn1 {
   background-color: #17bdc6;
 }
-.home-sign-up .btn2 {
+.user-sign-up .btn2 {
   color: #8e8e8e;
 }

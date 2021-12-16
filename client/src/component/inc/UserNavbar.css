@@ -5,10 +5,6 @@
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
-.container-fluid .logo {
-  color: black;
-  text-decoration: none;
-}
 
 .navbar-bg {
   background-color: #c7f7eb;
@@ -33,4 +29,18 @@ ul li a {
   background-color: #17bdc6 !important;
   font-weight: normal;
   color: white !important;
+}
+
+.dropdown-menu {
+  width: 1rem !important;
+}
+
+li .user-name {
+  color: #158f96 !important;
+}
+li .user-profile {
+  width: 3vh !important;
+}
+
+ul li .user {
 }
