@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/login.css";
 import exit from "../img/exit.svg";
-import background from "./css/background.svg";
+import background2 from "../img/background2.svg";
 import { Link } from "react-router-dom";
 
 export default function Login() {
@@ -11,7 +11,7 @@ export default function Login() {
         <div class="Login-flex d-flex justify-content-center p-4 ">
           <div className="container">
             {" "}
-            <img class="ms-5" src={background} alt="background" />
+            <img class="ms-5" src={background2} alt="background2" />
           </div>
 
           <div className="Form-flex ">

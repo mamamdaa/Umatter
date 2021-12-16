@@ -23,6 +23,7 @@ function App() {
           <Navbar />
           <Home /> <Works />
           <About />
+          <Testimonials />
         </div>
       </Switch>
     </Router>

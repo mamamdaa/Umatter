@@ -58,7 +58,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li class="nav-item me-4">
-              <Link smooth to="/Testimonials" class="nav-link">
+              <Link smooth to="#testimonials" class="nav-link">
                 Testimonials
               </Link>
             </li>

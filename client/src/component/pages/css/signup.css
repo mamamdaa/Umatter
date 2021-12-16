@@ -6,8 +6,9 @@
 .Signup-flex {
   background: linear-gradient(250deg, #86e7cf 0%, #ffffff 80%);
   flex-wrap: wrap;
-  width: 150% !important;
-  height: 100vh;
+  position: absolute;
+  width: 100% !important;
+  height: 80% !important;
 }
 
 .Signup-flex .container {
