@@ -1,5 +1,6 @@
 import React from "react";
 import UserNavbar from "../inc/UserNavbar";
+import Footer from "../inc/Footer-chat";
 import background from "../img/background.svg";
 import { Link } from "react-router-dom";
 import "./css/user.css";
@@ -36,6 +37,8 @@ export default function User() {
           </div>
         </div>
       </div>
+      <div>sada</div>
+      <Footer />
     </div>
   );
 }
