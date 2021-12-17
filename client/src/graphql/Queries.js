@@ -14,6 +14,7 @@ export const GET_USERS = gql`
 export const LOGIN =  gql`
   mutation login($email: String!, $password: String!) {
     login(email:$email password:$password) {
+      _id
       first_name
       last_name
       email
@@ -28,5 +29,6 @@ query GetMessagesFromChannel($channelId: String!) {
     _id
     text
     sender
+    sender_name
   }
 }`

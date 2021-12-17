@@ -4,6 +4,7 @@ const UserMutation = require('./mutations/UserMutation');
 const ChannelMutations = require('./mutations/ChannelMutations');
 const MessageMutations = require('./mutations/MessageMutations');
 const UserSubscription = require('./subscriptions/UserSubscription');
+const ChannelSubscription = require('./subscriptions/ChannelSubscription');
 const graphql = require('graphql');
 const {
   GraphQLObjectType,
@@ -24,7 +25,7 @@ const Mutation = new GraphQLObjectType({
 
 const Subscription = new GraphQLObjectType({
     name: 'Subscription',
-    fields: UserSubscription
+    fields: {...UserSubscription,...ChannelSubscription}
 });
 // console.log('combine', {
 //   ...MessageMutations,

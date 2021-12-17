@@ -1,7 +1,12 @@
-// import { gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 
-// export const newLogin = gql`
-//     mutation login($email: String!, $password: String!) {
-//         login(email:$email password:$password) {
-//             first_name
-//             last_name
+export const SUBSCRIBE_CHANNEL = gql`
+  subscription Subscription($channel: String) {
+    newMessage(channel: $channel) {
+      _id
+      text
+      sender
+      sender_name
+    }
+  }
+`;

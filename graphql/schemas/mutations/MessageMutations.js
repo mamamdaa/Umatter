@@ -11,7 +11,7 @@ const sendMessage = {
         sender: { type: new GraphQLNonNull(GraphQLString) }, //change to senderid
         channel: { type: new GraphQLNonNull(GraphQLString) },
     },
-    resolve: async function (root, params,{req, res}) {
+    resolve: async function (root, params,{req, res,pubsub}) {
         // if(!req.isAuth) {
         //   res.status(401)
         //   throw new Error("Not Authenticated");
@@ -22,6 +22,7 @@ const sendMessage = {
         }
         params.sender_name = user.first_name;
         let message = new Message(params);
+        pubsub.publish('NEW_MESSAGE', { newMessage: message });
         return message.save();
     }
 }
