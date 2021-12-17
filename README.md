@@ -21,6 +21,7 @@ Control GraphQL queries on http://localhost:5000/graphqli?
 Apollo Subcription is listening on http://localhost:4000/
 
 ENV File is included on the repo for the judges to use
+for any questions, clarifications email me at cdmontalban@usa.edu.ph or mamada@usa.edu.ph
 
 ## Learn More
 
