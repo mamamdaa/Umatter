@@ -9,6 +9,10 @@
 .chat-box {
   background-color: white;
 }
+
+.status {
+  width: 1.5vh;
+}
 ul li a {
   text-decoration: none;
 }
@@ -20,6 +24,7 @@ ul li img {
 
 .contacts {
   width: 100% !important;
+  overflow: auto;
 }
 
 .message {
