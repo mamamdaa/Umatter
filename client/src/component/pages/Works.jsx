@@ -28,13 +28,11 @@ export default function Works() {
         </div>{" "}
         <div class="Home-works d-flex justify-content-center">
           <div class="container container2 p-5">
-            <h3 class="text-center">Lorem ipsum dolor sit ame</h3>
+            <h3 class="text-center">Answer our Pre-Assessment </h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit
-              massa sociis eu suscipit quam. Aliquet morbi vulputate malesuada
-              gravida hendrerit tellus. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Elit massa sociis eu suscipit quam. Aliquet morbi
-              vulputate malesuada gravida hendrerit tellus.
+              It's hard to talk to people about our mental health, but it’s also
+              hard not to. It’s easier if you have some details in advance and
+              can tell your peer facilitator at the beginning of our session.
             </p>
           </div>
           <div class="container container1 text-center mt-md-3">
@@ -52,13 +50,12 @@ export default function Works() {
           </div>
 
           <div class="container container2  p-5">
-            <h3 class="text-center">Lorem ipsum dolor sit ame</h3>
+            <h3 class="text-center">Connect or chat to the facilitator</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit
-              massa sociis eu suscipit quam. Aliquet morbi vulputate malesuada
-              gravida hendrerit tellus. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Elit massa sociis eu suscipit quam. Aliquet morbi
-              vulputate malesuada gravida hendrerit tellus.
+              People have questions about mental health and emotional
+              well-being. They need answers from friends they trust in a way
+              that they can understand. Connect with our Peer Facilitators. We
+              are here to hear you
             </p>
           </div>
         </div>

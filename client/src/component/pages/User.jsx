@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import UserNavbar from "../inc/UserNavbar";
 import Navbar from "../inc/Navbar";
@@ -18,7 +18,6 @@ export default function User() {
     }
   }, [isLoggedIn, history]);
 
-
   return (
     <div className="user-box">
       <Navbar />
@@ -28,10 +27,11 @@ export default function User() {
             <h4 class="ms-sm-1 mt-5 fw-bold">Welcome to Umatter, Fredick !</h4>
             <h1 class="mt-3 fw-bolder">Thank you for signing up!</h1>
             <p class="ms-sm-1 mt-sm-5">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida
-              consectetur mi cursus justo. Maecenas feugiat curabitur lacus,
-              elementum neque. Maecenas feugiat curabitur lacus, elementum
-              neque.
+              Looks like everything's set and done. You are ready! Check out our
+              cool stuff we have in store for you. Our peer facilitators are
+              ready when you are and one click of this button, you'll be
+              redirected to answer the pre-assessment test and we are good to
+              go!
             </p>
             <span class="user-sign-up ">
               <a class="btn btn1 btn-light fw-bold  " href="#" role="button">

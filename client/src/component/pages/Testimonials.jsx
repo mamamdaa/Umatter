@@ -56,10 +56,8 @@ export default function Testimonials() {
                   </div>
 
                   <p class="card-text">
-                    “Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Pulvinar eu iaculis risus in sagittis imperdiet. Vitae id
-                    quis auctor lectus imperdiet morbi. Id odio amet at sed
-                    turpis.”
+                    "Umatter is a mental health service that provides resources
+                    and support to students who are struggling mentally."
                   </p>
                 </div>
               </div>
@@ -78,10 +76,9 @@ export default function Testimonials() {
                   </div>
 
                   <p class="card-text">
-                    “Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Pulvinar eu iaculis risus in sagittis imperdiet. Vitae id
-                    quis auctor lectus imperdiet morbi. Id odio amet at sed
-                    turpis.”
+                    "I am so happy you started this program. I think it will be
+                    a very valuable and helpful experience for our students.
+                    Thank you, thank you, thank you. You are lifesavers."
                   </p>
                 </div>
               </div>
@@ -100,10 +97,10 @@ export default function Testimonials() {
                   </div>
 
                   <p class="card-text">
-                    “Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Pulvinar eu iaculis risus in sagittis imperdiet. Vitae id
-                    quis auctor lectus imperdiet morbi. Id odio amet at sed
-                    turpis.”
+                    "Umatter is an amazing organization that has been an
+                    incredible asset to our students. Umatter's work with our
+                    students and their families has made a difference in their
+                    lives, and the lives of our staff."
                   </p>
                 </div>
               </div>
@@ -122,10 +119,9 @@ export default function Testimonials() {
                   </div>
 
                   <p class="card-text">
-                    “Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Pulvinar eu iaculis risus in sagittis imperdiet. Vitae id
-                    quis auctor lectus imperdiet morbi. Id odio amet at sed
-                    turpis.”
+                    "Thank you for the support. It's wonderful to know that our
+                    school is supported by an organization like UMatter. We are
+                    happy to be a part of the UMatter family."
                   </p>
                 </div>
               </div>

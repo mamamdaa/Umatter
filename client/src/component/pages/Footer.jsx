@@ -17,10 +17,9 @@ export default function Footer() {
             <div class="card-body">
               <h4 class="card-title">Umatter</h4>
               <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus
-                interdum nulla tristique gravida libero, elementum. nulla lorem
-                faucibus. Lorem ipsum dolor sit amet, consectetur adipiscing
-                elit.
+                Uncover insights on students' stressors through organizational
+                surveys and monthly reports to help design effective approaches
+                and strategies.
               </p>
             </div>
           </div>
