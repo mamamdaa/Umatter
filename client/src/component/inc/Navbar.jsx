@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "./navbar.css";
 import { HashLink as Link } from "react-router-hash-link";
 
-//
-
 export default function Navbar() {
   //navbar background
   const [color, setColor] = useState(false);
@@ -63,7 +61,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li class="nav-item me-5 comp">
-              <Link smooth to="/Contact" class="nav-link">
+              <Link smooth to="#contact" class="nav-link">
                 Contact
               </Link>
             </li>
