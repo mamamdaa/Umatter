@@ -6,6 +6,7 @@ import background from "../img/background.svg";
 import { HashLink as Link } from "react-router-hash-link";
 
 export default function Home() {
+  
   return (
     <div className="Home-box " id="home">
       <div className="Home ">

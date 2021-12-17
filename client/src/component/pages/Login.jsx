@@ -9,6 +9,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogin } from "../../redux/user";
 
+
 export default function Login() {
   const { isLoggedIn } = useSelector((state) => state.user);
   const [email, setEmail] = React.useState("");
@@ -35,6 +36,7 @@ export default function Login() {
   };
 
   useEffect(() => {
+    console.log("data", data)
     if (data) {
       localStorage.setItem("token", data.login.token);
       localStorage.setItem("user", JSON.stringify(data.login));
@@ -44,9 +46,10 @@ export default function Login() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      history.push("/");
+      history.push("/User");
     }
   }, [history, isLoggedIn]);
+
   return (
     <div className="Login-box">
       <div className="Login">
@@ -108,14 +111,14 @@ export default function Login() {
 
                 <div class="sign-in d-grid gap-2 mt-5">
                   
-                  <Link to="/User">
+                 
                     <button
                       class="btn sign-btn fw-bold border border-dark"
-                      type="button"
+                      type="submit"
                     >
                       Sign in
                     </button>
-                  </Link>
+                 
                 </div>
               </form>
               <div className="sign-up d-flex justify-content-center">

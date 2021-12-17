@@ -20,7 +20,7 @@ const createChannel = {
 //change function
 const addUserToChannel = {
     type: ChannelType,
-    args: {
+    args: { 
         channel_id: { type: new GraphQLNonNull(GraphQLString) },
         user_id: { type: new GraphQLNonNull(GraphQLString) },
     },

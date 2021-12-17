@@ -27,6 +27,7 @@ const MessageType = new GraphQLObjectType({
       _id: { type: GraphQLString },
       text: { type: GraphQLString },
       sender: { type: GraphQLString },
+      sender_name:{type: GraphQLString},
       channel: { type: GraphQLString },
     })
 });

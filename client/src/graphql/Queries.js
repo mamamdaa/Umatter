@@ -21,3 +21,12 @@ export const LOGIN =  gql`
     }
   }
 `;
+
+export const GET_MESSAGES = gql`
+query GetMessagesFromChannel($channelId: String!) {
+  getMessagesFromChannel(channel_id: $channelId) {
+    _id
+    text
+    sender
+  }
+}`

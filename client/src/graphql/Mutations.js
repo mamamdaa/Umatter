@@ -8,3 +8,14 @@ export const REGISTER =  gql`
         }
     }
 `;
+
+export const SEND_MESSAGE = gql`
+    mutation SendMessage($text: String!, $channel: String!, $sender: String!) {
+        sendMessage(text: $text, channel: $channel, sender: $sender) {
+        _id
+        text
+        sender
+        sender_name
+        }
+    }
+`;

@@ -1,14 +1,27 @@
-import React from "react";
+import React,{useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
 import UserNavbar from "../inc/UserNavbar";
+import Navbar from "../inc/Navbar";
 import Footer from "../inc/Footer-chat";
+import { useHistory } from "react-router-dom";
 import background from "../img/background.svg";
 import { Link } from "react-router-dom";
 import "./css/user.css";
 
 export default function User() {
+  const { isLoggedIn, user } = useSelector((state) => state.user);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      history.push("/");
+    }
+  }, [isLoggedIn, history]);
+
+
   return (
     <div className="user-box">
-      <UserNavbar />
+      <Navbar />
       <div class="user">
         <div class="user-flex d-flex justify-content-center  ">
           <div class="container container1  mt-md-3">

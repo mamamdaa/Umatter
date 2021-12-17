@@ -126,14 +126,13 @@ export default function Signup() {
                 </div>
 
                 <div class="sign-up d-grid gap-2 mt-5">
-                  <Link to="/User">
+                  
                   <button
                     class="btn create-btn fw-bold border border-dark"
-                    type="button"
+                    type="submit"
                   >
                     Create account
                   </button>
-                </Link>
                 </div>
               </form>
               <div className="sign-in d-flex justify-content-center">

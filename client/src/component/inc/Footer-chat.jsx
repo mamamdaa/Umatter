@@ -1,11 +1,44 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import "./footer-chat.css";
 import exit from "../img/exit.svg";
 import emoji from "../img/emoji.svg";
 import send from "../img/send.svg";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { useMutation,useQuery,useLazyQuery} from "@apollo/client";
+import {GET_MESSAGES} from "../../graphql/Queries";
 
 export default function Footer() {
+
+  const [dataError, setDataError] = useState("");
+  const [channelId, setChannelId] = useState("");
+
+  const [getMessages, { error, data }] = useLazyQuery(GET_MESSAGES, {
+    onError: (err) => {
+      setDataError(
+        JSON.parse(JSON.stringify(err)).networkError.result.errors[0]
+      );
+    },
+  });
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    getMessages({
+      variables: {
+        channelId: channelId
+      },
+    });
+  };
+    // joinChannel({
+    //   variables: {
+    //     first_name: firstName,
+    //     last_name: lastName,
+    //     email: email,
+    //     password: password,
+    //   },
+    // });
+  
+
   return (
     <div class="footer-container navbar ">
       <div class=" chat-box btn-group dropup ms-auto">
@@ -32,6 +65,21 @@ export default function Footer() {
               <img class="float-end" src={exit} alt="exit" />
             </Link>
           </li>
+          <form class="form-inline" onSubmit={submitHandler}>
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Set Channel"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">
+                  <img src={send} alt="send" />
+                </button>
+              </div>
+            </div>
+          </form>
+          
           <li class="message"></li>
           <li>
             <div class="chat input-group">
