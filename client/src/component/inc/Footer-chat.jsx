@@ -12,7 +12,7 @@ export default function Footer() {
         <button
           class="btn border navbar-toggler"
           type="button"
-          id="dropdownMenuClickable"
+          id="dropdownMenuClickableInside"
           data-bs-toggle="dropdown"
           data-bs-auto-close="false"
           aria-expanded="false"
@@ -22,7 +22,10 @@ export default function Footer() {
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </button>
-        <ul class="contacts dropdown-menu  float-end">
+        <ul
+          class="contacts dropdown-menu  float-end"
+          aria-labelledby="dropdownMenuClickableInside"
+        >
           <li class="mb-1 border-bottom ">
             {" "}
             <img
@@ -30,9 +33,9 @@ export default function Footer() {
               src="https://img.icons8.com/color/48/000000/connection-status-on--v1.png"
             />
             Facilitator
-            <Link to="/User" class="exit-chat ">
+            <Link to="/User" class="exit-chat">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <img class="float-end" src={exit} alt="exit" />
+              <img class="float-end exit-chat" src={exit} alt="exit" />
             </Link>
           </li>
           <li class="message"></li>

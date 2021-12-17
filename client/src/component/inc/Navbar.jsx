@@ -68,7 +68,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li class="nav-item me-5 comp">
-              <Link smooth to="/Contact" class="nav-link">
+              <Link smooth to="#contact" class="nav-link">
                 Contact
               </Link>
             </li>

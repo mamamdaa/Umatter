@@ -8,6 +8,7 @@ import Testimonials from "./component/pages/Testimonials";
 import Contact from "./component/pages/Contact";
 import Signup from "./component/pages/Signup.jsx";
 import Login from "./component/pages/Login";
+
 import User from "./component/pages/User.jsx";
 import store from "./redux/store";
 import {Provider} from "react-redux";
@@ -52,7 +53,8 @@ function App() {
     <ApolloProvider client={client}>
       <Provider store={store}>
       <Router>
-      <ScrollToTop />
+      
+    <Router>
       <Switch>
         <Route exact path="/Signup" component={Signup} />
         <Route exact path="/Login" component={Login} />
@@ -62,6 +64,7 @@ function App() {
           <Home /> <Works />
           <About />
           <Testimonials />
+          <Contact />
         </div>
       </Switch>
     </Router>
