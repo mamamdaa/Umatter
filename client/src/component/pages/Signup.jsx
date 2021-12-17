@@ -16,9 +16,6 @@ export default function Signup() {
   const [lastName, setLastName] = React.useState("");
   const [register, { error, data }] = useMutation(REGISTER, {
     onError: (err) => {
-      setDataError(
-        JSON.parse(JSON.stringify(err)).networkError.result.errors[0]
-      );
     },
   }); //refactor
 
@@ -38,6 +35,13 @@ export default function Signup() {
       history.push("/");
     }
   }, [data]);
+
+  useEffect(() => {
+    if (error) {
+      const newError =  JSON.parse(JSON.stringify(error))
+      setDataError(newError.message);
+    }
+  }, [error]);
   return (
     <div className="Singup-box">
       <div className="Signup">
@@ -63,7 +67,7 @@ export default function Signup() {
                 </button>
                 <p class="text-center mt-3 mb-3 fw-bold">or</p>
               </div>
-              {dataError && <p className="error">{dataError.message}</p>}
+              {dataError && <p className="error">{dataError}</p>}
               <form onSubmit={submitHandler}>
                 <div class="mb-3 ">
                   <label for="exampleInputEmail1" class="form-label fw-bolder">

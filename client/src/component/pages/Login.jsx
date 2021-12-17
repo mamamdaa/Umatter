@@ -19,9 +19,6 @@ export default function Login() {
   const dispatch = useDispatch();
   const [login, { error, data }] = useMutation(LOGIN, {
     onError: (err) => {
-      setDataError(
-        JSON.parse(JSON.stringify(err)).networkError.result.errors[0]
-      );
     },
   }); //refactor
 
@@ -34,6 +31,13 @@ export default function Login() {
       },
     });
   };
+
+  useEffect(() => {
+    if (error) {
+      const newError =  JSON.parse(JSON.stringify(error))
+      setDataError(newError.message);
+    }
+  }, [error]);
 
   useEffect(() => {
     console.log("data", data)
@@ -76,7 +80,7 @@ export default function Login() {
                 </button>
                 <p class="text-center mt-3 mb-3 fw-bold">or</p>
               </div>
-              {dataError && <p>{dataError.message}</p>}
+              {dataError && <p>{dataError}</p>}
               <form onSubmit={submitHandler}>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label fw-bolder">
