@@ -8,7 +8,7 @@ export default function About() {
   return (
     <div className="about-box">
       <div className="about" id="about">
-        <h1 class="text-center fw-bolder ">About us</h1>
+        <h1 class="text-center fw-bolder mt-5">About us</h1>
         <div className="about-flex d-flex justify-content-center  p-4">
           <div className="container container1 float-start">
             <h1 class="  fw-bolder mb-5">Umatter</h1>

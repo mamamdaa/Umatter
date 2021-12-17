@@ -33,3 +33,7 @@
   width: 45vh;
   background-color: #f2f2f2;
 }
+
+.About-boxes .card-text {
+  width: 40vh;
+}

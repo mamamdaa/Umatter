@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+.footer {
+  background-color: #2a2a2a;
+  padding-top: 90vh;
+  color: white;
+}
+
+.footer .container {
+  flex-wrap: wrap;
+}
+
+.footer .card {
+  overflow: hidden;
+  position: relative;
+  width: 30vh;
+  background-color: #2a2a2a;
+}
+
+.footer .card-text {
+  width: 25vh;
+  font-size: 14px;
+}
+
+.footer .card {
+  font-size: 18px;
+}
+.footer .card a {
+  text-decoration: none;
+  color: white;
+}
+
+.footer .card img {
+  width: 1rem;
+}
+
+.footer .card .card-body {
+  margin: 0 !important;
+}
+
+.footer .info {
+  font-size: 13px;
+}
