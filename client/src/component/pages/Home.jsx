@@ -1,12 +1,9 @@
-import React, {useEffect} from "react";
+import React from "react";
 import "./css/home.css";
-import { useQuery,gql } from "@apollo/client";
-import {GET_USERS} from "../../graphql/Queries";
 import background from "../img/background.svg";
 import { HashLink as Link } from "react-router-hash-link";
 
 export default function Home() {
-  
   return (
     <div className="Home-box " id="home">
       <div className="Home ">
@@ -34,16 +31,12 @@ export default function Home() {
               </Link>
             </span>
           </div>
-          <div class="container con1">
-          </div>
-          <div>
 
           <div class="container container2">
             <img class="me-4" src={background} alt="background" />
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }
