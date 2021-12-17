@@ -104,7 +104,7 @@ export default function Navbar() {
                   </Button>{" "}
                 </li> */}
               <li class="nav-item me-5 comp">
-            <Link smooth to="#" class="nav-link">
+            <Link smooth to="/User" class="nav-link">
               Chat
             </Link>
               </li>
