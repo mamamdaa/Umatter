@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    assigned: {
+    assigned_to: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Facilitator",
     }
