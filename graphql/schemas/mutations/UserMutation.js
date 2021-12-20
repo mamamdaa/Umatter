@@ -163,6 +163,7 @@ const leaveQueue = {
     );
     return newUser
   }
+}
 
 // const deleteUser = {
 //     type: UserType,
