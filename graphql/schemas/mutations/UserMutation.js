@@ -126,9 +126,43 @@ const enterQueue = {
   type: UserType,
   args: {
     _id: { type: GraphQLString },
-    is_in_queue: { type: GraphQLBoolean },
   },
+  resolve: async function (root, params, { req, res }) {
+    const newUser = await User.findOneAndUpdate(
+      { _id: params._id },
+      {
+        $set: {
+          inQueue: true,
+        },
+      },
+      {
+        new: true,
+      }
+    );
+    return newUser
+  }
 }
+
+const leaveQueue = {
+  name: "leaveQueue",
+  type: UserType,
+  args: {
+    _id: { type: GraphQLString },
+  },
+  resolve: async function (root, params, { req, res }) {
+    const newUser = await User.findOneAndUpdate(
+      { _id: params._id },
+      {
+        $set: {
+          inQueue: false,
+        },
+      },
+      {
+        new: true,
+      }
+    );
+    return newUser
+  }
 
 // const deleteUser = {
 //     type: UserType,
