@@ -19,6 +19,7 @@ const UserType = new GraphQLObjectType({
       token: {type: GraphQLString},
       channels: {type: new GraphQLList(ChannelType)},
       is_in_queue: {type: GraphQLBoolean},
+      assigned: {type: FacilitatorType},
     })
 });
 
@@ -40,6 +41,20 @@ const ChannelType = new GraphQLObjectType({
         channel_name: { type: GraphQLString },
         messages: { type: new GraphQLList(MessageType) },
         users: { type: new GraphQLList(UserType) },
+    })
+});
+
+const FacilitatorType = new GraphQLObjectType({
+    name: 'FacilitatorType',
+    fields: () => ({
+      _id: { type: GraphQLString },
+      first_name: { type: GraphQLString },
+      last_name: { type: GraphQLString },
+      email: { type: GraphQLString },
+      password: { type: GraphQLString },
+      channels: { type: new GraphQLList(ChannelType) },
+      is_in_queue: { type: GraphQLBoolean },
+      assigned: { type: UserType },
     })
 });
 
