@@ -22,7 +22,11 @@ const userSchema = new mongoose.Schema(
     channels:[{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Channel",
-    }]
+    }],
+    is_in_queue: {
+      type: Boolean,
+      default: false,
+    }
   },
   {
     timestamps: true,
