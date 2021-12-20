@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
 const facilitatorSchema = new mongoose.Schema(
   {
@@ -19,32 +19,34 @@ const facilitatorSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    channels:[{
+    channels: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Channel",
+      },
+    ],
+    assigned: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Channel",
-    }],
-    is_assigned: {
-      type: Boolean,
-      default: false,
+      ref: "User",
     },
   },
   {
     timestamps: true,
-  },
+  }
 );
 
-facilitatorSchema.pre('save', async function(next){
-  if(!this.isModified('password')){
-      next();
+facilitatorSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    next();
   }
   //Encrypt password
   const salt = await bcrypt.genSaltSync(10);
-  this.password=await bcrypt.hash(this.password, salt);
+  this.password = await bcrypt.hash(this.password, salt);
 });
 
-facilitatorSchema.methods.isMatchPassword = async function (enteredPassword){
+facilitatorSchema.methods.isMatchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
-}
+};
 
 const Facilitator = mongoose.model("Facilitator", facilitatorSchema);
 module.exports = Facilitator;
