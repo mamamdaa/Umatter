@@ -165,6 +165,29 @@ const leaveQueue = {
   }
 }
 
+const assignedTo = {
+  name: "assignedTo",
+  type: UserType,
+  args: {
+    _id: { type: GraphQLString },
+    assigned_to: { type: GraphQLString },
+  },
+  resolve: async function (root, params, { req, res }) {
+    const newUser = await User.findOneAndUpdate(
+      { _id: params._id },
+      {
+        $set: {
+          assigned_to: params.assigned_to,
+        },
+      },
+      {
+        new: true,
+      }
+    );
+    return newUser
+  }
+}
+
 // const deleteUser = {
 //     type: UserType,
 //     args: {
