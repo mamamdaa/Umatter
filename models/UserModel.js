@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema(
     is_in_queue: {
       type: Boolean,
       default: false,
+    },
+    assigned: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Facilitator",
     }
   },
   {

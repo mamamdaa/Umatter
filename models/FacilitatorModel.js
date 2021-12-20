@@ -26,11 +26,11 @@ const facilitatorSchema = new mongoose.Schema(
     is_assigned: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 facilitatorSchema.pre('save', async function(next){
