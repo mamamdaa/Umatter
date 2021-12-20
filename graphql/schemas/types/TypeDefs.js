@@ -17,7 +17,8 @@ const UserType = new GraphQLObjectType({
       email: {type: GraphQLString},
       password: {type: GraphQLString},
       token: {type: GraphQLString},
-    
+      channels: {type: new GraphQLList(ChannelType)},
+      is_in_queue: {type: GraphQLBoolean},
     })
 });
 
