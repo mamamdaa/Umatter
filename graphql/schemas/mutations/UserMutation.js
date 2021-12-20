@@ -1,4 +1,7 @@
-var { GraphQLNonNull, GraphQLString } = require("graphql");
+var { 
+  GraphQLNonNull, 
+  GraphQLString,
+GraphQLBoolean } = require("graphql");
 const { UserType } = require("../types/TypeDefs");
 const User = require("../../../models/UserModel");
 const generateToken = require("../../../utils/generateToken");
@@ -117,6 +120,15 @@ const joinChannel = {
   },
 
 };
+
+const enterQueue = {
+  name: "enterQueue",
+  type: UserType,
+  args: {
+    _id: { type: GraphQLString },
+    is_in_queue: { type: GraphQLBoolean },
+  },
+}
 
 // const deleteUser = {
 //     type: UserType,
