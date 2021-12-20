@@ -56,6 +56,7 @@ export default function Navbar() {
         >
           <ul class="nav navbar-nav m-3 ms-auto">
             <li class="nav-item me-4">
+              
               <Link smooth to="#home" class="nav-link">
                 Home
               </Link>
