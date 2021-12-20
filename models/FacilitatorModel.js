@@ -25,7 +25,7 @@ const facilitatorSchema = new mongoose.Schema(
         ref: "Channel",
       },
     ],
-    assigned: {
+    assigned_to: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
