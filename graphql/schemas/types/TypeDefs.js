@@ -4,7 +4,8 @@ const {
   GraphQLString,
   GraphQLInt,
   GraphQLObject,
-  GraphQLList
+  GraphQLList,
+  GraphQLBoolean
 } = graphql
 
 

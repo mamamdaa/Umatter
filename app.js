@@ -18,11 +18,11 @@ const { PubSub } = require('graphql-subscriptions');
 const { SubscriptionServer } = require('subscriptions-transport-ws');
 const { execute,
   subscribe,} = require('graphql');
+var path = require('path');
 
 const httpServer = http.createServer(app);
 
 const pubsub = new PubSub();
-
 
 app.use(isAuth);
 const server = new ApolloServer({ 
@@ -53,6 +53,12 @@ const subscriptionServer = SubscriptionServer.create({
   path: '/graphql',
 });
 
+app.use(express.static(path.join(__dirname, "/client")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
+
 const PORT = 4000;
   httpServer.listen(PORT, () =>
     console.log(`httpServer is now running on http://localhost:${PORT}/graphql`)
@@ -65,3 +71,5 @@ server.start().then(res => {
     console.log(`Server running at http://${hostname}:${process.env.PORT}/`);
   });
 });
+
+
