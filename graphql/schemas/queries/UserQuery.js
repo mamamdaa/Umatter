@@ -8,7 +8,7 @@ const {
 const {protect} = require('../../../middlewares/AuthMiddleware');
 const User = require('../../../models/UserModel');
 const {UserType} = require('../types/TypeDefs');
-const generateToken = require('../../../utils/generateToken');
+const generateToken = require('../../../utils/GenerateToken');
 
 const getUsers = {
   name: 'addUser',
