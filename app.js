@@ -59,15 +59,16 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
 });
 
-const PORT = 4000;
-  httpServer.listen(PORT, () =>
-    console.log(`httpServer is now running on http://localhost:${PORT}/graphql`)
-  );
+// const PORT = 4000;
+//   httpServer.listen(PORT, () =>
+//     console.log(`httpServer is now running on http://localhost:${PORT}/graphql`)
+//   );
 
+// server.installSubscriptionHandlers(httpServer)
 
 server.start().then(res => {
- const newServer =  server.applyMiddleware({ app });
-  app.listen(process.env.PORT, () => {
+ server.applyMiddleware({ app });
+ httpServer.listen(process.env.PORT, () => {
     console.log(`Server running at http://${hostname}:${process.env.PORT}/`);
   });
 });
