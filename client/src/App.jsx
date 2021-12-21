@@ -41,7 +41,7 @@ const errorLink = onError(({ graphqlErrors, networkError }) => {
 });
 
 const wsLink = new WebSocketLink({
-  uri: `ws:/`+baseLink,
+  uri: `ws://`+baseLink,
   options: {
     reconnect: true
   }
