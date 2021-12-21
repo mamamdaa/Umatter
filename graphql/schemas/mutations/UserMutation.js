@@ -4,7 +4,7 @@ var {
 GraphQLBoolean } = require("graphql");
 const { UserType } = require("../types/TypeDefs");
 const User = require("../../../models/UserModel");
-const generateToken = require("../../../utils/generateToken");
+const generateToken = require("../../../utils/GenerateToken");
 
 const addUser = {
   type: UserType,
