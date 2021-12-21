@@ -26,6 +26,9 @@ import {
 import ScrollToTop from "./component/inc/ScrollTop.jsx";
 import { onError } from "@apollo/client/link/error";
 
+const baseLink = "localhost:5000/graphql"
+// const baseLink = "umatterph.herokuapp.com"
+
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
     graphqlErrors.map(({ message, location, path }) => {
@@ -38,7 +41,7 @@ const errorLink = onError(({ graphqlErrors, networkError }) => {
 });
 
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:4000/graphql`,
+  uri: `ws://`+baseLink,
   options: {
     reconnect: true
   }
@@ -55,7 +58,8 @@ const link = split(
     );
   },
   wsLink,
-  new HttpLink({ uri: "http://localhost:5000/graphql" }),
+
+  new HttpLink({ uri: "http://"+ baseLink}),
   errorLink,
 );
 
