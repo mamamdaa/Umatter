@@ -132,7 +132,7 @@ const enterQueue = {
       { _id: params._id },
       {
         $set: {
-          inQueue: true,
+          is_in_queue: true,
         },
       },
       {
@@ -154,7 +154,7 @@ const leaveQueue = {
       { _id: params._id },
       {
         $set: {
-          inQueue: false,
+          is_in_queue: false,
         },
       },
       {
@@ -205,4 +205,4 @@ const assignedTo = {
 //     }
 // }
 
-module.exports = { addUser, updateUser, login, joinChannel };
+module.exports = { addUser, updateUser, login, joinChannel, enterQueue, leaveQueue, assignedTo };
