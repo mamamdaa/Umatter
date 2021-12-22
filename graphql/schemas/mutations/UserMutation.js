@@ -1,9 +1,7 @@
-var { 
-  GraphQLNonNull, 
-  GraphQLString,
-GraphQLBoolean } = require("graphql");
+var { GraphQLNonNull, GraphQLString, GraphQLBoolean } = require("graphql");
 const { UserType } = require("../types/TypeDefs");
 const User = require("../../../models/UserModel");
+const Facilitator = require("../../../models/FacilitatorModel");
 const generateToken = require("../../../utils/GenerateToken");
 
 const addUser = {
@@ -108,17 +106,16 @@ const joinChannel = {
     const newUser = await User.findOneAndUpdate(
       { _id: params._id },
       {
-        $addToSet : {
-            channels: params.channel_id
-        }
+        $addToSet: {
+          channels: params.channel_id,
+        },
       },
       {
         new: true,
       }
     );
-    return newUser
+    return newUser;
   },
-
 };
 
 const enterQueue = {
@@ -139,9 +136,9 @@ const enterQueue = {
         new: true,
       }
     );
-    return newUser
-  }
-}
+    return newUser;
+  },
+};
 
 const leaveQueue = {
   name: "leaveQueue",
@@ -161,9 +158,9 @@ const leaveQueue = {
         new: true,
       }
     );
-    return newUser
-  }
-}
+    return newUser;
+  },
+};
 
 const assignedTo = {
   name: "assignedTo",
@@ -184,9 +181,22 @@ const assignedTo = {
         new: true,
       }
     );
-    return newUser
-  }
-}
+    const assignedFacilitator = await Facilitator.findOne({
+      _id: params.assigned_to,
+    });
+
+    if (!assignedFacilitator) {
+      throw new Error("Facilitator not found");
+    }
+
+    if (!newUser) {
+      throw new Error("User not found");
+    }
+
+    newUser.assigned_to = assignedFacilitator;
+    return newUser;
+  },
+};
 
 // const deleteUser = {
 //     type: UserType,
@@ -205,4 +215,12 @@ const assignedTo = {
 //     }
 // }
 
-module.exports = { addUser, updateUser, login, joinChannel, enterQueue, leaveQueue, assignedTo };
+module.exports = {
+  addUser,
+  updateUser,
+  login,
+  joinChannel,
+  enterQueue,
+  leaveQueue,
+  assignedTo,
+};
