@@ -3,7 +3,8 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
-  GraphQLList
+  GraphQLList,
+  GraphQLBoolean,
 } = graphql
 const {protect} = require('../../../middlewares/AuthMiddleware');
 const User = require('../../../models/UserModel');
@@ -13,13 +14,22 @@ const generateToken = require('../../../utils/GenerateToken');
 const getUsers = {
   name: 'getUsers',
   type: new GraphQLList(UserType),
+  args: {
+    is_in_queue: {
+      type: GraphQLBoolean,
+    },
+    assigned_to: {
+      type: GraphQLString,
+    },
+  },
   resolve: async function (root, params,{req, res}) {
     // if(!req.isAuth) {
     //   res.status(401)
     //   throw new Error("Not Authenticated");
     // }
-    return User.find({}).select("-password")
+    return User.find(params).select("-password")
   }
 }
+
 
 module.exports = {getUsers}
