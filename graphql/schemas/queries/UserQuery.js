@@ -11,14 +11,8 @@ const {UserType} = require('../types/TypeDefs');
 const generateToken = require('../../../utils/GenerateToken');
 
 const getUsers = {
-  name: 'addUser',
+  name: 'getUsers',
   type: new GraphQLList(UserType),
-  args: {
-    first_name: {type: GraphQLString},
-    last_name: {type: GraphQLString},
-    email: {type: GraphQLString},
-    password: {type: GraphQLString},
-  },
   resolve: async function (root, params,{req, res}) {
     // if(!req.isAuth) {
     //   res.status(401)
@@ -27,8 +21,5 @@ const getUsers = {
     return User.find({}).select("-password")
   }
 }
-
-
-
 
 module.exports = {getUsers}
