@@ -30,6 +30,7 @@ import { onError } from "@apollo/client/link/error";
 // console.log("test",process.env.REACT_APP_API_URL);
 // const baseLink = "localhost:5000/graphql"
 const baseLink = process.env.REACT_APP_API_URL
+console.log("baseLink",baseLink);
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
