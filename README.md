@@ -1,7 +1,7 @@
 <h1 align="center">
  Ummatter</h1>
 
-<div align="center"> <img height="55" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png"/> <img width="55" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/bootstrap.svg"/> <img width="55" src="https://seeklogo.com/images/N/nodejs-logo-FBE122E377-seeklogo.com.png"/> <img width="55" src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png"/><img width="55" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/javascript.svg"/> <img width="55" src="https://user-images.githubusercontent.com/8939680/57233882-20344080-6fe5-11e9-9086-d20a955bed59.png"/><img width="55" src="https://cdn.worldvectorlogo.com/logos/apollo-graphql-1.svg"/> </div>
+<div align="center"> <img height="55" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png"/> <img width="55" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/bootstrap.svg"/> <img width="55" src="https://seeklogo.com/images/N/nodejs-logo-FBE122E377-seeklogo.com.png"/> <img width="55" src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png"/><img width="55" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/javascript.svg"/> <img width="55" src="https://user-images.githubusercontent.com/8939680/57233882-20344080-6fe5-11e9-9086-d20a955bed59.png"/><img width="55" src="https://sunny-mittal.gallerycdn.vsassets.io/extensions/sunny-mittal/vscode-apollo/1.15.6/1589820786566/Microsoft.VisualStudio.Services.Icons.Default"/> </div>
 
 <h2 align="center">
   <a href=https://umatterph.herokuapp.com/">[LIVE APP]</a>
