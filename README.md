@@ -13,6 +13,3 @@
 [3] Run `npm run i` install dependencies<br/>
 [4] Run `cd ..` <br/>
 [5] Run `npm run dev` for a dev server. Navigate to `http://localhost:3000/`. The app will automatically reload if you change any of the source files.
-
-## Run Postman
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/13654036-4e5e8f20-ab62-4102-a5ce-9722b06a65d5?action=collection%2Ffork&collection-url=entityId%3D13654036-4e5e8f20-ab62-4102-a5ce-9722b06a65d5%26entityType%3Dcollection%26workspaceId%3D8720fdec-f85f-40b9-9f43-4af279e13038)
