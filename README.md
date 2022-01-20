@@ -9,9 +9,9 @@
 
 ## Development server
 [1] Run `npm run i` install dependencies <br/>
-[2] Run `cd client` 
-[3] Run `npm run i` install dependencies
-[4] Run `cd ..` 
+[2] Run `cd client` <br/>
+[3] Run `npm run i` install dependencies<br/>
+[4] Run `cd ..` <br/>
 [5] Run `npm run dev` for a dev server. Navigate to `http://localhost:3000/`. The app will automatically reload if you change any of the source files.
 
 ## Run Postman
