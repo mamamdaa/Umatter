@@ -19,18 +19,27 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    channels:[{
+    channels:[{//implementation of groupchats? privatechats?
       type: mongoose.Schema.Types.ObjectId,
       ref: "Channel",
     }],
+    channel: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Channel",
+    },
     is_in_queue: {
       type: Boolean,
       default: false,
     },
-    assigned_to: {
+    assigned_to: { //remove this
       type: mongoose.Schema.Types.ObjectId,
       ref: "Facilitator",
+    },
+    is_assigned: {
+      type: Boolean,
+      default: false,
     }
+
   },
   {
     timestamps: true,

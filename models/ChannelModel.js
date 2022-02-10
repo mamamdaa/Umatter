@@ -7,15 +7,19 @@ channelSchema = new mongoose.Schema({
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "Facilitator",
         required: true,
     },
-    users: [
+    users: [    //clean this, deprecated
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
         },
     ],
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    },
 });
 
 const Channel = mongoose.model("Channel", channelSchema);

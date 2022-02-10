@@ -8,10 +8,11 @@ import Testimonials from "./component/pages/Testimonials";
 import Contact from "./component/pages/Contact";
 import Signup from "./component/pages/Signup.jsx";
 import Login from "./component/pages/Login";
+import Connect from "./component/pages/Connect.jsx";
 
 import User from "./component/pages/User.jsx";
 import store from "./redux/store";
-import { Provider } from "react-redux";
+import { connect, Provider } from "react-redux";
 import { WebSocketLink } from "apollo-link-ws";
 import { getMainDefinition } from "apollo-utilities";
 import { split } from "apollo-link";
@@ -91,6 +92,7 @@ function App() {
             <Route exact path="/Signup" component={Signup} />
             <Route exact path="/Login" component={Login} />
             <Route exact path="/User" component={User} />
+            <Route exact path="/Connect" component={Connect} />
             <div className="navs">
               <Navbar />
               <Home /> <Works />

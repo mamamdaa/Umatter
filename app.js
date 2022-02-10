@@ -39,6 +39,9 @@ const server = new ApolloServer({
       },
     },
   ],
+  engine: {
+    reportSchema: true,
+  }
 });
 
 const subscriptionServer = SubscriptionServer.create(

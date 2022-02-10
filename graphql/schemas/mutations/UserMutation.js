@@ -1,6 +1,7 @@
 var { GraphQLNonNull, GraphQLString, GraphQLBoolean } = require("graphql");
 const { UserType } = require("../types/TypeDefs");
 const User = require("../../../models/UserModel");
+const Channel = require("../../../models/ChannelModel");
 const Facilitator = require("../../../models/FacilitatorModel");
 const generateToken = require("../../../utils/GenerateToken");
 
@@ -170,11 +171,21 @@ const assignedTo = {
     assigned_to: { type: GraphQLString },
   },
   resolve: async function (root, params, { req, res }) {
+
+    let channel = new Channel({
+      name: "test",
+      created_by: params.assigned_to,
+      users: [params.assigned_to, params._id],
+    });
+
+    channel = await channel.save();
+
     const newUser = await User.findOneAndUpdate(
       { _id: params._id },
       {
         $set: {
           assigned_to: params.assigned_to,
+          is_in_queue: false,
         },
       },
       {
@@ -214,6 +225,8 @@ const assignedTo = {
 //       return deleteUser
 //     }
 // }
+
+
 
 module.exports = {
   addUser,
