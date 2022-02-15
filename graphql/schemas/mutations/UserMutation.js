@@ -88,6 +88,11 @@ const login = {
       let convertedUser = user.toJSON();
       convertedUser.token = generateToken(convertedUser._id);
       delete convertedUser.password;
+      user.is_in_queue = false;
+      user.is_assigned = false;
+
+      user.save();
+
       //   console.log("convertedUser",pubsub.subscriptions['1'][1])
       pubsub.publish(NEW_LOGIN, { newLogin: { _id: "123" } });
 
@@ -126,17 +131,36 @@ const enterQueue = {
     _id: { type: GraphQLString },
   },
   resolve: async function (root, params, { req, res }) {
+
+
+    let channel = new Channel({
+      channel_name: params._id,
+      users : [params._id]
+    });
+
+    let newChannel = await channel.save();
+
+
     const newUser = await User.findOneAndUpdate(
       { _id: params._id },
       {
         $set: {
           is_in_queue: true,
+          channel: newChannel._id,
         },
       },
       {
         new: true,
       }
     );
+
+   
+
+    if (!newUser) {
+      res.status(401);
+      throw new Error("Error in entering queue");
+    }
+
     return newUser;
   },
 };

@@ -17,4 +17,17 @@ const newLogin = {
     },
 }
 
-module.exports = {newLogin}
+const queueUpdate = {
+    name: 'queueUpdate',
+    type: UserType,
+    args : {
+        id : {type : GraphQLString}
+    },
+    subscribe: (_,params,{pubsub}) =>
+    {
+        return pubsub.asyncIterator(params.id);
+    }
+}
+
+
+module.exports = {newLogin,queueUpdate}

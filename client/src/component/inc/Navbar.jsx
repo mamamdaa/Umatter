@@ -35,7 +35,7 @@ export default function Navbar() {
     >
       <div class="container-fluid ">
         <a href="/" class="logo ms-5  fw-bolder">
-          UMMATER
+          UMATTER
         </a>
 
         <button

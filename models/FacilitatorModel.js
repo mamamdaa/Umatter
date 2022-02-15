@@ -32,6 +32,10 @@ const facilitatorSchema = new mongoose.Schema(
     is_assigned: {
       type: Boolean,
       default: false,
+    },
+    is_available: {
+      type: Boolean,
+      default: true,
     }
   },
   {

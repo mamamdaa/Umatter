@@ -8,7 +8,6 @@ channelSchema = new mongoose.Schema({
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Facilitator",
-        required: true,
     },
     users: [    //clean this, deprecated
         {
@@ -19,6 +18,10 @@ channelSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
+    },
+    facilitator: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Facilitator",
     },
 });
 

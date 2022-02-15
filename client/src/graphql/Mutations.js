@@ -31,20 +31,16 @@ export const SEND_MESSAGE = gql`
 `;
 
 export const ENTER_QUEUE = gql`
-  mutation Mutation($id: String) {
+  mutation EnterQueue($id: String) {
     enterQueue(_id: $id) {
       is_in_queue
-      first_name
-      email
     }
   }
 `;
 
 export const LEAVE_QUEUE = gql`
-  mutation Mutation($id: String) {
+  mutation LeaveQueue($id: String) {
     leaveQueue(_id: $id) {
-      first_name
-      email
       is_in_queue
     }
   }
