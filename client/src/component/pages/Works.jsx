@@ -12,7 +12,7 @@ export default function Works() {
         <div class="col-12 col-lg-5 text-center mt-md-3">
           <img class="me-4" src={img1} alt="img1" />
         </div>
-        <div class=" col-12 col-lg-7 container2  p-5">
+        <div class=" col-12 col-lg-7  p-5">
           <h3 class="text-center">Create an account to Umatter</h3>
           <p>
             Go to the Umatter Sign In page, Click Create account, Enter your
@@ -23,7 +23,7 @@ export default function Works() {
         </div>
       </div>
       <div class="row flex-wrap-reverse ">
-        <div class=" col-12 col-lg-7 container2  p-5">
+        <div class=" col-12 col-lg-7  p-5">
           <h3 class="text-center">Answer our Pre-Assessment </h3>
           <p>
             It's hard to talk to people about our mental health, but it’s also
@@ -39,7 +39,7 @@ export default function Works() {
         <div class="col-12 col-lg-5 text-center mt-md-3">
           <img class="me-4" src={img3} alt="img3" />
         </div>
-        <div class=" col-12 col-lg-7 container2  p-5">
+        <div class=" col-12 col-lg-7  p-5">
           <h3 class="text-center">Connect or chat to the facilitator</h3>
           <p>
             People have questions about mental health and emotional well-being.
@@ -50,7 +50,7 @@ export default function Works() {
       </div>
 
       {/* <div class=" d-flex justify-content-center">
-        <div class=" container2 p-5">
+        <div class=" p-5">
           <h3 class="text-center">Answer our Pre-Assessment </h3>
           <p>
             It's hard to talk to people about our mental health, but it’s also
@@ -72,7 +72,7 @@ export default function Works() {
           </div>
         </div>
 
-        <div class=" container2  p-5">
+        <div class="  p-5">
           <h3 class="text-center">Connect or chat to the facilitator</h3>
           <p>
             People have questions about mental health and emotional well-being.
