@@ -22,7 +22,7 @@ export default function Works() {
           </p>
         </div>
       </div>
-      <div class="row flex-column-reverse">
+      <div class="row flex-wrap-reverse ">
         <div class=" col-12 col-lg-7 container2  p-5">
           <h3 class="text-center">Answer our Pre-Assessment </h3>
           <p>
