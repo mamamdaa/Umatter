@@ -86,8 +86,13 @@ const loginFacilitator = {
       let convertedFacilitator = facilitator.toJSON();
       convertedFacilitator.token = generateToken(convertedFacilitator._id);
       delete convertedFacilitator.password;
-      pubsub.publish(NEW_LOGIN, { newLogin: { _id: "123" } });
 
+      facilitator.is_available = true;
+      facilitator.is_assigned = false;
+      facilitator.save();
+
+      pubsub.publish(NEW_LOGIN, { newLogin: { _id: "123" } });
+    
       return convertedFacilitator;
     }
   },

@@ -17,10 +17,7 @@ const getUsers = {
   args: {
     is_in_queue: {
       type: GraphQLBoolean,
-    },
-    assigned_to: {
-      type: GraphQLString,
-    },
+    }
   },
   resolve: async function (root, params,{req, res}) {
     // if(!req.isAuth) {

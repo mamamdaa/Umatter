@@ -25,10 +25,18 @@ const facilitatorSchema = new mongoose.Schema(
         ref: "Channel",
       },
     ],
-    assigned_to: {
+    assigned_to: { //remove this
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    is_assigned: {
+      type: Boolean,
+      default: false,
+    },
+    is_available: {
+      type: Boolean,
+      default: true,
+    }
   },
   {
     timestamps: true,

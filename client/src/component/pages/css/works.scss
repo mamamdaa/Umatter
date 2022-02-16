@@ -1,7 +1,11 @@
-.home-works {
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../../node_modules/bootstrap/scss/mixins";
+
+
+.home-works{
   text-align: center;
 }
-
 .home-works h1 {
   margin-top: 5rem !important;
   font-size: 50px;
@@ -15,8 +19,7 @@
 
 .home-works {
   padding: 2vh;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .home-works .container {
@@ -32,12 +35,11 @@
   font-weight: 300;
 }
 
-@media (min-width: 768px) {
+@include media-breakpoint-up(md) {
   .home-works img {
     width: 25rem;
   }
-  .home-works {
+  .home-works{
     text-align: left;
   }
 }
-/*# sourceMappingURL=works.css.map */

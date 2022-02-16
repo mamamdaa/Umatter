@@ -1,20 +1,24 @@
+
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../../node_modules/bootstrap/scss/mixins";
+// @import "../../../../../node_modules/bootstrap/scss/bootstrap";
+
+
+
 .container {
   padding-top: 10;
 }
-
 .Home {
   background: linear-gradient(250deg, #86e7cf 0%, #ffffff 60%);
   height: 100% !important;
 }
-
 .Home-box .Home {
   padding-top: 60px;
 }
-
 .Home-flex {
   padding: 2vh;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .Home-flex .container {
@@ -33,16 +37,13 @@
 .Home-flex .container1 h1 {
   font-size: 3rem;
 }
-
 .Home-flex .container1 p {
   font-size: 20px;
   font-weight: 300;
 }
-
 .home-sign-up .btn1 {
   background-color: #17bdc6;
 }
-
 .home-sign-up .btn2 {
   color: #8e8e8e;
 }
@@ -52,18 +53,20 @@
   color: #202124;
 }
 
-.form-label {
-  font-size: .5rem;
-  text-align: left;
+.form-label{
+    font-size: .5rem;
+    text-align: left;
 }
 
-@media (min-width: 768px) {
+@include media-breakpoint-up(md) {
+
   .Home-flex .container1 h1 {
     font-size: 5rem;
   }
-  .form-label {
+
+  .form-label{
     font-size: .8rem;
     text-align: left;
-  }
 }
-/*# sourceMappingURL=home.css.map */
+}
+
