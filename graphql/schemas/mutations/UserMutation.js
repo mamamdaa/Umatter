@@ -140,7 +140,6 @@ const enterQueue = {
 
     let newChannel = await channel.save();
 
-
     const newUser = await User.findOneAndUpdate(
       { _id: params._id },
       {
@@ -154,10 +153,9 @@ const enterQueue = {
       }
     );
 
-   
-
     if (!newUser) {
       res.status(401);
+      
       throw new Error("Error in entering queue");
     }
 

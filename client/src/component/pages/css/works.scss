@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+.Home-works h1 {
+  margin-top: 5rem !important;
+  font-size: 50px;
+  font-weight: 1000;
+}
+
+.Home-works {
+  padding: 2vh;
+  flex-wrap: wrap;
+}
+
+.Home-works .container {
+  overflow: hidden;
+  color: #202124;
+  position: relative;
+  width: 100vh;
+  margin: 0 !important;
+}
+
+.Home-works .container2 p {
+  font-size: 20px;
+  font-weight: 300;
+}

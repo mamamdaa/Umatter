@@ -97,8 +97,8 @@ function App() {
             <div className="navs">
               <Navbar />
               <Home />
-              {/* <Works />
-              <About />
+              <Works />
+              {/* <About />
               <Testimonials />
               <Contact /> */}
             </div>
