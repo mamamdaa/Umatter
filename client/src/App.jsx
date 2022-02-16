@@ -9,7 +9,6 @@ import Contact from "./component/pages/Contact";
 import Signup from "./component/pages/Signup.jsx";
 import Login from "./component/pages/Login";
 import Connect from "./component/pages/Connect.jsx";
-
 import User from "./component/pages/User.jsx";
 import store from "./redux/store";
 import { connect, Provider } from "react-redux";
@@ -25,6 +24,8 @@ import {
   gql,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
+import "./App.css"
+
 
 const baseLink = process.env.REACT_APP_API_URL;
 const environment = process.env.NODE_ENV;
@@ -32,7 +33,7 @@ console.log("baseLink", baseLink);
 const websocketURI =
   environment === "development"
     ? "ws://localhost:5000/graphql"
-    : "wss://" + baseLink + "/graphql"
+    : "wss://" + baseLink + "/graphql";
 const httpURI =
   environment === "development"
     ? "http://localhost:5000/graphql"
@@ -95,10 +96,11 @@ function App() {
             <Route exact path="/Connect" component={Connect} />
             <div className="navs">
               <Navbar />
-              <Home /> <Works />
+              <Home />
+              {/* <Works />
               <About />
               <Testimonials />
-              <Contact />
+              <Contact /> */}
             </div>
           </Switch>
         </Router>
