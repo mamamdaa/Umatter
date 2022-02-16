@@ -98,9 +98,9 @@ function App() {
               <Navbar />
               <Home />
               <Works />
-              {/* <About />
+              <About />
               <Testimonials />
-              <Contact /> */}
+              <Contact />
             </div>
           </Switch>
         </Router>
