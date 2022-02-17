@@ -8,13 +8,14 @@ export default function Login() {
   return (
     <div className="Login-box">
       <div className="Login">
-        <div class="Login-flex d-flex justify-content-center p-4 ">
-          <div className="container">
-            {" "}
-            <img class="ms-5" src={background2} alt="background2" />
-          </div>
-
-          <div className="Form-flex ">
+        <div class="Login-flex d-flex justify-content-center p-4 m-0">
+          {" "}
+          <img
+            class=" bg ms-5 w-100 h-100"
+            src={background2}
+            alt="background2"
+          />
+          <div className=" col-sm-8 mt-5 Form-flex ">
             <div className="container border">
               <ul class="navbar-nav  ">
                 <li>

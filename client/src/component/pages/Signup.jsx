@@ -8,13 +8,14 @@ export default function Signup() {
   return (
     <div className="Singup-box">
       <div className="Signup">
-        <div class="Signup-flex d-flex justify-content-center p-4 ">
-          <div className="container">
-            {" "}
-            <img class="ms-5 bg" src={background2} alt="background2" />
-          </div>
-
-          <div className="Form-flex ">
+        <div class="Signup-flex d-flex justify-content-center p-4 m-0">
+          {" "}
+          <img
+            class=" bg ms-5 w-100 h-100"
+            src={background2}
+            alt="background2"
+          />
+          <div className=" col-sm-8 mt-5 Form-flex ">
             <div className="container border">
               <ul class="navbar-nav  ">
                 <li>
@@ -90,7 +91,7 @@ export default function Signup() {
               </form>
               <div className="sign-in d-flex justify-content-center">
                 {" "}
-                <span class="sign-in-container ms-sm-5">
+                <span class="sign-in-container ms-lg-5">
                   <a>Already have an account?</a>
                   <Link to="/Login">
                     <a class="btn btn btn-light m-4 " role="button">
@@ -105,8 +106,4 @@ export default function Signup() {
       </div>
     </div>
   );
-}
-
-{
-  /*    */
 }
