@@ -3,7 +3,8 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
-  GraphQLList
+  GraphQLList,
+  GraphQLBoolean,
 } = graphql
 const {protect} = require('../../../middlewares/AuthMiddleware');
 const User = require('../../../models/UserModel');
@@ -11,24 +12,39 @@ const {UserType} = require('../types/TypeDefs');
 const generateToken = require('../../../utils/GenerateToken');
 
 const getUsers = {
-  name: 'addUser',
+  name: 'getUsers',
   type: new GraphQLList(UserType),
   args: {
-    first_name: {type: GraphQLString},
-    last_name: {type: GraphQLString},
-    email: {type: GraphQLString},
-    password: {type: GraphQLString},
+    is_in_queue: {
+      type: GraphQLBoolean,
+    }
   },
   resolve: async function (root, params,{req, res}) {
     // if(!req.isAuth) {
     //   res.status(401)
     //   throw new Error("Not Authenticated");
     // }
-    return User.find({}).select("-password")
+    return User.find(params).select("-password")
+  }
+}
+
+const getUser = {
+  name: 'getUser',
+  type: UserType,
+  args: {
+    id: {
+      type: GraphQLString,
+    }
+  },
+  resolve: async function (root, params,{req, res}) {
+    // if(!req.isAuth) {
+    //   res.status(401)
+    //   throw new Error("Not Authenticated");
+    // }
+    return User.findById(params.id).select("-password")
   }
 }
 
 
 
-
-module.exports = {getUsers}
+module.exports = {getUsers,getUser}

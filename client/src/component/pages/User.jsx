@@ -6,6 +6,7 @@ import Footer from "../inc/Footer-chat";
 import { useHistory } from "react-router-dom";
 import background from "../img/background.svg";
 import { Link } from "react-router-dom";
+import ChatRoom from "../inc/ChatRoom"
 import "./css/user.css";
 
 export default function User() {
@@ -44,13 +45,14 @@ export default function User() {
               </Link>
             </span>
           </div>
-
           <div class="container container2">
             <img class="me-4" src={background} alt="background" />
           </div>
+          <ChatRoom/>
         </div>
+    
       </div>
-      <div>sada</div>
+      
       <Footer />
     </div>
   );

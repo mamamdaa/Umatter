@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./component/inc/Navbar.jsx";
+import Footer from "./component/pages/Footer.jsx";
 import About from "./component/pages/About.jsx";
 import Home from "./component/pages/Home.jsx";
 import Works from "./component/pages/Works.jsx";
@@ -8,10 +9,12 @@ import Testimonials from "./component/pages/Testimonials";
 import Contact from "./component/pages/Contact";
 import Signup from "./component/pages/Signup.jsx";
 import Login from "./component/pages/Login";
-
+import Connect from "./component/pages/Connect.jsx";
 import User from "./component/pages/User.jsx";
+import Facilitators
+ from "./component/pages/Facilitators.jsx";
 import store from "./redux/store";
-import { Provider } from "react-redux";
+import { connect, Provider } from "react-redux";
 import { WebSocketLink } from "apollo-link-ws";
 import { getMainDefinition } from "apollo-utilities";
 import { split } from "apollo-link";
@@ -24,6 +27,8 @@ import {
   gql,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
+import "./App.css"
+
 
 const baseLink = process.env.REACT_APP_API_URL;
 const environment = process.env.NODE_ENV;
@@ -31,7 +36,7 @@ console.log("baseLink", baseLink);
 const websocketURI =
   environment === "development"
     ? "ws://localhost:5000/graphql"
-    : "wss://" + baseLink + "/graphql"
+    : "wss://" + baseLink + "/graphql";
 const httpURI =
   environment === "development"
     ? "http://localhost:5000/graphql"
@@ -91,13 +96,17 @@ function App() {
             <Route exact path="/Signup" component={Signup} />
             <Route exact path="/Login" component={Login} />
             <Route exact path="/User" component={User} />
+            <Route exact path="/Connect" component={Connect} />
+            <Route exact path="/Facilitators" component={Facilitators} />
             <div className="navs">
               <Navbar />
-              <Home /> <Works />
+              <Home />
+              <Works />
               <About />
               <Testimonials />
               <Contact />
             </div>
+         
           </Switch>
         </Router>
       </Provider>

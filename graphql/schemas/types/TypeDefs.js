@@ -20,7 +20,9 @@ const UserType = new GraphQLObjectType({
       token: {type: GraphQLString},
       channels: {type: new GraphQLList(ChannelType)},
       is_in_queue: {type: GraphQLBoolean},
-      assigned: {type: FacilitatorType},
+      assigned_to: {type: FacilitatorType},
+      is_assigned: {type: GraphQLBoolean},
+      channel : {type: GraphQLString},
     })
 });
 
@@ -39,9 +41,11 @@ const ChannelType = new GraphQLObjectType({
     name: 'ChannelType',
     fields: () => ({
         _id: { type: GraphQLString },
-        channel_name: { type: GraphQLString },
+        channel_name: { type: GraphQLString }, //not needed remove
         messages: { type: new GraphQLList(MessageType) },
         users: { type: new GraphQLList(UserType) },
+        user: { type: GraphQLString },
+        facilitator: { type: GraphQLString },
     })
 });
 
@@ -54,9 +58,10 @@ const FacilitatorType = new GraphQLObjectType({
       email: { type: GraphQLString },
       password: { type: GraphQLString },
       channels: { type: new GraphQLList(ChannelType) },
-      is_in_queue: { type: GraphQLBoolean },
-      assigned: { type: UserType },
+      assigned_to: { type: UserType },
+      is_available: { type: GraphQLBoolean },
+      is_assigned: { type: GraphQLBoolean },
     })
 });
 
-module.exports = {UserType, MessageType, ChannelType};
+module.exports = {UserType, MessageType, ChannelType, FacilitatorType};

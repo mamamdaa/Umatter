@@ -1,9 +1,8 @@
-var { 
-  GraphQLNonNull, 
-  GraphQLString,
-GraphQLBoolean } = require("graphql");
+var { GraphQLNonNull, GraphQLString, GraphQLBoolean } = require("graphql");
 const { UserType } = require("../types/TypeDefs");
 const User = require("../../../models/UserModel");
+const Channel = require("../../../models/ChannelModel");
+const Facilitator = require("../../../models/FacilitatorModel");
 const generateToken = require("../../../utils/GenerateToken");
 
 const addUser = {
@@ -89,6 +88,11 @@ const login = {
       let convertedUser = user.toJSON();
       convertedUser.token = generateToken(convertedUser._id);
       delete convertedUser.password;
+      user.is_in_queue = false;
+      user.is_assigned = false;
+
+      user.save();
+
       //   console.log("convertedUser",pubsub.subscriptions['1'][1])
       pubsub.publish(NEW_LOGIN, { newLogin: { _id: "123" } });
 
@@ -108,17 +112,16 @@ const joinChannel = {
     const newUser = await User.findOneAndUpdate(
       { _id: params._id },
       {
-        $addToSet : {
-            channels: params.channel_id
-        }
+        $addToSet: {
+          channels: params.channel_id,
+        },
       },
       {
         new: true,
       }
     );
-    return newUser
+    return newUser;
   },
-
 };
 
 const enterQueue = {
@@ -128,20 +131,38 @@ const enterQueue = {
     _id: { type: GraphQLString },
   },
   resolve: async function (root, params, { req, res }) {
+
+
+    let channel = new Channel({
+      channel_name: params._id,
+      user : params._id,
+      facilitator : null,
+    });
+
+    let newChannel = await channel.save();
+
     const newUser = await User.findOneAndUpdate(
       { _id: params._id },
       {
         $set: {
-          inQueue: true,
+          is_in_queue: true,
+          channel: newChannel._id,
         },
       },
       {
         new: true,
       }
     );
-    return newUser
-  }
-}
+
+    if (!newUser) {
+      res.status(401);
+      
+      throw new Error("Error in entering queue");
+    }
+
+    return newUser;
+  },
+};
 
 const leaveQueue = {
   name: "leaveQueue",
@@ -154,16 +175,18 @@ const leaveQueue = {
       { _id: params._id },
       {
         $set: {
-          inQueue: false,
+          is_in_queue: false,
+          is_assigned: false,
+          channel: null,
         },
       },
       {
         new: true,
       }
     );
-    return newUser
-  }
-}
+    return newUser;
+  },
+};
 
 const assignedTo = {
   name: "assignedTo",
@@ -173,20 +196,43 @@ const assignedTo = {
     assigned_to: { type: GraphQLString },
   },
   resolve: async function (root, params, { req, res }) {
+
+    let channel = new Channel({
+      name: "test",
+      created_by: params.assigned_to,
+      users: [params.assigned_to, params._id],
+    });
+
+    channel = await channel.save();
+
     const newUser = await User.findOneAndUpdate(
       { _id: params._id },
       {
         $set: {
           assigned_to: params.assigned_to,
+          is_in_queue: false,
         },
       },
       {
         new: true,
       }
     );
-    return newUser
-  }
-}
+    const assignedFacilitator = await Facilitator.findOne({
+      _id: params.assigned_to,
+    });
+
+    if (!assignedFacilitator) {
+      throw new Error("Facilitator not found");
+    }
+
+    if (!newUser) {
+      throw new Error("User not found");
+    }
+
+    newUser.assigned_to = assignedFacilitator;
+    return newUser;
+  },
+};
 
 // const deleteUser = {
 //     type: UserType,
@@ -205,4 +251,14 @@ const assignedTo = {
 //     }
 // }
 
-module.exports = { addUser, updateUser, login, joinChannel };
+
+
+module.exports = {
+  addUser,
+  updateUser,
+  login,
+  joinChannel,
+  enterQueue,
+  leaveQueue,
+  assignedTo,
+};
