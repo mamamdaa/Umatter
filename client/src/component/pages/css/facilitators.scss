@@ -1,0 +1,43 @@
+@import "./../../../../node_modules/bootstrap/scss/functions";
+@import "./../../../../node_modules/bootstrap/scss/variables";
+@import "./../../../../node_modules/bootstrap/scss/mixins";
+
+.facilitators {
+  background: linear-gradient(250deg, #86e7cf 0%, #ffffff 60%);
+//   height: 100vh !important;
+//   padding-top: 10vh !important;
+  padding: 2vh;
+  text-align: center;
+}
+
+.facilitators .card {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: transparent;
+}
+.facilitators .card img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    object-position: 0% 10%;
+    display: block;
+    margin: 0 !important;
+   
+}
+
+.facilitators .card-body {
+  background-color: #ffffff;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+.facilitators .card-text {
+  max-width: fit-content;
+}
+
+@include media-breakpoint-up(lg) {
+  facilitators {
+    text-align: left;
+  }
+}

@@ -3,7 +3,7 @@ import "./css/signup.css";
 import exit from "../img/exit.svg";
 import background2 from "../img/background2.svg";
 import { Link } from "react-router-dom";
-import { useMutation} from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { REGISTER } from "../../graphql/Mutations";
 
@@ -15,8 +15,7 @@ export default function Signup() {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [register, { error, data }] = useMutation(REGISTER, {
-    onError: (err) => {
-    },
+    onError: (err) => {},
   }); //refactor
 
   const submitHandler = async (e) => {
@@ -38,7 +37,7 @@ export default function Signup() {
 
   useEffect(() => {
     if (error) {
-      const newError =  JSON.parse(JSON.stringify(error))
+      const newError = JSON.parse(JSON.stringify(error));
       setDataError(newError.message);
     }
   }, [error]);
@@ -130,7 +129,6 @@ export default function Signup() {
                 </div>
 
                 <div class="sign-up d-grid gap-2 mt-5">
-                  
                   <button
                     class="btn create-btn fw-bold border border-dark"
                     type="submit"

@@ -28,5 +28,23 @@ const getUsers = {
   }
 }
 
+const getUser = {
+  name: 'getUser',
+  type: UserType,
+  args: {
+    id: {
+      type: GraphQLString,
+    }
+  },
+  resolve: async function (root, params,{req, res}) {
+    // if(!req.isAuth) {
+    //   res.status(401)
+    //   throw new Error("Not Authenticated");
+    // }
+    return User.findById(params.id).select("-password")
+  }
+}
 
-module.exports = {getUsers}
+
+
+module.exports = {getUsers,getUser}

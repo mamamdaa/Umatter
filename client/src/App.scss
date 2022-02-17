@@ -1,20 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+@import "./../node_modules/bootstrap/scss/functions";
+@import "./../node_modules/bootstrap/scss/variables";
+@import "./../node_modules/bootstrap/scss/mixins";
+
 * {
   padding: 0;
   margin: 0;
 }
 
-html {
+html{
   font-size: .8rem;
 }
 
-body {
+body{
   font-family: "Poppins", sans-serif;
 }
 
-@media (min-width: 768px) {
+
+@include media-breakpoint-up(md) {
   html {
     font-size: 1rem;
   }
 }
-/*# sourceMappingURL=App.css.map */
+

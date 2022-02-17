@@ -35,7 +35,10 @@ export default function Home() {
                       </div>
                       <div class="col-12 col-md-5 col-lg-5">
                         <div class="d-grid">
-                          <a class="btn btn1 btn-light fw-bold text-nowrap" role="button">
+                          <a
+                            class="btn btn1 btn-light fw-bold text-nowrap"
+                            role="button"
+                          >
                             Join the waitlist
                           </a>
                         </div>
