@@ -91,10 +91,10 @@ export default function Signup() {
               </form>
               <div className="sign-in d-flex justify-content-center">
                 {" "}
-                <span class="sign-in-container ms-lg-5">
+                <span class="sign-in-container text-center mt-3">
                   <a>Already have an account?</a>
                   <Link to="/Login">
-                    <a class="btn btn btn-light m-4 " role="button">
+                    <a class="btn btn btn-light  " role="button">
                       Sign in
                     </a>
                   </Link>
