@@ -60,30 +60,21 @@ form .form-control {
   border-radius: 10px;
   color: white;
   background-color: #b2b2b2;
+  width: 100% !important;
 }
 @media only screen and (max-width: 1200px) {
   .Form-flex .container {
-    width: 50vh !important;
+    width: 60vh !important;
   }
 }
 
 @media only screen and (max-width: 992px) {
   .Form-flex .container {
-    width: 45vh !important;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .Form-flex .container {
-    width: 45vh !important;
+    width: 48vh !important;
   }
 }
 
 @media only screen and (max-width: 576px) {
-  .Form-flex .container {
-    width: 42vh !important;
-  }
-
   .Form-flex h1 {
     font-size: 40px;
   }

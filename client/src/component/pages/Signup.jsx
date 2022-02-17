@@ -86,7 +86,10 @@ export default function Signup() {
                   />
                 </div>
                 <div class="mb-3 ">
-                  <label for="exampleInputEmail1" class="form-label fw-bolder">
+                  <label
+                    for="exampleInputEmail1"
+                    class="form-label fw-bolder fs-6"
+                  >
                     Last Name
                   </label>
                   <input
@@ -98,7 +101,10 @@ export default function Signup() {
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label fw-bolder">
+                  <label
+                    for="exampleInputEmail1"
+                    class="form-label fw-bolder fs-6"
+                  >
                     Email
                   </label>
                   <input
@@ -111,7 +117,7 @@ export default function Signup() {
                 <div class="mb-3">
                   <label
                     for="exampleInputPassword1"
-                    class="form-label fw-bolder"
+                    class="form-label fw-bolder fs-6"
                   >
                     Password
                   </label>
@@ -146,10 +152,10 @@ export default function Signup() {
               </form>
               <div className="sign-in d-flex justify-content-center">
                 {" "}
-                <span class="sign-in-container ms-lg-5">
+                <span class="sign-in-container mt-3 text-center">
                   <a>Already have an account?</a>
                   <Link to="/Login">
-                    <a class="btn btn btn-light m-4 " role="button">
+                    <a class="btn btn btn-light  " role="button">
                       Sign in
                     </a>
                   </Link>

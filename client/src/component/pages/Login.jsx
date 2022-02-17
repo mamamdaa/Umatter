@@ -123,10 +123,10 @@ export default function Login() {
               </form>
               <div className="sign-up d-flex justify-content-center">
                 {" "}
-                <span class="sign-up-container ms-sm-5">
+                <span class="sign-up-container text-center mt-3">
                   <a>Not a member?</a>
                   <Link to="/Signup">
-                    <a class="btn btn-light m-4 " role="button">
+                    <a class="btn btn-light " role="button">
                       Sign up
                     </a>
                   </Link>
