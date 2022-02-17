@@ -103,8 +103,9 @@ function App() {
               <Home />
               <Works />
               <About />
-              <Testimonials />
-              <Contact />
+              <Facilitators />
+              {/* <Testimonials /> */}
+              {/* <Contact /> */}
             </div>
          
           </Switch>
