@@ -12,7 +12,7 @@ export default function Works() {
         <div class="Home-works d-flex justify-content-center  ">
           <div class="container container1 text-center mt-md-3">
             <div class="content ms-5 me-5">
-              <img class="me-4" src={img1} alt="img1" />
+              <img class="me-4 w-100 h-100" src={img1} alt="img1" />
             </div>
           </div>
 
@@ -39,7 +39,7 @@ export default function Works() {
           </div>
           <div class="container container1 text-center mt-md-3">
             <div class="content ms-5 me-5">
-              <img class="me-4" src={img2} alt="img2" />
+              <img class="me-4 w-100 h-100" src={img2} alt="img2" />
             </div>
           </div>
         </div>
@@ -47,7 +47,7 @@ export default function Works() {
           <div class="container container1 text-center mt-md-3">
             <div class="content ms-5 me-5">
               {" "}
-              <img class="me-4" src={img3} alt="img3" />
+              <img class="me-4 w-100 h-100" src={img3} alt="img3" />
             </div>
           </div>
 
