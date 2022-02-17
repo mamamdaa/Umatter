@@ -135,7 +135,8 @@ const enterQueue = {
 
     let channel = new Channel({
       channel_name: params._id,
-      users : [params._id]
+      user : params._id,
+      facilitator : null,
     });
 
     let newChannel = await channel.save();
@@ -175,6 +176,8 @@ const leaveQueue = {
       {
         $set: {
           is_in_queue: false,
+          is_assigned: false,
+          channel: null,
         },
       },
       {
