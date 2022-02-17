@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./component/inc/Navbar.jsx";
+import Footer from "./component/pages/Footer.jsx";
 import About from "./component/pages/About.jsx";
 import Home from "./component/pages/Home.jsx";
 import Works from "./component/pages/Works.jsx";
@@ -10,6 +11,8 @@ import Signup from "./component/pages/Signup.jsx";
 import Login from "./component/pages/Login";
 import Connect from "./component/pages/Connect.jsx";
 import User from "./component/pages/User.jsx";
+import Facilitators
+ from "./component/pages/Facilitators.jsx";
 import store from "./redux/store";
 import { connect, Provider } from "react-redux";
 import { WebSocketLink } from "apollo-link-ws";
@@ -94,14 +97,17 @@ function App() {
             <Route exact path="/Login" component={Login} />
             <Route exact path="/User" component={User} />
             <Route exact path="/Connect" component={Connect} />
+            <Route exact path="/Facilitators" component={Facilitators} />
             <div className="navs">
               <Navbar />
               <Home />
               <Works />
-              {/* <About />
-              <Testimonials />
-              <Contact /> */}
+              <About />
+              <Facilitators />
+              {/* <Testimonials /> */}
+              {/* <Contact /> */}
             </div>
+         
           </Switch>
         </Router>
       </Provider>

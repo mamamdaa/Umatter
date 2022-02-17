@@ -1,7 +1,12 @@
-nav {
+
+
+@import "./../../../node_modules/bootstrap/scss/functions";
+@import "./../../../node_modules/bootstrap/scss/variables";
+@import "./../../../node_modules/bootstrap/scss/mixins";
+
+nav{
   background: linear-gradient(250deg, #86e7cf 0%, #ffffff 60%);
 }
-
 .container-fluid .logo {
   color: black;
   text-decoration: none;
@@ -32,9 +37,13 @@ ul li a {
   color: white !important;
 }
 
-@media (min-width: 992px) {
-  nav {
-    background: transparent;
+
+
+
+@include media-breakpoint-up(lg) {
+  nav{
+    background: transparent ;
   }
 }
-/*# sourceMappingURL=navbar.css.map */
+
+

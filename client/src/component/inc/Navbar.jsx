@@ -56,7 +56,6 @@ export default function Navbar() {
         >
           <ul class="nav navbar-nav m-3 ms-auto">
             <li class="nav-item me-4">
-              
               <Link smooth to="#home" class="nav-link">
                 Home
               </Link>
@@ -74,6 +73,11 @@ export default function Navbar() {
             <li class="nav-item me-5 comp">
               <Link smooth to="#contact" class="nav-link">
                 Contact
+              </Link>
+            </li>
+            <li class="nav-item me-5 comp">
+              <Link smooth to="/facilitators" class="nav-link">
+                Facilitators
               </Link>
             </li>
              {!isLoggedIn ?( 
