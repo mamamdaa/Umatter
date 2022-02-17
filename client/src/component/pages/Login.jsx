@@ -4,11 +4,10 @@ import exit from "../img/exit.svg";
 import background2 from "../img/background2.svg";
 import { Link } from "react-router-dom";
 import { LOGIN } from "../../graphql/Queries";
-import { useMutation} from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogin } from "../../redux/user";
-
 
 export default function Login() {
   const { isLoggedIn } = useSelector((state) => state.user);
@@ -18,8 +17,7 @@ export default function Login() {
   const history = useHistory();
   const dispatch = useDispatch();
   const [login, { error, data }] = useMutation(LOGIN, {
-    onError: (err) => {
-    },
+    onError: (err) => {},
   }); //refactor
 
   const submitHandler = async (e) => {
@@ -34,13 +32,13 @@ export default function Login() {
 
   useEffect(() => {
     if (error) {
-      const newError =  JSON.parse(JSON.stringify(error))
+      const newError = JSON.parse(JSON.stringify(error));
       setDataError(newError.message);
     }
   }, [error]);
 
   useEffect(() => {
-    console.log("data", data)
+    console.log("data", data);
     if (data) {
       localStorage.setItem("token", data.login.token);
       localStorage.setItem("user", JSON.stringify(data.login));
@@ -57,13 +55,14 @@ export default function Login() {
   return (
     <div className="Login-box">
       <div className="Login">
-        <div class="Login-flex d-flex justify-content-center p-4 ">
-          <div className="container">
-            {" "}
-            <img class="ms-5" src={background2} alt="background2" />
-          </div>
-
-          <div className="Form-flex ">
+        <div class="Login-flex d-flex justify-content-center p-4 m-0">
+          {" "}
+          <img
+            class=" bg ms-5 w-100 h-100"
+            src={background2}
+            alt="background2"
+          />
+          <div className="col-sm-8 mt-5 Form-flex ">
             <div className="container border">
               <ul class="navbar-nav  ">
                 <li>
@@ -114,15 +113,12 @@ export default function Login() {
                 </div>
 
                 <div class="sign-in d-grid gap-2 mt-5">
-                  
-                 
-                    <button
-                      class="btn sign-btn fw-bold border border-dark"
-                      type="submit"
-                    >
-                      Sign in
-                    </button>
-                 
+                  <button
+                    class="btn sign-btn fw-bold border border-dark"
+                    type="submit"
+                  >
+                    Sign in
+                  </button>
                 </div>
               </form>
               <div className="sign-up d-flex justify-content-center">

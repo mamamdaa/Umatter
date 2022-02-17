@@ -44,12 +44,14 @@ export default function Signup() {
   return (
     <div className="Singup-box">
       <div className="Signup">
-        <div class="Signup-flex d-flex justify-content-center p-4 ">
-          <div className="container">
-            {" "}
-            <img class="ms-5 bg" src={background2} alt="background2" />
-          </div>
-          <div className="Form-flex ">
+        <div class="Signup-flex d-flex justify-content-center p-4 m-0">
+          {" "}
+          <img
+            class=" bg ms-5 w-100 h-100"
+            src={background2}
+            alt="background2"
+          />
+          <div className=" col-sm-8 mt-5 Form-flex ">
             <div className="container border">
               <ul class="navbar-nav  ">
                 <li>
@@ -69,7 +71,10 @@ export default function Signup() {
               {dataError && <p className="error">{dataError}</p>}
               <form onSubmit={submitHandler}>
                 <div class="mb-3 ">
-                  <label for="exampleInputEmail1" class="form-label fw-bolder">
+                  <label
+                    for="exampleInputEmail1"
+                    class="form-label fw-bolder fs-6"
+                  >
                     First Name
                   </label>
                   <input
@@ -129,17 +134,19 @@ export default function Signup() {
                 </div>
 
                 <div class="sign-up d-grid gap-2 mt-5">
-                  <button
-                    class="btn create-btn fw-bold border border-dark"
-                    type="submit"
-                  >
-                    Create account
-                  </button>
+                  <Link to="/User">
+                    <button
+                      class="btn create-btn fw-bold border border-dark"
+                      type="button"
+                    >
+                      Create account
+                    </button>
+                  </Link>
                 </div>
               </form>
               <div className="sign-in d-flex justify-content-center">
                 {" "}
-                <span class="sign-in-container ms-sm-5">
+                <span class="sign-in-container ms-lg-5">
                   <a>Already have an account?</a>
                   <Link to="/Login">
                     <a class="btn btn btn-light m-4 " role="button">
@@ -154,8 +161,4 @@ export default function Signup() {
       </div>
     </div>
   );
-}
-
-{
-  /*    */
 }
