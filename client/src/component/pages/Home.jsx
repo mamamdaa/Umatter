@@ -9,7 +9,7 @@ export default function Home() {
       <div className="Home ">
         <div class="Home-flex d-flex justify-content-center  ">
           <div class="container container1  mt-md-3">
-            <h4 class="ms-sm-1 mt-5 fw-bold fs-xl-5">Welcome to Umatter !</h4>
+            <h4 class="ms-sm-1 mt-5 fw-bold">Welcome to Umatter !</h4>
             <h1 class="mt-3 fw-bolder">We are here to hear.</h1>
             <p class="ms-sm-1 mt-sm-5">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Gravida
