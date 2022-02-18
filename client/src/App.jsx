@@ -11,8 +11,7 @@ import Signup from "./component/pages/Signup.jsx";
 import Login from "./component/pages/Login";
 import Connect from "./component/pages/Connect.jsx";
 import User from "./component/pages/User.jsx";
-import Facilitators
- from "./component/pages/Facilitators.jsx";
+import Facilitators from "./component/pages/Facilitators.jsx";
 import store from "./redux/store";
 import { connect, Provider } from "react-redux";
 import { WebSocketLink } from "apollo-link-ws";
@@ -27,8 +26,7 @@ import {
   gql,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import "./App.css"
-
+import "./App.css";
 
 const baseLink = process.env.REACT_APP_API_URL;
 const environment = process.env.NODE_ENV;
@@ -105,9 +103,8 @@ function App() {
               <About />
               <Facilitators />
               {/* <Testimonials /> */}
-              {/* <Contact /> */}
+              <Contact />
             </div>
-         
           </Switch>
         </Router>
       </Provider>
