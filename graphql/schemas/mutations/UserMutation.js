@@ -110,7 +110,7 @@ const joinChannel = {
   },
   resolve: async function (root, params, { req, res }) {
     const newUser = await User.findOneAndUpdate(
-      { _id: params._id },
+      { _id: params.userId },
       {
         $addToSet: {
           channels: params.channel_id,
@@ -124,25 +124,25 @@ const joinChannel = {
   },
 };
 
-const enterQueue = {
-  name: "enterQueue",
+const userEnterQueue = {
+  name: "userEnterQueue",
   type: UserType,
   args: {
-    _id: { type: GraphQLString },
+    userId: { type: GraphQLString }
   },
   resolve: async function (root, params, { req, res }) {
 
 
     let channel = new Channel({
-      channel_name: params._id,
-      user : params._id,
+      channel_name: params.userId,
+      user : params.userId,
       facilitator : null,
     });
 
     let newChannel = await channel.save();
 
     const newUser = await User.findOneAndUpdate(
-      { _id: params._id },
+      { _id: params.userId },
       {
         $set: {
           is_in_queue: true,
@@ -172,7 +172,7 @@ const leaveQueue = {
   },
   resolve: async function (root, params, { req, res }) {
     const newUser = await User.findOneAndUpdate(
-      { _id: params._id },
+      { _id: params.userId },
       {
         $set: {
           is_in_queue: false,
@@ -200,13 +200,13 @@ const assignedTo = {
     let channel = new Channel({
       name: "test",
       created_by: params.assigned_to,
-      users: [params.assigned_to, params._id],
+      users: [params.assigned_to, params.userId],
     });
 
     channel = await channel.save();
 
     const newUser = await User.findOneAndUpdate(
-      { _id: params._id },
+      { _id: params.userId },
       {
         $set: {
           assigned_to: params.assigned_to,
@@ -258,7 +258,7 @@ module.exports = {
   updateUser,
   login,
   joinChannel,
-  enterQueue,
+  userEnterQueue,
   leaveQueue,
   assignedTo,
 };
