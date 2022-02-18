@@ -62,6 +62,11 @@ const channelUpdate = {
     },
   },
   subscribe: (_, params, { pubsub }) => {
+    let channel = Channel.findOne({ _id: params.channelId });
+    if (!channel) {
+      throw new Error("Channel not found");
+    }
+    
     return pubsub.asyncIterator(params.channelId);
   },
 };
@@ -69,4 +74,6 @@ const channelUpdate = {
 
 
 
-module.exports = { newMessage,channelUpdate};
+
+
+module.exports = { newMessage, channelUpdate};

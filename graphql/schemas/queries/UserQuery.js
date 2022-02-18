@@ -1,50 +1,48 @@
-const graphql = require('graphql');
+const graphql = require("graphql");
 const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
   GraphQLList,
   GraphQLBoolean,
-} = graphql
-const {protect} = require('../../../middlewares/AuthMiddleware');
-const User = require('../../../models/UserModel');
-const {UserType} = require('../types/TypeDefs');
-const generateToken = require('../../../utils/GenerateToken');
+} = graphql;
+const { protect } = require("../../../middlewares/AuthMiddleware");
+const User = require("../../../models/UserModel");
+const { UserType } = require("../types/TypeDefs");
+const generateToken = require("../../../utils/GenerateToken");
 
 const getUsers = {
-  name: 'getUsers',
+  name: "getUsers",
   type: new GraphQLList(UserType),
   args: {
     is_in_queue: {
       type: GraphQLBoolean,
-    }
+    },
   },
-  resolve: async function (root, params,{req, res}) {
+  resolve: async function (root, params, { req, res }) {
     // if(!req.isAuth) {
     //   res.status(401)
     //   throw new Error("Not Authenticated");
     // }
-    return User.find(params).select("-password")
-  }
-}
+    return User.find(params).select("-password");
+  },
+};
 
 const getUser = {
-  name: 'getUser',
+  name: "getUser",
   type: UserType,
   args: {
     id: {
       type: GraphQLString,
-    }
+    },
   },
-  resolve: async function (root, params,{req, res}) {
+  resolve: async function (root, params, { req, res }) {
     // if(!req.isAuth) {
     //   res.status(401)
     //   throw new Error("Not Authenticated");
     // }
-    return User.findById(params.id).select("-password")
-  }
-}
+    return User.findById(params.id).select("-password");
+  },
+};
 
-
-
-module.exports = {getUsers,getUser}
+module.exports = { getUsers, getUser };

@@ -4,134 +4,41 @@ const Channel = require("../../../models/ChannelModel");
 const Facilitator = require("../../../models/FacilitatorModel");
 const User = require("../../../models/UserModel");
 
-const createChannel = {
-  type: ChannelType,
-  args: {
-    channel_name: { type: new GraphQLNonNull(GraphQLString) },
-    createdBy: { type: new GraphQLNonNull(GraphQLString) },
-  },
-  resolve: async function (root, params, { req, res }) {
-    // if(!req.isAuth) {
-    //   res.status(401)
-    //   throw new Error("Not Authenticated");
-    // }
-    let channel = new Channel(params);
-    return channel.save();
-  },
-};
-//change function
-const addUserToChannel = {
-  type: ChannelType,
-  args: {
-    facilitator_id: { type: new GraphQLNonNull(GraphQLString) },
-    user_id: { type: new GraphQLNonNull(GraphQLString) },
-  },
-  resolve: async function (root, params, { req, res }) {
-    // if(!req.isAuth) {
-    //   res.status(401)
-    //   throw new Error("Not Authenticated");
-    // }
 
-    if (!channel) {
-      throw new Error("Channel not found");
-    }
-    channel.users.push(params.user_id);
-    return channel.save();
-  },
-};
-
-const createRoom = {
+const faciEnterRoom = {
   type: ChannelType,
   args: {
-    createdBy: { type: new GraphQLNonNull(GraphQLString) },
-    user: { type: new GraphQLNonNull(GraphQLString) },
+    userId: { type: new GraphQLNonNull(GraphQLString) },
+    channelId: { type: new GraphQLNonNull(GraphQLString) },
+    facilitatorId: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve: async function (root, params, { req, res, pubsub }) {
     // if(!req.isAuth) {
     //   res.status(401)
     //   throw new Error("Not Authenticated");
     // }
-    let channel = new Channel({
-      channel_name: "test",
-      createdBy: params.createdBy,
-      user: params.user,
-    });
 
-    let facilitator = await Facilitator.findOne({
-      _id: params.createdBy,
-      is_assigned: false,
-      is_available: true,
-    });
-
-    if (!facilitator) {
-      throw new Error("Facilitator not found or already assigned");
-    } else {
-      facilitator.is_assigned = true;
-      facilitator.is_available = false;
-    }
-
-    let user = await User.findOne({
-      _id: params.user,
-      is_in_queue: true,
-      is_assigned: false,
-    });
-
-    if (!user) {
-      throw new Error("User not found or already assigned");
-    } else {
-      user.is_assigned = true;
-      user.is_in_queue = false;
-      user.channel = channel._id;
-    }
-
-    user.save();
-    facilitator.save();
-    channel.save();
-
-    /**
-     * @brief Publish a message to the user queue channel
-     * @param {string} user_id
-     * @param {string} channel_id
-     *
-     */
-    pubsub.publish(user._id, { queueUpdate: user });
-
-    return channel;
-  },
-};
-
-const enterRoom = {
-  type: ChannelType,
-  args: {
-    user: { type: new GraphQLNonNull(GraphQLString) },
-    channel: { type: new GraphQLNonNull(GraphQLString) },
-    facilitator: { type: new GraphQLNonNull(GraphQLString) },
-  },
-  resolve: async function (root, params, { req, res, pubsub }) {
-    // if(!req.isAuth) {
-    //   res.status(401)
-    //   throw new Error("Not Authenticated");
-    // }
-    let channel = await Channel.findById(params.channel);
+    let channel = await Channel.findById(params.channelId);
     if (!channel) {
       throw new Error("Channel not found");
     }
 
-    let facilitator = await Facilitator.findById(params.facilitator);
+    let facilitator = await Facilitator.findById(params.facilitatorId);
     if (!facilitator) {
       throw new Error("Facilitator not found");
     }
 
-    let user = await User.findById(params.user);
+    let user = await User.findById(params.userId);
     if (!user) {
       throw new Error("User not found");
     }
 
     user.is_assigned = true;
     user.is_in_queue = false;
+
     facilitator.is_assigned = true;
     facilitator.is_available = false;
-    channel.user = user._id;
+
     channel.facilitator = facilitator._id;
 
     user.save();
@@ -139,12 +46,12 @@ const enterRoom = {
     channel.save();
 
     /**
-     * @brief Publish a message to the user queue channel
+     * @brief Publish a update to the channel when faci enters room
      * @param {string} user_id
      * @param {string} channel_id
      *
      */
-    pubsub.publish(channel._id, { channel: facilitator });
+    pubsub.publish(channel._id, { channelUpdate: {facilitator:facilitator}});
 
     return channel;
   },
@@ -153,14 +60,14 @@ const enterRoom = {
 const cleanRoom = {
   type: ChannelType,
   args: {
-    channel_id: { type: new GraphQLNonNull(GraphQLString) },
+    channelId: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve: async function (root, params, { req, res }) {
     // if(!req.isAuth) {
     //   res.status(401)
     //   throw new Error("Not Authenticated");
     // }
-    let channel = await Channel.findOneAndDelete({ _id: params.channel_id });
+    let channel = await Channel.findOneAndDelete({ _id: params.channelId });
     if (!channel) {
       throw new Error("Channel not found");
     }
@@ -193,6 +100,7 @@ const cleanRoom = {
         new: true,
       }
     );
+
     if (!user) {
       throw new Error("User not found");
     }
@@ -201,4 +109,4 @@ const cleanRoom = {
   },
 };
 
-module.exports = { createChannel, addUserToChannel, createRoom, cleanRoom };
+module.exports = { cleanRoom, faciEnterRoom};

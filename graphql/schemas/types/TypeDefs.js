@@ -43,9 +43,10 @@ const ChannelType = new GraphQLObjectType({
         _id: { type: GraphQLString },
         channel_name: { type: GraphQLString }, //not needed remove
         messages: { type: new GraphQLList(MessageType) },
+        message: { type: MessageType },
         users: { type: new GraphQLList(UserType) },
-        user: { type: GraphQLString },
-        facilitator: { type: GraphQLString },
+        users: { type: UserType },
+        facilitator: { type: FacilitatorType },
     })
 });
 

@@ -16,6 +16,7 @@ const Connect = () => {
         console.log(JSON.parse(JSON.stringify(err)));
       },
     });
+    
   const [leaveQueue, { error: leaveError, data: leaveData }] =
     useMutation(LEAVE_QUEUE);
 
