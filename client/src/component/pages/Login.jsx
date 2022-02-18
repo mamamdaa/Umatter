@@ -53,89 +53,176 @@ export default function Login() {
   }, [history, isLoggedIn]);
 
   return (
-    <div className="Login-box">
-      <div className="Login">
-        <div class="Login-flex d-flex justify-content-center p-4 m-0">
-          {" "}
-          <img
-            class=" bg ms-5 w-100 h-100"
-            src={background2}
-            alt="background2"
-          />
-          <div className=" Form-flex col-sm-8 mt-5 ">
-            <div className="container border">
-              <ul class="navbar-nav  ">
-                <li>
-                  <Link to="/" class="exit nav-link float-start">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <img src={exit} alt="exit" />
-                  </Link>
-                </li>
-              </ul>
-              <h1 class=" fw-bolder text-center">Sign in</h1>
-              <div class="sign-in d-grid gap-2 mt-4">
-                <button class="btn btn2  border  " type="button">
-                  Sign in with Google
-                </button>
-                <p class="text-center mt-3 mb-3 fw-bold">or</p>
-              </div>
-              {dataError && <p>{dataError}</p>}
-              <form onSubmit={submitHandler}>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label fw-bolder">
-                    Email
-                  </label>
-                  <input
-                    type="Email"
-                    class="form-control fw-bold border border-dark"
-                    id="exampleInputEmail1"
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div class="mb-3">
-                  <label
-                    for="exampleInputPassword1"
-                    class="form-label fw-bolder"
-                  >
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    class="form-control fw-bold border border-dark"
-                    id="exampleInputPassword1"
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-                <div class="forgot mb-3 text-center">
-                  <a href="#" class="link-dark">
-                    Forgot Password?
-                  </a>
-                </div>
-
-                <div class="sign-in d-grid gap-2 mt-5">
-                  <button
-                    class="btn sign-btn fw-bold border border-dark"
-                    type="submit"
-                  >
-                    Sign in
-                  </button>
-                </div>
-              </form>
-              <div className="sign-up d-flex justify-content-center">
-                {" "}
-                <span class="sign-up-container text-center mt-3">
-                  <a>Not a member?</a>
-                  <Link to="/Signup">
-                    <a class="btn btn-light " role="button">
-                      Sign up
+    <div className="Login-box " id="home">
+      <div className="Login ">
+        <div class="Login-flex d-flex justify-content-center text-center text-lg-start ">
+          <div class="container-fluid container1 col-lg-8  mt-md-3">
+            <div class="row">
+              <div class="login-container rounded col-lg-5 mb-5">
+                <form onSubmit={submitHandler}>
+                  <ul class="navbar-nav  ">
+                    <li>
+                      <Link to="/" class="exit nav-link float-start">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <img src={exit} alt="exit" />
+                      </Link>
+                    </li>
+                  </ul>
+                  <h1 class=" fw-bolder text-center">Sign in</h1>
+                  <div class="sign-in d-grid gap-2 mt-4">
+                    <button class="btn btn2  border  " type="button">
+                      Sign in with Google
+                    </button>
+                    <p class="text-center mt-3 mb-3 fw-bold">or</p>
+                  </div>
+                  {dataError && <p>{dataError}</p>}
+                  <div class="mb-3">
+                    <label
+                      for="exampleInputEmail1"
+                      class="form-label fw-bolder"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="Email"
+                      class="form-control fw-bold border border-dark"
+                      id="exampleInputEmail1"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label
+                      for="exampleInputPassword1"
+                      class="form-label fw-bolder"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      class="form-control fw-bold border border-dark"
+                      id="exampleInputPassword1"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                  <div class="forgot mb-3 text-center">
+                    <a href="#" class="link-dark">
+                      Forgot Password?
                     </a>
-                  </Link>
-                </span>
+                  </div>
+
+                  <div class="sign-in d-grid gap-2 mt-5">
+                    <button
+                      class="btn sign-btn fw-bold border border-dark mb-3"
+                      type="submit"
+                    >
+                      Sign in
+                    </button>
+                  </div>
+                </form>
+                <div className="sign-up d-flex justify-content-center">
+                  {" "}
+                  <span class="sign-up-container text-center mt-3">
+                    <a>Not a member?</a>
+                    <Link to="/Signup">
+                      <a class="btn btn-light " role="button">
+                        Sign up
+                      </a>
+                    </Link>
+                  </span>
+                </div>
+              </div>
+              <div class=" col-lg-6 ms-lg-5 mt-5 ">
+                <img class="w-100 h-100" src={background2} alt="background2" />
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    // <div className="Login-box">
+    //   <div className="Login">
+    //     <div class="Login-flex d-flex justify-content-center p-4 m-0">
+    //       {" "}
+    //       <img
+    //         class=" bg ms-5 w-100 h-100"
+    //         src={background2}
+    //         alt="background2"
+    //       />
+    //       <div className="col-sm-8 mt-5 Form-flex ">
+    //         <div className="container border">
+    // <ul class="navbar-nav  ">
+    //   <li>
+    //     <Link to="/" class="exit nav-link float-start">
+    //       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    //       <img src={exit} alt="exit" />
+    //     </Link>
+    //   </li>
+    // </ul>
+    // <h1 class=" fw-bolder text-center">Sign in</h1>
+    // <div class="sign-in d-grid gap-2 mt-4">
+    //   <button class="btn btn2  border  " type="button">
+    //     Sign in with Google
+    //   </button>
+    //   <p class="text-center mt-3 mb-3 fw-bold">or</p>
+    // </div>
+    // {dataError && <p>{dataError}</p>}
+    // <form onSubmit={submitHandler}>
+    //   <div class="mb-3">
+    //     <label for="exampleInputEmail1" class="form-label fw-bolder">
+    //       Email
+    //     </label>
+    //     <input
+    //       type="Email"
+    //       class="form-control fw-bold border border-dark"
+    //       id="exampleInputEmail1"
+    //       onChange={(e) => setEmail(e.target.value)}
+    //     />
+    //   </div>
+    //   <div class="mb-3">
+    //     <label
+    //       for="exampleInputPassword1"
+    //       class="form-label fw-bolder"
+    //     >
+    //       Password
+    //     </label>
+    //     <input
+    //       type="password"
+    //       class="form-control fw-bold border border-dark"
+    //       id="exampleInputPassword1"
+    //       onChange={(e) => setPassword(e.target.value)}
+    //     />
+    //   </div>
+    //   <div class="forgot mb-3 text-center">
+    //     <a href="#" class="link-dark">
+    //       Forgot Password?
+    //     </a>
+    //   </div>
+
+    //   <div class="sign-in d-grid gap-2 mt-5">
+    //     <button
+    //       class="btn sign-btn fw-bold border border-dark"
+    //       type="submit"
+    //     >
+    //       Sign in
+    //     </button>
+    //   </div>
+    // </form>
+    //           <div className="sign-up d-flex justify-content-center">
+    //             {" "}
+    //             <span class="sign-up-container text-center mt-3">
+    //               <a>Not a member?</a>
+    //               <Link to="/Signup">
+    //                 <a class="btn btn-light " role="button">
+    //                   Sign up
+    //                 </a>
+    //               </Link>
+    //             </span>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
   );
 }

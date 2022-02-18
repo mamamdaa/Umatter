@@ -1,4 +1,50 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+.container {
+  padding-top: 10;
+}
+
+.Login {
+  background: #158f96;
+  height: 100% !important;
+}
+
+.Login-box .Login {
+  padding-top: 10vh;
+}
+
+.Login-flex {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.Login-flex .container {
+  overflow: hidden;
+  color: #202124;
+  position: relative;
+  width: 100vh;
+  margin: 0 !important;
+}
+
+.Login-flex .container1 {
+  margin-left: 2.8rem !important;
+  margin-right: 2.8rem !important;
+}
+
+.login-container {
+  background-color: white;
+}
+
+@media (min-width: 768px) {
+  .Login-flex .container1 h1 {
+    font-size: 5rem;
+  }
+  .form-label {
+    font-size: 0.8rem;
+    text-align: left;
+  }
+}
+/*# sourceMappingURL=Login.css.map */
+
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 .Login-box {
   place-items: center;
@@ -77,4 +123,4 @@ form .form-control {
   .Form-flex h1 {
     font-size: 40px;
   }
-}
+} */

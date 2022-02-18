@@ -11,7 +11,7 @@ import email from "../img/email.svg";
 export default function Footer() {
   return (
     <div className="Footer">
-      <div className="footer" id="footer">
+      <div className="footer pt-sm-5" id="footer">
         <div className="container d-flex justify-content-center ">
           <div class="card border-0 m-5">
             <div class="card-body">

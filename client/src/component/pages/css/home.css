@@ -14,7 +14,7 @@
 .Home-flex {
   padding: 2vh;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .Home-flex .container {
@@ -53,7 +53,7 @@
 }
 
 .form-label {
-  font-size: .5rem;
+  font-size: 0.5rem;
   text-align: left;
 }
 
@@ -62,7 +62,7 @@
     font-size: 5rem;
   }
   .form-label {
-    font-size: .8rem;
+    font-size: 0.8rem;
     text-align: left;
   }
 }
