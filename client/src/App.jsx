@@ -21,9 +21,9 @@ function App() {
         <div className="navs">
           <Navbar />
           <Home /> <Works />
-          {/* <About />
+          <About />
           <Testimonials />
-          <Contact /> */}
+          <Contact />
         </div>
       </Switch>
     </Router>
