@@ -9,33 +9,19 @@
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
-  flex-wrap: wrap;
-  position: absolute;
   width: 100% !important;
-}
-
-.Contact-flex .container1 {
-  height: 50vh;
-}
-
-.Contact-flex .container2 {
-  height: 60vh !important;
-}
-
-.contact-flex {
-  position: absolute;
-  left: 50rem !important;
-  top: 8rem;
+  height: 70vh;
 }
 
 .contact-flex h1 {
-  font-size: 50px;
+  font-size: 40px;
 }
 
-.contact-flex .container {
+.contact-flex {
   background-color: white;
-  margin: 0 !important;
+  margin-top: 20vh !important;
   width: 65vh;
+  height: 75vh !important;
   border-radius: 15px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }

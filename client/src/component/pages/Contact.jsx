@@ -7,14 +7,18 @@ export default function Contact() {
   return (
     <div className="contact-box">
       <div className="contact" id="contact">
-        <div class="Contact-flex d-flex justify-content-center p-4 ">
-          <div className="container1"></div>
-          <div className="contact-flex ">
-            <h1 class=" fw-bolder text-center mt-1 mb-5">Connect with us</h1>
-            <div className="container container2 border ">
-              <form>
+        <div class="Contact-flex d-flex justify-content-center p-5 ">
+          <div className="contact-flex me-sm-auto ms-sm-5 ">
+            <div className="contact-container">
+              <form className="p-4">
+                <h1 class=" fw-bolder text-center mt-1 mb-5">
+                  Connect with us
+                </h1>
                 <div class="mb-3 mt-4">
-                  <label for="exampleInputEmail1" class="form-label fw-bolder">
+                  <label
+                    for="exampleInputEmail1"
+                    class="form-label fw-bolder fs-6"
+                  >
                     Name
                   </label>
                   <input
@@ -25,7 +29,10 @@ export default function Contact() {
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label fw-bolder">
+                  <label
+                    for="exampleInputEmail1"
+                    class="form-label fw-bolder fs-6"
+                  >
                     Email
                   </label>
                   <input
@@ -37,12 +44,12 @@ export default function Contact() {
                 <div class="mb-3">
                   <label
                     for="exampleFormControlTextarea1"
-                    class="form-label fw-bold"
+                    class="form-label fw-bold fs-6"
                   >
                     Message
                   </label>
                   <textarea
-                    class="form-control"
+                    class="form-control "
                     id="exampleFormControlTextarea1"
                     rows="3"
                   ></textarea>

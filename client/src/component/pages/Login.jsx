@@ -62,7 +62,7 @@ export default function Login() {
             src={background2}
             alt="background2"
           />
-          <div className="col-sm-8 mt-5 Form-flex ">
+          <div className=" Form-flex col-sm-8 mt-5 ">
             <div className="container border">
               <ul class="navbar-nav  ">
                 <li>
