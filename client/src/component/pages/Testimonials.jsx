@@ -41,8 +41,8 @@ export default function Testimonials() {
             ></button>
           </div>
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="card mb-5 mt-5">
+            <div class="carousel-item active ">
+              <div class="card mb-5 mt-5 col-lg-6 mx-auto">
                 <div class="card-body">
                   <div className="developer d-flex ">
                     <img class="m-3" src={mission} alt="mission" />
@@ -62,13 +62,14 @@ export default function Testimonials() {
                 </div>
               </div>
             </div>
-            <div class="carousel-item">
-              <div class="card mb-5 mt-5">
+            <div class="carousel-item  ">
+              <div class="card mb-5 mt-5 col-lg-6 mx-auto">
                 <div class="card-body">
                   <div className="developer d-flex ">
                     <img class="m-3" src={mission} alt="mission" />
                     <div className="container2 name mt-3">
                       <h5 class="card-title">Fredick Andrew Dimo</h5>
+
                       <h6 class="card-subtitle mb-2 text-muted">
                         Iloilo City, Philippines
                       </h6>
@@ -83,13 +84,14 @@ export default function Testimonials() {
                 </div>
               </div>
             </div>
-            <div class="carousel-item">
-              <div class="card mb-5 mt-5">
+            <div class="carousel-item  ">
+              <div class="card mb-5 mt-5 col-lg-6 mx-auto">
                 <div class="card-body">
                   <div className="developer d-flex ">
                     <img class="m-3" src={mission} alt="mission" />
                     <div className="container2 name mt-3">
                       <h5 class="card-title">Marlou Amada</h5>
+
                       <h6 class="card-subtitle mb-2 text-muted">
                         Iloilo City, Philippines
                       </h6>
@@ -105,13 +107,14 @@ export default function Testimonials() {
                 </div>
               </div>
             </div>
-            <div class="carousel-item">
-              <div class="card mb-5 mt-5">
+            <div class="carousel-item  ">
+              <div class="card mb-5 mt-5 col-lg-6 mx-auto">
                 <div class="card-body">
                   <div className="developer d-flex ">
                     <img class="m-3" src={mission} alt="mission" />
                     <div className="container2 name mt-3">
                       <h5 class="card-title">Marc Jofer Dimacutac</h5>
+
                       <h6 class="card-subtitle mb-2 text-muted">
                         Iloilo City, Philippines
                       </h6>

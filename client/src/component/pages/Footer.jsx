@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <div className="Footer">
       <div className="footer pt-sm-5" id="footer">
-        <div className="container d-flex justify-content-center ">
+        <div className="container d-flex justify-content-center mt-5 pt-5">
           <div class="card border-0 m-5">
             <div class="card-body">
               <h4 class="card-title">Umatter</h4>

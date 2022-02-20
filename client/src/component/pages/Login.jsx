@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./css/login.css";
-import exit from "../img/exit.svg";
+import exit2 from "../img/exit2.svg";
 import background2 from "../img/background2.svg";
 import { Link } from "react-router-dom";
 import { LOGIN } from "../../graphql/Queries";
@@ -54,24 +54,25 @@ export default function Login() {
 
   return (
     <div className="Login-box " id="home">
+      <ul class="navbar-nav text-center pt-5 ">
+        <li>
+          <Link to="/" class="exit nav-link float-sm-end me-sm-5 fw-light">
+            Back to home page
+            <img class="ms-3" src={exit2} alt="exit2" />
+          </Link>
+        </li>
+      </ul>
       <div className="Login ">
         <div class="Login-flex d-flex justify-content-center text-center text-lg-start ">
           <div class="container-fluid container1 col-lg-8  mt-md-3">
-            <div class="row">
+            <div class="row p-sm-3">
               <div class="login-container rounded col-lg-5 mb-5">
-                <form onSubmit={submitHandler}>
-                  <ul class="navbar-nav  ">
-                    <li>
-                      <Link to="/" class="exit nav-link float-start">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <img src={exit} alt="exit" />
-                      </Link>
-                    </li>
-                  </ul>
-                  <h1 class=" fw-bolder text-center">Sign in</h1>
+                <form class="p-4" onSubmit={submitHandler}>
+                  <h4 className="fw-light text-center">Welcome to Umatter !</h4>
+                  <h2 class=" fw-bolder text-center">Login</h2>
                   <div class="sign-in d-grid gap-2 mt-4">
-                    <button class="btn btn2  border  " type="button">
-                      Sign in with Google
+                    <button class="btn btn1  border  " type="button">
+                      Login with Google
                     </button>
                     <p class="text-center mt-3 mb-3 fw-bold">or</p>
                   </div>
@@ -79,7 +80,7 @@ export default function Login() {
                   <div class="mb-3">
                     <label
                       for="exampleInputEmail1"
-                      class="form-label fw-bolder"
+                      class="form-label fw-bolder fs-6"
                     >
                       Email
                     </label>
@@ -93,7 +94,7 @@ export default function Login() {
                   <div class="mb-3">
                     <label
                       for="exampleInputPassword1"
-                      class="form-label fw-bolder"
+                      class="form-label fw-bolder fs-6"
                     >
                       Password
                     </label>
@@ -112,7 +113,7 @@ export default function Login() {
 
                   <div class="sign-in d-grid gap-2 mt-5">
                     <button
-                      class="btn sign-btn fw-bold border border-dark mb-3"
+                      class="btn btn2 sign-btn fw-bold border border-dark"
                       type="submit"
                     >
                       Sign in
@@ -121,10 +122,10 @@ export default function Login() {
                 </form>
                 <div className="sign-up d-flex justify-content-center">
                   {" "}
-                  <span class="sign-up-container text-center mt-3">
-                    <a>Not a member?</a>
+                  <span class="sign-up-container text-center mb-5 ">
+                    <a>Don’t have an account?</a>
                     <Link to="/Signup">
-                      <a class="btn btn-light " role="button">
+                      <a class="btn btn3 bg-transparent" role="button">
                         Sign up
                       </a>
                     </Link>

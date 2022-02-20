@@ -102,7 +102,7 @@ function App() {
               <Works />
               <About />
               <Facilitators />
-              {/* <Testimonials /> */}
+              <Testimonials />
               <Contact />
             </div>
           </Switch>

@@ -7,7 +7,7 @@ import faciThree from "../img/faci-3.png";
 
 const Facilitators = () => {
   return (
-    <div>
+    <div id="facilitators">
       {/* <Navbar /> */}
       <div className="container-fluid facilitators">
         <div className="row justify-content-center">

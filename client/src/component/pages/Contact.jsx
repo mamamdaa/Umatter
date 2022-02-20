@@ -5,10 +5,10 @@ import Footer from "./Footer";
 
 export default function Contact() {
   return (
-    <div className="Contact-box">
+    <div className="Contact-box " id="contact">
       <div className="Contact">
-        <div className="Contact-flex d-flex justify-content-center p-4 m-0">
-          <div className="form-flex mt-5 col-lg-4 pt-5">
+        <div className="Contact-flex d-flex justify-content-center p-5 m-0">
+          <div className="form-flex mt-5 col-lg-4  pt-5">
             <div className="contact-container me-auto ">
               <form className="p-4 ">
                 <h1 class=" fw-bolder text-center mt-1 mb-5">

@@ -1,4 +1,74 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+.container {
+  padding-top: 10;
+}
+
+.Signup {
+  background: #158f96;
+  height: 100% !important;
+}
+
+.Signup-box .Signup {
+  padding-top: 5vh;
+}
+
+.Signup-box ul {
+  background-color: #158f96;
+
+  font-size: 18px;
+}
+
+.Signup-box .exit {
+  color: white !important;
+}
+
+font-size: 18px;
+.Signup-flex {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.Signup-flex .container {
+  overflow: hidden;
+  color: #202124;
+  position: relative;
+  width: 100vh;
+  margin: 0 !important;
+}
+
+.Signup-flex .container1 {
+  margin-left: 2.8rem !important;
+  margin-right: 2.8rem !important;
+}
+
+.Signup-container {
+  background-color: white;
+}
+
+.Signup-container .btn1 {
+  background-color: #86e7cf;
+  color: #158f96;
+}
+.Signup-container .btn2 {
+  width: 100%;
+  color: white;
+  background-color: #158f96;
+}
+
+.Signup-container .btn3 {
+  color: #158f96;
+}
+
+@media (min-width: 768px) {
+  .Signup-flex .container1 h1 {
+    font-size: 5rem;
+  }
+  .form-label {
+    font-size: 0.8rem;
+    text-align: left;
+  }
+}
+
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 .Signup-box {
   place-items: center;
@@ -78,4 +148,4 @@ form .form-control {
   .Form-flex h1 {
     font-size: 40px;
   }
-}
+} */

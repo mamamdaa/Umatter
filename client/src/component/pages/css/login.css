@@ -8,9 +8,20 @@
 }
 
 .Login-box .Login {
-  padding-top: 10vh;
+  padding-top: 5vh;
 }
 
+.Login-box ul {
+  background-color: #158f96;
+
+  font-size: 18px;
+}
+
+.Login-box .exit {
+  color: white !important;
+}
+
+font-size: 18px;
 .Login-flex {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
@@ -31,6 +42,19 @@
 
 .login-container {
   background-color: white;
+}
+
+.login-container .btn1 {
+  background-color: #86e7cf;
+  color: #158f96;
+}
+
+.login-container .btn2 {
+  background-color: #158f96;
+}
+
+.login-container .btn3 {
+  color: #158f96;
 }
 
 @media (min-width: 768px) {
