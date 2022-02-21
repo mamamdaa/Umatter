@@ -22,7 +22,7 @@ const sendMessage = {
         }
         params.sender_name = user.first_name;
         let message = new Message(params);
-        pubsub.publish(params.channel, { channelUpdate: {message:message} });
+        pubsub.publish(params.channel, { channelUpdates: {message:message} });
         return message.save();
     }
 }

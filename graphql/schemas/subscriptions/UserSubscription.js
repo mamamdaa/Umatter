@@ -20,12 +20,12 @@ const newLogin = {
 const queueUpdate = {
     name: 'queueUpdate',
     type: UserType,
-    args : {
-        id : {type : GraphQLString}
-    },
+    // args : {
+    //     id : {type : GraphQLString}
+    // },
     subscribe: (_,params,{pubsub}) =>
     {
-        return pubsub.asyncIterator(params.id);
+        return pubsub.asyncIterator(['QUEUE_UPDATE']);
     }
 }
 

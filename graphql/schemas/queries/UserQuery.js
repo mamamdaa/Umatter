@@ -32,7 +32,7 @@ const getUser = {
   name: "getUser",
   type: UserType,
   args: {
-    id: {
+    userId: {
       type: GraphQLString,
     },
   },
@@ -41,8 +41,23 @@ const getUser = {
     //   res.status(401)
     //   throw new Error("Not Authenticated");
     // }
-    return User.findById(params.id).select("-password");
+    return User.findById(params.userId).select("-password");
   },
 };
 
-module.exports = { getUsers, getUser };
+const getUsersInQueue = {
+  name: "getUsersInQueue",
+  type: new GraphQLList(UserType),
+  resolve: async function (root, params, { req, res }) {
+    // if(!req.isAuth) {
+    //   res.status(401)
+    //   throw new Error("Not Authenticated");
+    // }
+
+    
+    return User.find({ is_in_queue: true }).select("-password");
+  },
+};
+
+
+module.exports = { getUsers, getUser,getUsersInQueue};

@@ -30,18 +30,56 @@ export const SEND_MESSAGE = gql`
   }
 `;
 
-export const ENTER_QUEUE = gql`
-  mutation EnterQueue($id: String) {
-    enterQueue(_id: $id) {
-      is_in_queue
+export const USER_ENTER_QUEUE = gql`
+  mutation UserEnterQueue($userId: String) {
+    userEnterQueue(userId: $userId) {
+      channel_id
     }
   }
 `;
 
-export const LEAVE_QUEUE = gql`
-  mutation LeaveQueue($id: String) {
-    leaveQueue(_id: $id) {
-      is_in_queue
+export const USER_LEAVE_QUEUE = gql`
+  mutation UserLeaveQueue($userId: String) {
+    userLeaveQueue(userId: $userId) {
+      channel_id
+    }
+  }
+`;
+
+export const USER_LEAVE_ROOM = gql`
+  mutation CleanRoom($channelId: String!) {
+    cleanRoom(channelId: $channelId) {
+      _id
+    }
+  }
+`;
+
+export const FACI_ENTER_ROOM = gql`
+  mutation FaciEnterRoom(
+    $userId: String!
+    $channelId: String!
+    $facilitatorId: String!
+  ) {
+    faciEnterRoom(
+      userId: $userId
+      channelId: $channelId
+      facilitatorId: $facilitatorId
+    ) {
+      user {
+        _id
+        first_name
+        last_name
+      }
+      facilitator {
+        _id
+        first_name
+        last_name
+      }
+      message {
+        text
+        sender
+        sender_name
+      }
     }
   }
 `;

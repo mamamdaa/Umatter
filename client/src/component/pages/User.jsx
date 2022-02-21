@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import UserNavbar from "../inc/UserNavbar";
 import Navbar from "../inc/Navbar";
-import Footer from "../inc/Footer-chat";
+// import Footer from "../inc/Footer-chat";
 import { useHistory } from "react-router-dom";
 import background from "../img/background.svg";
 import { Link } from "react-router-dom";
-import ChatRoom from "../inc/ChatRoom"
+// import ChatRoom from "../inc/ChatRoom"
 import "./css/user.css";
 
 export default function User() {
@@ -48,12 +48,12 @@ export default function User() {
           <div class="container container2">
             <img class="me-4" src={background} alt="background" />
           </div>
-          <ChatRoom/>
+          {/* <ChatRoom/> */}
         </div>
     
       </div>
       
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
