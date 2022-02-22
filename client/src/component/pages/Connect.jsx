@@ -11,10 +11,14 @@ import {
 import { useMutation, useSubscription } from "@apollo/client";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import ConnectWaitingBtn from "../inc/Connect/connectWaitingBtn";
+import ConnectLeaveBtn from "../inc/Connect/connectLeaveBtn";
+import ConnectEnterBtn from "../inc/Connect/connectEnterBtn";
+import "./styles/Connect/connect.css";
 
 const Connect = () => {
   const { isLoggedIn, user } = useSelector((state) => state.user);
-  const [isWaiting, setIsWaiting] = useState(false);
+  const [isInQueue, setIsInQueue] = useState(false);
   const [channelId, setChannel] = useState("");
   const [isInRoom, setIsInRoom] = useState(false);
 
@@ -76,7 +80,7 @@ const Connect = () => {
 
   useEffect(() => {
     if (userEnterData) {
-      setIsWaiting(true);
+      setIsInQueue(true);
       toast("Entered Queue!");
       console.log(userEnterData);
       setChannel(userEnterData.userEnterQueue.channel_id);
@@ -89,7 +93,7 @@ const Connect = () => {
 
   useEffect(() => {
     if (userLeaveData) {
-      setIsWaiting(false);
+      setIsInQueue(false);
       toast("Left queue!");
     } else if (userLeaveError) {
       let errorMessage = JSON.parse(JSON.stringify(userLeaveError.message));
@@ -99,9 +103,9 @@ const Connect = () => {
   }, [userLeaveError, userLeaveData]);
 
   return (
-    <div className="container d-flex justify-content-center align-items-center bg-secondary vh-100">
-      <div className="row justify-content-center vw-100 vh-100 bg-danger p-5">
-        <div className="col-md-8 bg-primary">
+    <div className="container-fluid justify-content-center align-items-center bg-secondary vh-100 p-4 ">
+      <div className="row justify-content-center">
+        <div className="col board-content ">
           <button
             type="button"
             className="btn btn-primary btn-lg btn-block"
@@ -127,17 +131,10 @@ const Connect = () => {
             </button>
           ) : null}
 
-          {isWaiting ? (
-            <div className="spinner-border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          ) : (
-            <> </>
-          )}
-          {isWaiting || isInRoom ? (
+          {isInQueue || isInRoom ? (
             <ChatBox
               channelId={channelId}
-              setIsWaiting={setIsWaiting}
+              setIsInQueue={setIsInQueue}
               setIsInRoom={setIsInRoom}
             />
           ) : (
@@ -146,6 +143,15 @@ const Connect = () => {
             </div>
           )}
         </div>
+      </div>
+      <div className="row justify-content-center ">
+        {isInQueue && !isInRoom ? (
+          <ConnectWaitingBtn leaveQueue={leaveQueue} />
+        ) : isInRoom ? (
+          <ConnectLeaveBtn leaveRoom={leaveRoom} />
+        ) : (
+          <ConnectEnterBtn enterQueue={enterQueue} />
+        )}
       </div>
     </div>
   );
