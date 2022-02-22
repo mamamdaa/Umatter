@@ -9,8 +9,7 @@ import { useSelector } from "react-redux";
 const FaciChatBox = ({ channelId, setIsInRoom }) => {
   const { isLoggedIn, user: facilitator } = useSelector((state) => state.user);
   const [chatTitle, setChatTitle] = useState("");
-  const [message, setMessage] = useState("");
-
+  
   const { data: channelUpdatesData, error: channelUpdatesError } =
     useSubscription(CHANNEL_UPDATES, {
       variables: {
