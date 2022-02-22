@@ -5,16 +5,17 @@ export const CHANNEL_UPDATES = gql`
     channelUpdates(channelId: $channelId) {
       message {
         text
-        sender
-        sender_name
+        sender_id
       }
       facilitator {
         first_name
         last_name
+        action
       }
       user {
         first_name
         last_name
+        action
       }
       isChannelExists
     }

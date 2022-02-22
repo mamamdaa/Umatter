@@ -8,21 +8,23 @@ const sendMessage = {
     type: MessageType,
     args: {
         text: { type: new GraphQLNonNull(GraphQLString) },
-        sender: { type: new GraphQLNonNull(GraphQLString) }, //change to senderid
-        channel: { type: new GraphQLNonNull(GraphQLString) },
+        senderId: { type: new GraphQLNonNull(GraphQLString) },
+        channelId: { type: new GraphQLNonNull(GraphQLString) },
     },
     resolve: async function (root, params,{req, res,pubsub}) {
         // if(!req.isAuth) {
         //   res.status(401)
         //   throw new Error("Not Authenticated");
         // }
-        const user = await User.findOne({_id:params.sender})
-        if(!user) {
-            throw new Error('User not found');
-        }
-        params.sender_name = user.first_name;
-        let message = new Message(params);
-        pubsub.publish(params.channel, { channelUpdates: {message:message} });
+
+        let message = new Message({
+            text: params.text,
+            sender_id: params.senderId,
+            channel_id: params.channelId,
+        });
+        
+
+        pubsub.publish(params.channelId, { channelUpdates: {message:message} });
         return message.save();
     }
 }

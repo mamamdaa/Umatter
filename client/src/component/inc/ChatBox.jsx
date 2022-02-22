@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
-import { Widget, addResponseMessage } from "react-chat-widget";
+import {
+  Widget,
+  addResponseMessage,
+  addUserMessage,
+  renderCustomComponent,
+} from "react-chat-widget";
 import { CHANNEL_UPDATES } from "../../graphql/Subscriptions";
-import { useSubscription } from "@apollo/client";
+import { SEND_MESSAGE } from "../../graphql/Mutations";
+import { useSubscription, useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
-const ChatBox = ({ channelId, setIsWaiting,setIsInRoom }) => {
+const ChatBox = ({ channelId, setIsWaiting, setIsInRoom }) => {
+  const { isLoggedIn, user } = useSelector((state) => state.user);
   const [chatTitle, setChatTitle] = useState("Wait for your Peer Facilitator");
-
-  const handleNewUserMessage = (newMessage) => {
-    console.log(`New message incoming! ${newMessage}`);
-    // Now send the message throught the backend API
-  };
 
   const { data: channelUpdatesData, error: channelUpdatesError } =
     useSubscription(CHANNEL_UPDATES, {
@@ -19,26 +22,45 @@ const ChatBox = ({ channelId, setIsWaiting,setIsInRoom }) => {
       },
       onError: (err) => {},
     });
-
+  const [sendMessage, { data: sendMessageData, error: sendMessageError }] =
+    useMutation(SEND_MESSAGE, {
+      onError: (err) => {},
+    });
+  const handleNewUserMessage = (newMessage) => {
+    sendMessage({
+      variables: {
+        text: newMessage,
+        senderId: user._id,
+        channelId: channelId,
+      },
+    });
+  };
   useEffect(() => {
     if (channelUpdatesData) {
       if (channelUpdatesData.channelUpdates.facilitator) {
-        let faciFirstName =
-          channelUpdatesData.channelUpdates.facilitator.first_name;
-        let faciLastName =
-          channelUpdatesData.channelUpdates.facilitator.last_name;
-        toast("Facilitator has joined the channel!");
-        setChatTitle(`Hi! I'm ${faciFirstName} ${faciLastName}`);
-        setIsWaiting(false);
-        setIsInRoom(true);
+          let facilitator = channelUpdatesData.channelUpdates.facilitator;
+          if (facilitator.action === "JOINED") {
+            setChatTitle(`${facilitator.first_name} ${facilitator.last_name}`);
+            setIsWaiting(false);
+            setIsInRoom(true);
+            toast(`${facilitator.first_name} ${facilitator.last_name} has joined the channel`);
+          }else if(facilitator.action === "LEFT"){
+            setIsInRoom(false);
+            toast(`${facilitator.first_name} ${facilitator.last_name} has left the channel`);
+          }
+     
       } else if (channelUpdatesData.channelUpdates.message) {
-        addResponseMessage(channelUpdatesData.channelUpdates.message.text);
+        if (channelUpdatesData.channelUpdates.message.sender_id === user._id) {
+          console.log("Message Sent");
+        } else {
+          addResponseMessage(channelUpdatesData.channelUpdates.message.text);
+        }
       }
     } else if (channelUpdatesError) {
       let errorMessage = JSON.parse(
         JSON.stringify(channelUpdatesError.message)
       );
-      console.log("channelUpdatesError",errorMessage);
+      console.log("channelUpdatesError", errorMessage);
 
       toast(errorMessage);
     }

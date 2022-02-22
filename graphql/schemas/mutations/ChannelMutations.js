@@ -62,7 +62,7 @@ const faciEnterRoom = {
     pubsub.publish('QUEUE_UPDATE', { queueUpdate:user });
 
 
-    return channel;
+    return user; //fix typedefs
   },
 };
 

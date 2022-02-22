@@ -152,7 +152,7 @@ const userEnterQueue = {
     newUser.channel_id = newChannel._id;
     newUser.save();
 
-    newUser.action = "JOINED"
+    newUser.action = "JOINED";
     pubsub.publish("QUEUE_UPDATE", { queueUpdate: newUser });
     return newUser;
   },
@@ -182,6 +182,28 @@ const userLeaveQueue = {
   },
 };
 
+const userLeaveRoom = {
+  name: "userLeaveRoom",
+  type: UserType,
+  args: {
+    userId: { type: GraphQLString },
+    channelId: { type: GraphQLString },
+  },
+  resolve: async function (root, params, { req, res, pubsub }) {
+    let user = await User.findOne({ _id: params.userId });
+    if (!user) {
+      throw new Error("No User Found");
+    }
+    user.is_in_queue = false;
+    user.is_assigned = false;
+    user.channel_id = null;
+    user.save();
+    user.action = "LEFT";
+    pubsub.publish(params.channelId, { channelUpdates: { user: user } });
+    return user;
+  },
+};
+
 // const deleteUser = {
 //     type: UserType,
 //     args: {
@@ -206,4 +228,5 @@ module.exports = {
   joinChannel,
   userEnterQueue,
   userLeaveQueue,
+  userLeaveRoom,
 };

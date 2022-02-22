@@ -20,12 +20,14 @@ export const REGISTER = gql`
 `;
 
 export const SEND_MESSAGE = gql`
-  mutation SendMessage($text: String!, $channel: String!, $sender: String!) {
-    sendMessage(text: $text, channel: $channel, sender: $sender) {
-      _id
+  mutation SendMessage(
+    $text: String!
+    $senderId: String!
+    $channelId: String!
+  ) {
+    sendMessage(text: $text, senderId: $senderId, channelId: $channelId) {
       text
-      sender
-      sender_name
+      sender_id
     }
   }
 `;
@@ -46,14 +48,15 @@ export const USER_LEAVE_QUEUE = gql`
   }
 `;
 
-export const USER_LEAVE_ROOM = gql`
-  mutation CleanRoom($channelId: String!) {
-    cleanRoom(channelId: $channelId) {
-      _id
-    }
-  }
-`;
+// export const USER_LEAVE_ROOM = gql`
+//   mutation CleanRoom($channelId: String!) {
+//     cleanRoom(channelId: $channelId) {
+//       _id
+//     }
+//   }
+// `;
 
+//data return some not necessary
 export const FACI_ENTER_ROOM = gql`
   mutation FaciEnterRoom(
     $userId: String!
@@ -69,17 +72,40 @@ export const FACI_ENTER_ROOM = gql`
         _id
         first_name
         last_name
+        channel_id
       }
-      facilitator {
-        _id
-        first_name
-        last_name
-      }
-      message {
-        text
-        sender
-        sender_name
-      }
+    }
+  }
+`;
+
+export const USER_LEAVE_ROOM = gql`
+  mutation UserLeaveRoom($userId: String, $channelId: String) {
+    userLeaveRoom(userId: $userId, channelId: $channelId) {
+      _id
+    }
+  }
+`;
+
+export const FACI_LEAVE_ROOM = gql`
+  mutation FaciLeaveRoom($facilitatorId: String, $channelId: String) {
+    faciLeaveRoom(facilitatorId: $facilitatorId, channelId: $channelId) {
+      _id
+    }
+  }
+`;
+
+export const FACI_JOIN_ROOM = gql`
+  mutation FaciJoinRoom(
+    $facilitatorId: String
+    $channelId: String
+    $userId: String
+  ) {
+    faciJoinRoom(
+      facilitatorId: $facilitatorId
+      channelId: $channelId
+      userId: $userId
+    ) {
+      _id
     }
   }
 `;

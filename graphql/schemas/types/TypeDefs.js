@@ -33,9 +33,8 @@ const MessageType = new GraphQLObjectType({
   fields: () => ({
     _id: { type: GraphQLString },
     text: { type: GraphQLString },
-    sender: { type: GraphQLString },
-    sender_name: { type: GraphQLString },
-    channel: { type: GraphQLString },
+    sender_id: { type: GraphQLString },
+    channel_id: { type: GraphQLString },
   }),
 });
 
@@ -66,6 +65,7 @@ const FacilitatorType = new GraphQLObjectType({
     is_available: { type: GraphQLBoolean },
     is_assigned: { type: GraphQLBoolean },
     channel_id: { type: GraphQLString },
+    action : { type: GraphQLString },
   }),
 });
 

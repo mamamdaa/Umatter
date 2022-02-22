@@ -56,6 +56,7 @@ const Connect = () => {
     console.log("leaving Room");
     userLeaveRoom({
       variables: {
+        userId: user._id,
         channelId: channelId, //what if refreshed? channel id should stored in local storage
       },
     });
@@ -133,7 +134,7 @@ const Connect = () => {
           ) : (
             <> </>
           )}
-          {isWaiting || isInRoom? (
+          {isWaiting || isInRoom ? (
             <ChatBox
               channelId={channelId}
               setIsWaiting={setIsWaiting}
