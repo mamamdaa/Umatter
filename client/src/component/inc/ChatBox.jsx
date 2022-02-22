@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import {
   Widget,
   addResponseMessage,
-  addUserMessage,
-  renderCustomComponent,
 } from "react-chat-widget";
 import { CHANNEL_UPDATES } from "../../graphql/Subscriptions";
 import { SEND_MESSAGE } from "../../graphql/Mutations";
