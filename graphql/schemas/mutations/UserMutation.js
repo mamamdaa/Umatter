@@ -101,29 +101,6 @@ const login = {
   },
 };
 
-const joinChannel = {
-  name: "joinChannel",
-  type: UserType,
-  args: {
-    _id: { type: GraphQLString },
-    channel_id: { type: GraphQLString },
-  },
-  resolve: async function (root, params, { req, res }) {
-    const newUser = await User.findOneAndUpdate(
-      { _id: params.userId },
-      {
-        $addToSet: {
-          channels: params.channel_id,
-        },
-      },
-      {
-        new: true,
-      }
-    );
-    return newUser;
-  },
-};
-
 const userEnterQueue = {
   name: "userEnterQueue",
   type: UserType,
@@ -131,6 +108,7 @@ const userEnterQueue = {
     userId: { type: GraphQLString },
   },
   resolve: async function (root, params, { req, res, pubsub }) {
+
     let channel = new Channel({
       channel_name: params.userId,
       user: params.userId,
