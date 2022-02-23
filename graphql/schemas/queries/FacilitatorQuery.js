@@ -37,7 +37,7 @@ const getFacilitator = {
     //   throw new Error("Not Authenticated");
     // }
 
-    let facilitator = await Facilitator.findById(params.facilitatorId);
+    let facilitator = await Facilitator.findById(params.facilitatorId).select("-password");;
     if (!facilitator) {
       throw new Error("Facilitator not found");
     }
