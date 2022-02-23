@@ -100,29 +100,6 @@ const loginFacilitator = {
   },
 };
 
-const joinChannelFacilitator = {
-  name: "joinChannelFacilitator",
-  type: FacilitatorType,
-  args: {
-    _id: { type: GraphQLString },
-    channel_id: { type: GraphQLString },
-  },
-  resolve: async function (root, params, { req, res }) {
-    const newFacilitator = await Facilitator.findOneAndUpdate(
-      { _id: params._id },
-      {
-        $addToSet: {
-          channels: params.channel_id,
-        },
-      },
-      {
-        new: true,
-      }
-    );
-    return newFacilitator;
-  },
-};
-
 const faciLeaveRoom = {
   name: "faciLeaveRoom",
   type: FacilitatorType,
