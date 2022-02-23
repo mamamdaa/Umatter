@@ -1,9 +1,7 @@
-var { 
-  GraphQLNonNull, 
-  GraphQLString,
-GraphQLBoolean } = require("graphql");
+var { GraphQLNonNull, GraphQLString, GraphQLBoolean } = require("graphql");
 const { FacilitatorType } = require("../types/TypeDefs");
 const Facilitator = require("../../../models/FacilitatorModel");
+const User = require("../../../models/UserModel");
 const generateToken = require("../../../utils/GenerateToken");
 
 const addFacilitator = {
@@ -59,9 +57,13 @@ const updateFacilitator = {
     if (param.email) {
       updateFacilitator.email = param.email;
     }
-    const updatedFacilitator = await Facilitator.findByIdAndUpdate(param._id, updateFacilitator, {
-      new: true,
-    });
+    const updatedFacilitator = await Facilitator.findByIdAndUpdate(
+      param._id,
+      updateFacilitator,
+      {
+        new: true,
+      }
+    );
     console.log(updatedFacilitator);
     if (!updatedFacilitator) {
       throw new Error("Error");
@@ -92,102 +94,75 @@ const loginFacilitator = {
       facilitator.save();
 
       pubsub.publish(NEW_LOGIN, { newLogin: { _id: "123" } });
-    
+
       return convertedFacilitator;
     }
   },
 };
 
-const joinChannelFacilitator = {
-  name: "joinChannelFacilitator",
+const faciLeaveRoom = {
+  name: "faciLeaveRoom",
   type: FacilitatorType,
   args: {
-    _id: { type: GraphQLString },
-    channel_id: { type: GraphQLString },
+    facilitatorId: { type: GraphQLString },
+    channelId: { type: GraphQLString },
   },
-  resolve: async function (root, params, { req, res }) {
-    const newFacilitator = await Facilitator.findOneAndUpdate(
-      { _id: params._id },
-      {
-        $addToSet : {
-            channels: params.channel_id
-        }
-      },
-      {
-        new: true,
-      }
-    );
-    return newFacilitator
-  },
+  resolve: async function (root, params, { req, res, pubsub }) {
+    let facilitator = await Facilitator.findById(params.facilitatorId);
+    if (!facilitator) {
+      throw new Error("Facilitator not found");
+    }
+    facilitator.is_assigned = false;
+    facilitator.is_available = true;
+    facilitator.channel = null;
+    facilitator.save();
+    facilitator.action = "LEFT";
 
+    pubsub.publish(params.channelId, {
+      channelUpdates: { facilitator: facilitator },
+    });
+
+    await facilitator;
+  },
 };
 
-// const enterQueue = {
-//   name: "enterQueue",
-//   type: FacilitatorType,
-//   args: {
-//     _id: { type: GraphQLString },
-//   },
-//   resolve: async function (root, params, { req, res }) {
-//     const newFacilitator = await Facilitator.findOneAndUpdate(
-//       { _id: params._id },
-//       {
-//         $set: {
-//           is_in_queue: true,
-//         },
-//       },
-//       {
-//         new: true,
-//       }
-//     );
-//     return newFacilitator
-//   }
-// }
-
-// const leaveQueue = {
-//   name: "leaveQueue",
-//   type: FacilitatorType,
-//   args: {
-//     _id: { type: GraphQLString },
-//   },
-//   resolve: async function (root, params, { req, res }) {
-//     const newFacilitator = await Facilitator.findOneAndUpdate(
-//       { _id: params._id },
-//       {
-//         $set: {
-//           is_in_queue: false,
-//         },
-//       },
-//       {
-//         new: true,
-//       }
-//     );
-//     return newFacilitator
-//   }
-// }
-
-const assignedToUser = {
-  name: "assignedToUser",
+const faciJoinRoom = {
+  name: "faciJoinRoom",
   type: FacilitatorType,
   args: {
-    _id: { type: GraphQLString },
-    assigned_to: { type: GraphQLString },
+    facilitatorId: { type: GraphQLString },
+    channelId: { type: GraphQLString },
+    userId: { type: GraphQLString },
   },
-  resolve: async function (root, params, { req, res }) {
-    const newFacilitator = await Facilitator.findOneAndUpdate(
-      { _id: params._id },
-      {
-        $set: {
-          assigned_to: params.assigned_to,
-        },
-      },
-      {
-        new: true,
-      }
-    );
-    return newFacilitator
-  }
-}
+  resolve: async function (root, params, { req, res, pubsub }) {
+    let facilitator = await Facilitator.findById(params.facilitatorId);
+
+    if (!facilitator) {
+      throw new Error("Facilitator not found");
+    }
+    let user = await User.findById(params.userId);
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    facilitator.is_assigned = true;
+    facilitator.is_available = false;
+    facilitator.channel_id = params.channelId;
+    facilitator.save();
+    user.is_assigned = true;
+    user.is_in_queue = false;
+    user.save();
+
+    user.action = "LEFT";
+    facilitator.action = "JOINED";
+
+    pubsub.publish(params.channelId, {
+      channelUpdates: { facilitator: facilitator },
+    });
+    pubsub.publish("QUEUE_UPDATE", { queueUpdate: user });
+    return facilitator;
+  },
+};
 
 // const deleteFacilitator = {
 //     type: FacilitatorType,
@@ -206,4 +181,10 @@ const assignedToUser = {
 //     }
 // }
 
-module.exports = { addFacilitator, updateFacilitator, loginFacilitator, joinChannelFacilitator, assignedToUser };
+module.exports = {
+  addFacilitator,
+  updateFacilitator,
+  loginFacilitator,
+  faciLeaveRoom,
+  faciJoinRoom,
+};

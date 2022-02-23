@@ -1,0 +1,14 @@
+.board-content {
+  background-color: aliceblue;
+  border-radius: 15px;
+  padding: 2rem;
+  height: 80vh;
+  margin-bottom: 2rem;
+}
+
+.button-control {
+  height: 4rem;
+  width: 100%;
+  border-radius: 20px;
+}
+/*# sourceMappingURL=dashboard.css.map */

@@ -5,16 +5,11 @@ messageSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    sender: {
+    sender_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
         required: true,
     },
-    sender_name:{
-        type: String,
-        required: true
-    },
-    channel: {
+    channel_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Channel",
         required: true,

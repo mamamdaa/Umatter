@@ -1,9 +1,13 @@
 const graphql = require("graphql");
-const { MessageType,FacilitatorType, ChannelType } = require("../types/TypeDefs");
+const {
+  MessageType,
+  FacilitatorType,
+  ChannelType,
+} = require("../types/TypeDefs");
 const Facilitator = require("../../../models/FacilitatorModel");
 const User = require("../../../models/UserModel");
 const Channel = require("../../../models/ChannelModel");
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList, } = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList } = graphql;
 
 const newMessage = {
   name: "newMessage",
@@ -53,8 +57,8 @@ const newMessage = {
   },
 };
 
-const channelUpdate = {
-  name: "channelUpdate",
+const channelUpdates = {
+  name: "channelUpdates",
   type: ChannelType,
   args: {
     channelId: {
@@ -62,11 +66,12 @@ const channelUpdate = {
     },
   },
   subscribe: (_, params, { pubsub }) => {
+    let channel = Channel.findOne({ _id: params.channelId });
+    if (!channel) {
+      throw new Error("Channel not found");
+    }
     return pubsub.asyncIterator(params.channelId);
   },
 };
 
-
-
-
-module.exports = { newMessage,channelUpdate};
+module.exports = { newMessage, channelUpdates };

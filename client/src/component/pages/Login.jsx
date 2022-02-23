@@ -3,44 +3,79 @@ import "./css/login.css";
 import exit from "../img/exit.svg";
 import background2 from "../img/background2.svg";
 import { Link } from "react-router-dom";
-import { LOGIN } from "../../graphql/Queries";
-import { useMutation} from "@apollo/client";
+import { LOGIN, FACILITATOR_LOGIN } from "../../graphql/Queries";
+import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogin } from "../../redux/user";
-
+import {facilitatorLoginAction} from "../../redux/facilitator";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const { isLoggedIn } = useSelector((state) => state.user);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [dataError, setDataError] = React.useState("");
+  const [isFacilitator, setIsFacilitator] = React.useState(false);
+
   const history = useHistory();
   const dispatch = useDispatch();
   const [login, { error, data }] = useMutation(LOGIN, {
-    onError: (err) => {
-    },
+    onError: (err) => {},
   }); //refactor
+
+  const [facilitatorLogin, { error: facilitatorError, data: facilitatorData }] =
+    useMutation(FACILITATOR_LOGIN, {
+      onError: (err) => {
+      },
+    });
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    login({
-      variables: {
-        email: email,
-        password: password,
-      },
-    });
+    if (isFacilitator) {
+      facilitatorLogin({
+        variables: {
+          email,
+          password,
+        },
+      });
+    } else {
+      login({
+        variables: {
+          email: email,
+          password: password,
+        },
+      });
+    }
   };
 
   useEffect(() => {
     if (error) {
-      const newError =  JSON.parse(JSON.stringify(error))
+      const newError = JSON.parse(JSON.stringify(error));
       setDataError(newError.message);
     }
   }, [error]);
 
   useEffect(() => {
-    console.log("data", data)
+    console.log("data22", data);
+    if (facilitatorError) {
+      const errorMessage = JSON.parse(JSON.stringify(facilitatorError.message));
+      toast.error(errorMessage);
+      setDataError(errorMessage);
+    } else if (facilitatorData) {
+      console.log("facilitatorData", facilitatorData);
+      localStorage.setItem("token", facilitatorData.loginFacilitator.token);
+      localStorage.setItem(
+        "user",
+        JSON.stringify(facilitatorData.loginFacilitator)
+      );
+      dispatch(facilitatorLoginAction(facilitatorData.loginFacilitator));
+      history.push("/");
+    }
+  }, [facilitatorData, facilitatorError,dispatch]);
+
+  useEffect(() => {
+    console.log("data", data);
     if (data) {
       localStorage.setItem("token", data.login.token);
       localStorage.setItem("user", JSON.stringify(data.login));
@@ -114,15 +149,23 @@ export default function Login() {
                 </div>
 
                 <div class="sign-in d-grid gap-2 mt-5">
-                  
-                 
-                    <button
-                      class="btn sign-btn fw-bold border border-dark"
-                      type="submit"
-                    >
-                      Sign in
-                    </button>
-                 
+                  <button
+                    class="btn sign-btn fw-bold border border-dark"
+                    type="submit"
+                  >
+                    Sign in
+                  </button>
+                </div>
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="flexSwitchCheckDefault"
+                    onChange={() => setIsFacilitator(!isFacilitator)}
+                  />
+                  <label class="form-check-label" for="flexSwitchCheckDefault">
+                    Login as Facilitator
+                  </label>
                 </div>
               </form>
               <div className="sign-up d-flex justify-content-center">

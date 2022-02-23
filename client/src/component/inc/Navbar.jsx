@@ -76,8 +76,13 @@ export default function Navbar() {
               </Link>
             </li>
             <li class="nav-item me-5 comp">
-              <Link smooth to="/facilitators" class="nav-link">
-                Facilitators
+              <Link smooth to="/dashboard" class="nav-link">
+                Dashboard
+              </Link>
+            </li>
+            <li class="nav-item me-5 comp">
+              <Link smooth to="/connect" class="nav-link">
+                Connect
               </Link>
             </li>
              {!isLoggedIn ?( 
