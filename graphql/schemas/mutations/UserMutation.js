@@ -203,7 +203,6 @@ module.exports = {
   addUser,
   updateUser,
   login,
-  joinChannel,
   userEnterQueue,
   userLeaveQueue,
   userLeaveRoom,

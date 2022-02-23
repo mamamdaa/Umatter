@@ -185,8 +185,6 @@ module.exports = {
   addFacilitator,
   updateFacilitator,
   loginFacilitator,
-  joinChannelFacilitator,
-  assignedToUser,
   faciLeaveRoom,
   faciJoinRoom,
 };

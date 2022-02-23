@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { MessageBox } from "react-chat-elements";
 import { addResponseMessage } from "react-chat-widget";
 import ChatBox from "../inc/ChatBox";
@@ -8,7 +8,8 @@ import {
   USER_LEAVE_QUEUE,
   USER_LEAVE_ROOM,
 } from "../../graphql/Mutations";
-import { useMutation, useSubscription } from "@apollo/client";
+import { GET_USER } from "../../graphql/Queries";
+import { useMutation, useSubscription, useLazyQuery } from "@apollo/client";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import ConnectWaitingBtn from "../inc/Connect/connectWaitingBtn";
@@ -21,6 +22,23 @@ const Connect = () => {
   const [isInQueue, setIsInQueue] = useState(false);
   const [channelId, setChannel] = useState("");
   const [isInRoom, setIsInRoom] = useState(false);
+
+  const [getUser, { error: getUserError, data: getUserData }] = useLazyQuery(
+    GET_USER,
+    {
+      onError: (err) => {},
+    }
+  );
+
+  useMemo(
+    () =>
+      getUser({
+        variables: {
+          userId: user._id,
+        },
+      }),
+    []
+  );
 
   const [userEnterQueue, { error: userEnterError, data: userEnterData }] =
     useMutation(USER_ENTER_QUEUE, {
@@ -65,6 +83,17 @@ const Connect = () => {
       },
     });
   };
+
+  useEffect(() => {
+    if (getUserError) {
+      toast.error(getUserError.message);
+    } else if (getUserData) {
+      console.log("getUserData", getUserData);
+      if (getUserData.getUser.is_in_queue) {
+        setIsInQueue(true);
+      }
+    }
+  }, [getUserData]);
 
   useEffect(() => {
     if (userLeaveRoomData) {

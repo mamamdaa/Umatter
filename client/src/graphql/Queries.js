@@ -56,3 +56,14 @@ export const GET_USERS_IN_QUEUE = gql`
     }
   }
 `;
+
+export const GET_USER = gql`
+  query GetUser($userId: String) {
+    getUser(userId: $userId) {
+      is_in_queue
+      is_assigned
+      action
+      channel_id
+    }
+  }
+`;

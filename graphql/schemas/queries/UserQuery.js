@@ -41,7 +41,12 @@ const getUser = {
     //   res.status(401)
     //   throw new Error("Not Authenticated");
     // }
-    return User.findById(params.userId).select("-password");
+    let user = await User.findById(params.userId).select("-password");
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    return user;
   },
 };
 
