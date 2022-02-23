@@ -159,6 +159,7 @@ const faciJoinRoom = {
   },
   resolve: async function (root, params, { req, res, pubsub }) {
     let facilitator = await Facilitator.findById(params.facilitatorId);
+
     if (!facilitator) {
       throw new Error("Facilitator not found");
     }
@@ -183,29 +184,6 @@ const faciJoinRoom = {
     });
     pubsub.publish("QUEUE_UPDATE", { queueUpdate: user });
     return facilitator;
-  },
-};
-
-const assignedToUser = {
-  name: "assignedToUser",
-  type: FacilitatorType,
-  args: {
-    _id: { type: GraphQLString },
-    assigned_to: { type: GraphQLString },
-  },
-  resolve: async function (root, params, { req, res }) {
-    const newFacilitator = await Facilitator.findOneAndUpdate(
-      { _id: params._id },
-      {
-        $set: {
-          assigned_to: params.assigned_to,
-        },
-      },
-      {
-        new: true,
-      }
-    );
-    return newFacilitator;
   },
 };
 
