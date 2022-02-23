@@ -147,7 +147,7 @@ const faciJoinRoom = {
 
     facilitator.is_assigned = true;
     facilitator.is_available = false;
-    facilitator.channel = params.channelId;
+    facilitator.channel_id = params.channelId;
     facilitator.save();
     user.is_assigned = true;
     user.is_in_queue = false;

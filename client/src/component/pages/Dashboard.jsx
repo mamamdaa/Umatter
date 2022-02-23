@@ -1,13 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import UserInQueue from "../cards/UserInQueue";
 import FaciChatBox from "../inc/FaciChatBox";
 import { GET_USERS_IN_QUEUE } from "../../graphql/Queries";
 import { QUEUE_UPDATES } from "../../graphql/Subscriptions";
+import { FACI_LEAVE_ROOM, FACI_JOIN_ROOM } from "../../graphql/Mutations";
+import { GET_FACILITATOR } from "../../graphql/Queries";
 import {
-  FACI_LEAVE_ROOM,
-  FACI_JOIN_ROOM,
-} from "../../graphql/Mutations";
-import { useQuery, useSubscription, useMutation } from "@apollo/client";
+  useQuery,
+  useSubscription,
+  useMutation,
+  useLazyQuery,
+} from "@apollo/client";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import "./styles/Dashboard/dashboard.css";
@@ -17,6 +20,23 @@ const Dashboard = () => {
   const [isInRoom, setIsInRoom] = useState(false);
   const [channelId, setChannelId] = useState("");
   const { isLoggedIn, user: facilitator } = useSelector((state) => state.user);
+
+  const [
+    getFacilitator,
+    { error: getFacilitatorError, data: getFacilitatorData },
+  ] = useLazyQuery(GET_FACILITATOR, {
+    onError: (err) => {},
+  });
+
+  useMemo(
+    () =>
+      getFacilitator({
+        variables: {
+          facilitatorId: facilitator._id,
+        },
+      }),
+    []
+  );
 
   const { data: queueUpdateData, error: queueUpdateError } = useSubscription(
     QUEUE_UPDATES,
@@ -52,7 +72,6 @@ const Dashboard = () => {
         facilitatorId: facilitator._id,
       },
     });
-
     setChannelId(user.channel_id);
   };
 
@@ -65,6 +84,18 @@ const Dashboard = () => {
       },
     });
   };
+
+  useEffect(() => {
+    if (getFacilitatorError) {
+      toast.error(getFacilitatorError.message);
+    } else if (getFacilitatorData) {
+      if (getFacilitatorData.getFacilitator.is_assigned) {
+        console.log(getFacilitatorData.getFacilitator.channel_id);
+        setChannelId(getFacilitatorData.getFacilitator.channel_id);
+        setIsInRoom(true);
+      }
+    }
+  }, [getFacilitatorData, getFacilitatorError]);
 
   useEffect(() => {
     if (queueUpdateError) {
