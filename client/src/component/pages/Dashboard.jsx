@@ -11,6 +11,7 @@ import {
 import { useQuery, useSubscription, useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
+import "./styles/Dashboard/dashboard.css";
 
 const Dashboard = () => {
   const [usersInQueue, setUsersInQueue] = useState([]);
@@ -134,9 +135,9 @@ const Dashboard = () => {
   }, [faciLeaveRoomData, faciLeaveRoomError]);
 
   return (
-    <div className="container-fluid mt-5">
-      <div className="row">
-        <div className="col-md-6">
+    <div className="container-fluid justify-content-center align-items-center bg-secondary vh-100 p-4">
+      <div className="row justify-content-center">
+        <div className="col  board-content">
           {usersInQueue.length > 0 ? (
             usersInQueue.map((user) => (
               <UserInQueue
@@ -149,23 +150,22 @@ const Dashboard = () => {
             <h1>No users in queue</h1>
           )}
           {isInRoom ? (
-            <div>
-              <FaciChatBox channelId={channelId} setIsInRoom={setIsInRoom} />
-              <button
-                className="btn btn-danger"
-                onClick={() => {
-                  facileaveRoom();
-                }}
-              >
-                {" "}
-                Leave Room{" "}
-              </button>
-            </div>
-          ) : (
-            <h1>You are not in room</h1>
-          )}
+            <FaciChatBox channelId={channelId} setIsInRoom={setIsInRoom} />
+          ) : null}
         </div>
       </div>
+      {isInRoom ? (
+        <div className="row justify-content-center">
+          <button
+            type="button"
+            className="btn btn-light button-control"
+            onClick={() => facileaveRoom()}
+          >
+            <span className="material-icons">exit_to_app</span>
+            <p className="d-inline">Leave Room</p>
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 };

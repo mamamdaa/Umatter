@@ -2,7 +2,7 @@ import React from "react";
 
 const connectLeaveBtn = ({leaveRoom}) => {
   return (
-    <div className="col">
+    <div className="col-12 col-md-6">
       <button
         type="button"
         className="btn btn-light button-control"

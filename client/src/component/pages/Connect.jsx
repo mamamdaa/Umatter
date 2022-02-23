@@ -105,7 +105,7 @@ const Connect = () => {
   return (
     <div className="container-fluid justify-content-center align-items-center bg-secondary vh-100 p-4 ">
       <div className="row justify-content-center">
-        <div className="col board-content ">
+        <div className="col-12 col-md-6 board-content ">
           <button
             type="button"
             className="btn btn-primary btn-lg btn-block"

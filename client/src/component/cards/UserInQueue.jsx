@@ -13,7 +13,7 @@ const UserInQueue = ({user,acceptHandler}) => {
             aria-expanded="true"
             aria-controls="collapseOne"
           >
-            {user.first_name}
+            {user.first_name + " " + user.last_name}
           </button>
         </h2>
         <div
