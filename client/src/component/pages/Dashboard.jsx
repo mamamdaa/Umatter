@@ -4,7 +4,6 @@ import FaciChatBox from "../inc/FaciChatBox";
 import { GET_USERS_IN_QUEUE } from "../../graphql/Queries";
 import { QUEUE_UPDATES } from "../../graphql/Subscriptions";
 import {
-  FACI_ENTER_ROOM,
   FACI_LEAVE_ROOM,
   FACI_JOIN_ROOM,
 } from "../../graphql/Mutations";
@@ -34,13 +33,6 @@ const Dashboard = () => {
   );
 
   const [
-    faciEnterRoom,
-    { error: faciEnterRoomError, data: faciEnterRoomData },
-  ] = useMutation(FACI_ENTER_ROOM, {
-    onError: (err) => {},
-  });
-
-  const [
     faciLeaveRoom,
     { error: faciLeaveRoomError, data: faciLeaveRoomData },
   ] = useMutation(FACI_LEAVE_ROOM, {
@@ -53,13 +45,6 @@ const Dashboard = () => {
     });
 
   const acceptHandler = (user) => {
-    // faciEnterRoom({
-    //   variables: {
-    //     userId: user._id,
-    //     channelId: user.channel_id,
-    //     facilitatorId: facilitator._id,
-    //   },
-    // });
     faciJoinRoom({
       variables: {
         userId: user._id,
@@ -103,16 +88,6 @@ const Dashboard = () => {
       setUsersInQueue(getUsersInQueueData.getUsersInQueue);
     }
   }, [getUsersInQueueData, getUsersInQueueError]);
-
-  // useEffect(() => {
-  //   if (faciEnterRoomError) {
-  //     let errorMessage = JSON.parse(JSON.stringify(faciEnterRoomError.message));
-  //     toast.error(errorMessage);
-  //   } else if (faciEnterRoomData) {
-  //     toast("You have entered the room");
-  //     setIsInRoom(true);
-  //   }
-  // }, [faciEnterRoomData, faciEnterRoomError]);
 
   useEffect(() => {
     if (faciJoinRoomError) {
