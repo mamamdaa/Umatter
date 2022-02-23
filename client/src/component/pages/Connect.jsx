@@ -91,6 +91,9 @@ const Connect = () => {
       console.log("getUserData", getUserData);
       if (getUserData.getUser.is_in_queue) {
         setIsInQueue(true);
+      }else if(getUserData.getUser.is_assigned){
+        setChannel(getUserData.getUser.channel_id);
+        setIsInRoom(true);
       }
     }
   }, [getUserData]);

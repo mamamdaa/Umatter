@@ -101,6 +101,12 @@ const login = {
   },
 };
 
+/**
+ * @brief: This mutation is used when user enters the queue
+ * @param: userId - id of the user
+ * @return: user - user object
+ * @note: change newUser to user
+ */
 const userEnterQueue = {
   name: "userEnterQueue",
   type: UserType,
@@ -108,7 +114,6 @@ const userEnterQueue = {
     userId: { type: GraphQLString },
   },
   resolve: async function (root, params, { req, res, pubsub }) {
-
     let channel = new Channel({
       channel_name: params.userId,
       user: params.userId,
@@ -122,9 +127,12 @@ const userEnterQueue = {
       throw new Error("No User Found");
     }
     if (newUser.is_in_queue) {
-      res.status(400);
       throw new Error("User is already in queue");
     }
+    if (newUser.is_assigned) {
+      throw new Error("User is already assigned");
+    }
+
     newUser.is_in_queue = true;
     newUser.is_assigned = false;
     newUser.channel_id = newChannel._id;
