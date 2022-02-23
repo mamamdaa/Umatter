@@ -67,3 +67,14 @@ export const GET_USER = gql`
     }
   }
 `;
+
+export const GET_FACILITATOR = gql`
+  query GetFacilitator($facilitatorId: String) {
+    getFacilitator(facilitatorId: $facilitatorId) {
+      is_available
+      is_assigned
+      action
+      channel_id
+    }
+  }
+`;
