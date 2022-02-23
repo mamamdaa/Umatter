@@ -1,6 +1,5 @@
 import { useState, useMemo } from "react";
-import { MessageBox } from "react-chat-elements";
-import { addResponseMessage } from "react-chat-widget";
+import Navbar from "../inc/Navbar";
 import ChatBox from "../inc/ChatBox";
 import { useEffect } from "react";
 import {
@@ -135,7 +134,9 @@ const Connect = () => {
   }, [userLeaveError, userLeaveData]);
 
   return (
-    <div className="container-fluid justify-content-center align-items-center bg-secondary vh-100 p-4 ">
+    <>
+    <Navbar />
+    <div className="container-fluid justify-content-center align-items-center bg-secondary vh-100 p-4 mt-5">
       <div className="row justify-content-center">
         <div className="col-12 col-md-6 board-content ">
           <button
@@ -186,6 +187,7 @@ const Connect = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 

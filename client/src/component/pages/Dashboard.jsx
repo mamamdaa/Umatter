@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import UserInQueue from "../cards/UserInQueue";
 import FaciChatBox from "../inc/FaciChatBox";
+import Navbar from "../inc/Navbar";
 import { GET_USERS_IN_QUEUE } from "../../graphql/Queries";
 import { QUEUE_UPDATES } from "../../graphql/Subscriptions";
 import { FACI_LEAVE_ROOM, FACI_JOIN_ROOM } from "../../graphql/Mutations";
@@ -141,38 +142,41 @@ const Dashboard = () => {
   }, [faciLeaveRoomData, faciLeaveRoomError]);
 
   return (
-    <div className="container-fluid justify-content-center align-items-center bg-secondary vh-100 p-4">
-      <div className="row justify-content-center">
-        <div className="col  board-content">
-          {usersInQueue.length > 0 ? (
-            usersInQueue.map((user) => (
-              <UserInQueue
-                key={user._id}
-                user={user}
-                acceptHandler={acceptHandler}
-              />
-            ))
-          ) : (
-            <h1>No users in queue</h1>
-          )}
-          {isInRoom ? (
-            <FaciChatBox channelId={channelId} setIsInRoom={setIsInRoom} />
-          ) : null}
-        </div>
-      </div>
-      {isInRoom ? (
+    <>
+      <Navbar />
+      <div className="container-fluid justify-content-center align-items-center bg-secondary vh-100 p-4 mt-5">
         <div className="row justify-content-center">
-          <button
-            type="button"
-            className="btn btn-light button-control"
-            onClick={() => facileaveRoom()}
-          >
-            <span className="material-icons">exit_to_app</span>
-            <p className="d-inline">Leave Room</p>
-          </button>
+          <div className="col  board-content">
+            {usersInQueue.length > 0 ? (
+              usersInQueue.map((user) => (
+                <UserInQueue
+                  key={user._id}
+                  user={user}
+                  acceptHandler={acceptHandler}
+                />
+              ))
+            ) : (
+              <h1>No users in queue</h1>
+            )}
+            {isInRoom ? (
+              <FaciChatBox channelId={channelId} setIsInRoom={setIsInRoom} />
+            ) : null}
+          </div>
         </div>
-      ) : null}
-    </div>
+        {isInRoom ? (
+          <div className="row justify-content-center">
+            <button
+              type="button"
+              className="btn btn-light button-control"
+              onClick={() => facileaveRoom()}
+            >
+              <span className="material-icons">exit_to_app</span>
+              <p className="d-inline">Leave Room</p>
+            </button>
+          </div>
+        ) : null}
+      </div>
+    </>
   );
 };
 

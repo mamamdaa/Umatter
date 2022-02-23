@@ -101,7 +101,6 @@ function App() {
             <Route exact path="/Login" component={Login} />
             <Route exact path="/User" component={User} />
             <Route exact path="/Connect" component={Connect} />
-            <Route exact path="/Facilitators" component={Facilitators} />
             <Route exact path="/Dashboard" component={Dashboard} />
             <div className="navs">
               <Navbar />
