@@ -8,7 +8,7 @@ import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogin } from "../../redux/user";
-import {facilitatorLoginAction} from "../../redux/facilitator";
+import { facilitatorLoginAction } from "../../redux/facilitator";
 import { toast } from "react-toastify";
 
 export default function Login() {
@@ -26,12 +26,12 @@ export default function Login() {
 
   const [facilitatorLogin, { error: facilitatorError, data: facilitatorData }] =
     useMutation(FACILITATOR_LOGIN, {
-      onError: (err) => {
-      },
+      onError: (err) => {},
     });
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    console.log("test");
     if (isFacilitator) {
       facilitatorLogin({
         variables: {
@@ -72,7 +72,7 @@ export default function Login() {
       dispatch(facilitatorLoginAction(facilitatorData.loginFacilitator));
       history.push("/");
     }
-  }, [facilitatorData, facilitatorError,dispatch]);
+  }, [facilitatorData, facilitatorError, dispatch]);
 
   useEffect(() => {
     console.log("data", data);
@@ -147,26 +147,30 @@ export default function Login() {
                       Forgot Password?
                     </a>
                   </div>
+
+                  <div class="sign-in d-grid gap-2 mt-5">
+                    <button
+                      class="btn sign-btn fw-bold border border-dark"
+                      type="submit"
+                    >
+                      Sign in
+                    </button>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="flexSwitchCheckDefault"
+                      onChange={() => setIsFacilitator(!isFacilitator)}
+                    />
+                    <label
+                      class="form-check-label"
+                      for="flexSwitchCheckDefault"
+                    >
+                      Login as Facilitator
+                    </label>
+                  </div>
                 </form>
-                <div class="sign-in d-grid gap-2 mt-5">
-                  <button
-                    class="btn sign-btn fw-bold border border-dark"
-                    type="submit"
-                  >
-                    Sign in
-                  </button>
-                </div>
-                <div class="form-check form-switch">
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="flexSwitchCheckDefault"
-                    onChange={() => setIsFacilitator(!isFacilitator)}
-                  />
-                  <label class="form-check-label" for="flexSwitchCheckDefault">
-                    Login as Facilitator
-                  </label>
-                </div>
               </div>
               <div class=" col-lg-6 ms-lg-5 mt-5 ">
                 <img class="w-100 h-100" src={background2} alt="background2" />
