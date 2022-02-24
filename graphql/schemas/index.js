@@ -1,5 +1,6 @@
 const UserQuery = require("./queries/UserQuery");
 const ChannelQuery = require("./queries/ChannelQuery");
+const FacilitatorQuery = require("./queries/FacilitatorQuery");
 const UserMutation = require("./mutations/UserMutation");
 const ChannelMutations = require("./mutations/ChannelMutations");
 const MessageMutations = require("./mutations/MessageMutations");
@@ -11,7 +12,7 @@ const { GraphQLObjectType, GraphQLList, GraphQLInt } = graphql;
 
 const Query = new GraphQLObjectType({
   name: "Query",
-  fields: { ...UserQuery, ...ChannelQuery },
+  fields: { ...UserQuery, ...ChannelQuery,...FacilitatorQuery },
 });
 
 const Mutation = new GraphQLObjectType({
