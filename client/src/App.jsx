@@ -108,10 +108,9 @@ function App() {
               <Works />
               <About />
               <Facilitators />
-              {/* <Testimonials /> */}
-              {/* <Contact /> */}
+              <Testimonials />
+              <Contact />
             </div>
-         
           </Switch>
         </Router>
       </Provider>

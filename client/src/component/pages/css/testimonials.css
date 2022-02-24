@@ -10,7 +10,21 @@
   font-size: 55px;
 }
 
-.card {
+.card img {
+  width: 20vh;
+}
+
+@media only screen and (max-width: 576px) {
+  .card img {
+    width: 10vh;
+  }
+  .testimonials h1 {
+    color: white;
+    font-size: 35px;
+  }
+}
+
+/* .card {
   width: 80vh;
   margin-bottom: 5rem !important;
 }
@@ -43,4 +57,4 @@
 .developer .container {
   overflow: hidden;
   position: relative;
-}
+} */

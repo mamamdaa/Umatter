@@ -65,12 +65,17 @@ export default function Navbar() {
                 About
               </Link>
             </li>
+            <li class="nav-item me-4 ">
+              <Link smooth to="#facilitators" class="nav-link">
+                Facilitators
+              </Link>
+            </li>
             <li class="nav-item me-4">
               <Link smooth to="#testimonials" class="nav-link">
                 Testimonials
               </Link>
             </li>
-            <li class="nav-item me-5 comp">
+            <li class="nav-item me-5 pe-5 ">
               <Link smooth to="#contact" class="nav-link">
                 Contact
               </Link>
@@ -88,16 +93,16 @@ export default function Navbar() {
              {!isLoggedIn ?( 
             <>
                 <li class="nav-item">
-                <Link smooth to="/Login" class="nav-link">
-                  Log in
-                </Link>
+                  <Link smooth to="/Login" class="nav-link">
+                    Log in
+                  </Link>
                 </li>
                 <li class="nav-item">
-                <Link smooth to="/Signup" class="nav-link btn-dark">
-                  Sign up
-                </Link>
+                  <Link smooth to="/Signup" class="nav-link btn-dark">
+                    Sign up
+                  </Link>
                 </li>
-            </>
+              </>
             ) : (
               <>
                 {/* <li class="nav-item">
@@ -113,61 +118,63 @@ export default function Navbar() {
                     Logout
                   </Button>{" "}
                 </li> */}
-              <li class="nav-item me-5 comp">
-            <Link smooth to="/User" class="nav-link">
-              Chat
-            </Link>
-              </li>
-              <li>
-                <div class="dropdown me-5">
-                  <img src={profile} alt="profile" />
-                  Welcome {user.first_name}
-                  <button
-                    class="btn"
-                    type="button"
-                    id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <img src={dropdown} alt="dropdown" />
-                  </button>
-                  <ul
-                    class="dropdown-menu p-2"
-                    aria-labelledby="dropdownMenuButton1"
-                  >
-                    <li class="border-bottom">
-                      <a class="dropdown-item user-name" href="#">
-                        <img
-                          class="user-profile me-2"
-                          src={profile}
-                          alt="profile"
-                        />
-                        {user.first_name}
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item mt-2" href="#">
-                        Edit Profile
-                      </a>
-                    </li>
-                    <li class="border-bottom">
-                      <a class="dropdown-item" href="#">
-                        Acoount setting
-                      </a>
-                    </li>
-                    <li>
-                      <Link to="/">
-                        <a class="dropdown-item" href=""
-                           onClick={() => dispatch(userLogout())}>
-                          Sign out
+                <li class="nav-item me-5 comp">
+                  <Link smooth to="/User" class="nav-link">
+                    Chat
+                  </Link>
+                </li>
+                <li>
+                  <div class="dropdown me-5">
+                    <img src={profile} alt="profile" />
+                    Welcome {user.first_name}
+                    <button
+                      class="btn"
+                      type="button"
+                      id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <img src={dropdown} alt="dropdown" />
+                    </button>
+                    <ul
+                      class="dropdown-menu p-2"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+                      <li class="border-bottom">
+                        <a class="dropdown-item user-name" href="#">
+                          <img
+                            class="user-profile me-2"
+                            src={profile}
+                            alt="profile"
+                          />
+                          {user.first_name}
                         </a>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-
-             </>
+                      </li>
+                      <li>
+                        <a class="dropdown-item mt-2" href="#">
+                          Edit Profile
+                        </a>
+                      </li>
+                      <li class="border-bottom">
+                        <a class="dropdown-item" href="#">
+                          Acoount setting
+                        </a>
+                      </li>
+                      <li>
+                        <Link to="/">
+                          <a
+                            class="dropdown-item"
+                            href=""
+                            onClick={() => dispatch(userLogout())}
+                          >
+                            Sign out
+                          </a>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </>
             )}
 
             {/* <li class="nav-item">

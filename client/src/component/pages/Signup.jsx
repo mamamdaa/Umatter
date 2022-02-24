@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./css/signup.css";
-import exit from "../img/exit.svg";
+import exit2 from "../img/exit2.svg";
 import background2 from "../img/background2.svg";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
@@ -42,14 +42,144 @@ export default function Signup() {
     }
   }, [error]);
   return (
-    <div className="Singup-box">
-      <div className="Signup">
-        <div class="Signup-flex d-flex justify-content-center p-4 ">
-          <div className="container">
-            {" "}
-            <img class="ms-5 bg" src={background2} alt="background2" />
+    <div className="Signup-box " id="home">
+      <ul class="navbar-nav text-center pt-5 ">
+        <li>
+          <Link to="/" class="exit nav-link float-sm-end me-sm-5 fw-light">
+            Back to home page
+            <img class="ms-3" src={exit2} alt="exit2" />
+          </Link>
+        </li>
+      </ul>
+      <div className="Signup ">
+        <div class="Signup-flex d-flex justify-content-center text-center text-lg-start ">
+          <div class="container-fluid container1 col-lg-8  mt-md-3">
+            <div class="row p-sm-3">
+              <div class="Signup-container rounded col-lg-5 mb-5 p-5">
+                <h4 className="fw-light text-center">Welcome to Umatter !</h4>
+                <h2 class=" fw-bolder text-center">Signup</h2>
+                <div class="sign-in d-grid gap-2 mt-4">
+                  <button class="btn btn1 fw-bold border  " type="button">
+                    Signup with Google
+                  </button>
+                  <p class="text-center mt-3 mb-3 fw-bold">or</p>
+                </div>
+                {dataError && <p className="error">{dataError}</p>}
+                <form onSubmit={submitHandler}>
+                  <div class="mb-3 ">
+                    <label
+                      for="exampleInputEmail1"
+                      class="form-label fw-bolder fs-6"
+                    >
+                      First Name
+                    </label>
+                    <input
+                      type="string"
+                      class="form-control fw-bold border border-dark"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />
+                  </div>
+                  <div class="mb-3 ">
+                    <label
+                      for="exampleInputEmail1"
+                      class="form-label fw-bolder fs-6"
+                    >
+                      Last Name
+                    </label>
+                    <input
+                      type="string"
+                      class="form-control fw-bold border border-dark"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      onChange={(e) => setLastName(e.target.value)}
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label
+                      for="exampleInputEmail1"
+                      class="form-label fw-bolder fs-6"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="Email"
+                      class="form-control fw-bold border border-dark"
+                      id="exampleInputEmail1"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label
+                      for="exampleInputPassword1"
+                      class="form-label fw-bolder fs-6"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      class="form-control fw-bold border border-dark"
+                      id="exampleInputPassword1"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                  <div class="mb-3 form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="exampleCheck1"
+                    />
+                    <label class="form-check-label" for="exampleCheck1">
+                      Terms and condition
+                    </label>
+                  </div>
+
+                  <div class="sign-up d-grid gap-2 mt-5">
+                    <Link to="/User">
+                      <button class="btn btn2 fw-bold border-0" type="button">
+                        Create account
+                      </button>
+                    </Link>
+                  </div>
+                </form>
+                <div className=" d-flex justify-content-center">
+                  {" "}
+                  <span class=" mt-3 text-center ">
+                    <a>Already have an account?</a>
+                    <Link to="/Login">
+                      <a
+                        class="btn3 btn btn-light bg-transparent border-0 "
+                        role="button"
+                      >
+                        Login
+                      </a>
+                    </Link>
+                  </span>
+                </div>
+              </div>
+              <div class=" col-lg-6 ms-lg-5 mt-5 ">
+                <img class="w-100 h-100" src={background2} alt="background2" />
+              </div>
+            </div>
           </div>
-          <div className="Form-flex ">
+        </div>
+      </div>
+    </div>
+  );
+}
+
+{
+  /* <div className="Singup-box">
+      <div className="Signup">
+        <div class="Signup-flex d-flex justify-content-center p-4 m-0">
+          {" "}
+          <img
+            class=" bg ms-5 w-100 h-100"
+            src={background2}
+            alt="background2"
+          />
+          <div className=" col-sm-8 mt-5 Form-flex ">
             <div className="container border">
               <ul class="navbar-nav  ">
                 <li>
@@ -69,7 +199,10 @@ export default function Signup() {
               {dataError && <p className="error">{dataError}</p>}
               <form onSubmit={submitHandler}>
                 <div class="mb-3 ">
-                  <label for="exampleInputEmail1" class="form-label fw-bolder">
+                  <label
+                    for="exampleInputEmail1"
+                    class="form-label fw-bolder fs-6"
+                  >
                     First Name
                   </label>
                   <input
@@ -81,7 +214,10 @@ export default function Signup() {
                   />
                 </div>
                 <div class="mb-3 ">
-                  <label for="exampleInputEmail1" class="form-label fw-bolder">
+                  <label
+                    for="exampleInputEmail1"
+                    class="form-label fw-bolder fs-6"
+                  >
                     Last Name
                   </label>
                   <input
@@ -93,7 +229,10 @@ export default function Signup() {
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label fw-bolder">
+                  <label
+                    for="exampleInputEmail1"
+                    class="form-label fw-bolder fs-6"
+                  >
                     Email
                   </label>
                   <input
@@ -106,7 +245,7 @@ export default function Signup() {
                 <div class="mb-3">
                   <label
                     for="exampleInputPassword1"
-                    class="form-label fw-bolder"
+                    class="form-label fw-bolder fs-6"
                   >
                     Password
                   </label>
@@ -129,20 +268,22 @@ export default function Signup() {
                 </div>
 
                 <div class="sign-up d-grid gap-2 mt-5">
-                  <button
-                    class="btn create-btn fw-bold border border-dark"
-                    type="submit"
-                  >
-                    Create account
-                  </button>
+                  <Link to="/User">
+                    <button
+                      class="btn create-btn fw-bold border border-dark"
+                      type="button"
+                    >
+                      Create account
+                    </button>
+                  </Link>
                 </div>
               </form>
               <div className="sign-in d-flex justify-content-center">
                 {" "}
-                <span class="sign-in-container ms-sm-5">
+                <span class="sign-in-container mt-3 text-center">
                   <a>Already have an account?</a>
-                  <Link to="/Login">
-                    <a class="btn btn btn-light m-4 " role="button">
+                  <Link to="/Signup">
+                    <a class="btn btn btn-light  " role="button">
                       Sign in
                     </a>
                   </Link>
@@ -152,10 +293,5 @@ export default function Signup() {
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-{
-  /*    */
+    </div> */
 }

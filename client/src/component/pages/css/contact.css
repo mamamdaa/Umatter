@@ -1,45 +1,34 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
-.contact-box {
+.Contact-box {
+  place-items: center;
+  height: 10vh;
 }
 
 .Contact-flex {
-  background-image: url("./map.svg");
+  background-image: url("./map.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: scroll;
   background-position: center;
-  flex-wrap: wrap;
-  position: absolute;
   width: 100% !important;
+  height: 75vh;
 }
 
-.Contact-flex .container1 {
-  height: 50vh;
-}
-
-.Contact-flex .container2 {
-  height: 60vh !important;
-}
-
-.contact-flex {
+.form-flex {
   position: absolute;
-  left: 50rem !important;
-  top: 8rem;
 }
 
-.contact-flex h1 {
+.form-flex h1 {
   font-size: 50px;
 }
 
-.contact-flex .container {
+.form-flex .contact-container {
   background-color: white;
   margin: 0 !important;
-  width: 65vh;
   border-radius: 15px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
-
 form .form-control {
   background-color: white;
   border-radius: 10px;
@@ -52,4 +41,14 @@ form .form-control {
 }
 .submit .create-btn {
   width: 100%;
+}
+
+@media only screen and (max-width: 576px) {
+  .Contact-flex {
+    height: 55vh;
+  }
+
+  .form-flex h1 {
+    font-size: 30px;
+  }
 }

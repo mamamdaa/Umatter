@@ -40,13 +40,13 @@
   font-size: 50px;
 }
 
-.about-flex .container1 p {
-  font-size: 20px;
+.about-flex p {
+  font-size: 17px;
 }
 
 .About-boxes .container {
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 @media (min-width: 992px) {

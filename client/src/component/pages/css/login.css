@@ -1,24 +1,89 @@
+.container {
+  padding-top: 10;
+}
+
+.Login {
+  background: #158f96;
+  height: 100% !important;
+}
+
+.Login-box .Login {
+  padding-top: 5vh;
+}
+
+.Login-box ul {
+  background-color: #158f96;
+
+  font-size: 18px;
+}
+
+.Login-box .exit {
+  color: white !important;
+}
+
+font-size: 18px;
+.Login-flex {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.Login-flex .container {
+  overflow: hidden;
+  color: #202124;
+  position: relative;
+  width: 100vh;
+  margin: 0 !important;
+}
+
+.Login-flex .container1 {
+  margin-left: 2.8rem !important;
+  margin-right: 2.8rem !important;
+}
+
+.login-container {
+  background-color: white;
+}
+
+.login-container .btn1 {
+  background-color: #86e7cf;
+  color: #158f96;
+}
+
+.login-container .btn2 {
+  background-color: #158f96;
+}
+
+.login-container .btn3 {
+  color: #158f96;
+}
+
+@media (min-width: 768px) {
+  .Login-flex .container1 h1 {
+    font-size: 5rem;
+  }
+  .form-label {
+    font-size: 0.8rem;
+    text-align: left;
+  }
+}
+/*# sourceMappingURL=Login.css.map */
+
 /* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 .Login-box {
+  place-items: center;
+  height: 10vh;
 }
 
 .Login-flex {
   background: linear-gradient(250deg, #86e7cf 0%, #ffffff 80%);
-  flex-wrap: wrap;
-  position: absolute;
-  height: 80% !important;
-  width: 100% !important;
-}
-
-.Login-flex .container {
-  margin-left: 38rem;
+  position: relative;
+  width: 100%;
+  height: 90vh;
 }
 
 .Form-flex {
   position: absolute;
-  left: 20rem;
-  top: 4rem;
 }
 
 .Form-flex h1 {
@@ -63,8 +128,23 @@ form .form-control {
   border-radius: 10px;
   color: white;
   background-color: #b2b2b2;
+  width: 100% !important;
 }
 
-.forgot a {
-  text-decoration: none;
+@media only screen and (max-width: 1200px) {
+  .Form-flex .container {
+    width: 60vh !important;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .Form-flex .container {
+    width: 48vh !important;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .Form-flex h1 {
+    font-size: 40px;
+  }
 } */
