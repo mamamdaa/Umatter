@@ -13,11 +13,11 @@ const connectWaitingBtn = ({ leaveQueue }) => {
       <div className="col-4 col-md-2">
         <button
           type="button "
-          className="btn btn-light button-control"
+          className="d-flex btn btn-light button-control align-items-center justify-content-center"
           onClick={() => leaveQueue()}
         >
           <span className="material-icons">close</span>
-          <p className="d-inline">Cancel</p>
+          <p className="d-inline m-0">Cancel</p>
         </button>
       </div>
     </>

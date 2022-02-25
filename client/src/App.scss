@@ -9,14 +9,38 @@
   margin: 0;
 }
 
-html{
-  font-size: .8rem;
+
+html {
+  font-size: 0.8rem;
 }
 
-body{
+body {
   font-family: "Poppins", sans-serif;
 }
 
+.main-background {
+  background: linear-gradient(250deg, #86e7cf 0%, #ffffff 60%);
+}
+
+.rcw-widget-container{
+  position: relative ;
+  height: 100% !important;
+  width: 100% !important;
+ 
+  
+}
+button.rcw-launcher {
+  margin  : 1rem;
+}
+.rcw-conversation-container {
+  min-width: 5px !important;
+  max-width: 100% !important;
+
+}
+
+.rcw-launcher{
+ align-self: start;
+}
 
 @include media-breakpoint-up(md) {
   html {
@@ -24,3 +48,12 @@ body{
   }
 }
 
+@include media-breakpoint-down(xl) {
+  .rcw-launcher{
+    position: relative !important;
+  }
+  .rcw-messages-container{
+    height: 50vh !important;
+  }
+  
+}

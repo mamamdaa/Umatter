@@ -9,7 +9,7 @@ const connectLeaveBtn = ({leaveRoom}) => {
         onClick={() => leaveRoom()}
       >
         <span className="material-icons">exit_to_app</span>
-        <p className="d-inline">Leave Room</p>
+        <p className="d-inline m-0">Leave Room</p>
       </button>
     </div>
   );

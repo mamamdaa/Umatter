@@ -9,7 +9,7 @@ import Testimonials from "./component/pages/Testimonials";
 import Contact from "./component/pages/Contact";
 import Signup from "./component/pages/Signup.jsx";
 import Login from "./component/pages/Login";
-import Connect from "./component/pages/Connect.jsx";
+import Connect from "./component/pages/Connect/Connect.jsx";
 import User from "./component/pages/User.jsx";
 import Facilitators
  from "./component/pages/Facilitators.jsx";
