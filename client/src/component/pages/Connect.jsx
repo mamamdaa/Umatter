@@ -90,7 +90,7 @@ const Connect = () => {
       console.log("getUserData", getUserData);
       if (getUserData.getUser.is_in_queue) {
         setIsInQueue(true);
-      }else if(getUserData.getUser.is_assigned){
+      } else if (getUserData.getUser.is_assigned) {
         setChannel(getUserData.getUser.channel_id);
         setIsInRoom(true);
       }
@@ -135,58 +135,58 @@ const Connect = () => {
 
   return (
     <>
-    <Navbar />
-    <div className="container-fluid justify-content-center align-items-center bg-secondary vh-100 p-4 mt-5">
-      <div className="row justify-content-center">
-        <div className="col-12 col-md-6 board-content ">
-          <button
-            type="button"
-            className="btn btn-primary btn-lg btn-block"
-            onClick={() => enterQueue()}
-          >
-            <span className="material-icons">chat</span>
-          </button>
-          <button
-            type="button"
-            className="btn btn-primary btn-lg btn-block"
-            onClick={() => leaveQueue()}
-          >
-            <span className="material-icons">close</span>
-          </button>
-
-          {isInRoom ? (
+      <Navbar />
+      <div className="container-fluid justify-content-center align-items-center vh-100 p-4 mt-5">
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-6 board-content ">
             <button
               type="button"
               className="btn btn-primary btn-lg btn-block"
-              onClick={() => leaveRoom()}
+              onClick={() => enterQueue()}
             >
-              <span className="material-icons">exit_to_app</span>
+              <span className="material-icons">chat</span>
             </button>
-          ) : null}
+            <button
+              type="button"
+              className="btn btn-primary btn-lg btn-block"
+              onClick={() => leaveQueue()}
+            >
+              <span className="material-icons">close</span>
+            </button>
 
-          {isInQueue || isInRoom ? (
-            <ChatBox
-              channelId={channelId}
-              setIsInQueue={setIsInQueue}
-              setIsInRoom={setIsInRoom}
-            />
+            {isInRoom ? (
+              <button
+                type="button"
+                className="btn btn-primary btn-lg btn-block"
+                onClick={() => leaveRoom()}
+              >
+                <span className="material-icons">exit_to_app</span>
+              </button>
+            ) : null}
+
+            {isInQueue || isInRoom ? (
+              <ChatBox
+                channelId={channelId}
+                setIsInQueue={setIsInQueue}
+                setIsInRoom={setIsInRoom}
+              />
+            ) : (
+              <div className="text-center">
+                <h1>Connect to a channel</h1>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="row justify-content-center ">
+          {isInQueue && !isInRoom ? (
+            <ConnectWaitingBtn leaveQueue={leaveQueue} />
+          ) : isInRoom ? (
+            <ConnectLeaveBtn leaveRoom={leaveRoom} />
           ) : (
-            <div className="text-center">
-              <h1>Connect to a channel</h1>
-            </div>
+            <ConnectEnterBtn enterQueue={enterQueue} />
           )}
         </div>
       </div>
-      <div className="row justify-content-center ">
-        {isInQueue && !isInRoom ? (
-          <ConnectWaitingBtn leaveQueue={leaveQueue} />
-        ) : isInRoom ? (
-          <ConnectLeaveBtn leaveRoom={leaveRoom} />
-        ) : (
-          <ConnectEnterBtn enterQueue={enterQueue} />
-        )}
-      </div>
-    </div>
     </>
   );
 };

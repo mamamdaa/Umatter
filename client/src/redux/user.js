@@ -8,11 +8,11 @@ export const userSlice = createSlice({
         error: null,
     },
     reducers: {
-        userLogin: (state, action) => {
+        userLoginReducer: (state, action) => {
             state.isLoggedIn = true;
             state.user = action.payload;
         },
-        userLogout: (state, action) => {
+        userLogoutReducer: (state, action) => {
             localStorage.removeItem("user");
             localStorage.removeItem("token");
             state.isLoggedIn = false;
@@ -21,5 +21,5 @@ export const userSlice = createSlice({
     }
 });
 
-export const { userLogin,userLogout } = userSlice.actions;
+export const { userLoginReducer,userLogoutReducer } = userSlice.actions;
 export default userSlice.reducer;

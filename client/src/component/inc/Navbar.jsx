@@ -3,7 +3,7 @@ import "./navbar.css";
 
 import { useQuery, gql } from "@apollo/client";
 import { useSelector, useDispatch } from "react-redux";
-import { userLogout } from "../../redux/user";
+import { userLogoutReducer } from "../../redux/user";
 import { HashLink as Link } from "react-router-hash-link";
 import { Button } from "react-bootstrap";
 import "./UserNavbar.css";
@@ -113,7 +113,7 @@ export default function Navbar() {
                 <li class="nav-item">
                   <Button
                     variant="outline-primary"
-                    onClick={() => dispatch(userLogout())}
+                    onClick={() => dispatch(userLogoutReducer())}
                   >
                     Logout
                   </Button>{" "}
@@ -165,7 +165,7 @@ export default function Navbar() {
                           <a
                             class="dropdown-item"
                             href=""
-                            onClick={() => dispatch(userLogout())}
+                            onClick={() => dispatch(userLogoutReducer())}
                           >
                             Sign out
                           </a>
