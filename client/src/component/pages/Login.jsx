@@ -3,11 +3,12 @@ import "./css/login.css";
 import exit2 from "../img/exit2.svg";
 import background2 from "../img/background2.svg";
 import { Link } from "react-router-dom";
-import { LOGIN, FACILITATOR_LOGIN } from "../../graphql/Queries";
+import { USER_LOGIN } from "../../graphql/Mutations";
+import { FACILITATOR_LOGIN } from "../../graphql/Queries";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { userLogin } from "../../redux/user";
+import { userLoginReducer } from "../../redux/user";
 import { facilitatorLoginAction } from "../../redux/facilitator";
 import { toast } from "react-toastify";
 
@@ -20,9 +21,10 @@ export default function Login() {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const [login, { error, data }] = useMutation(LOGIN, {
-    onError: (err) => {},
-  }); //refactor
+  const [userLogin, { error: userLoginError, data: userLoginData }] =
+    useMutation(USER_LOGIN, {
+      onError: (err) => {},
+    }); //refactor
 
   const [facilitatorLogin, { error: facilitatorError, data: facilitatorData }] =
     useMutation(FACILITATOR_LOGIN, {
@@ -31,7 +33,6 @@ export default function Login() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("test");
     if (isFacilitator) {
       facilitatorLogin({
         variables: {
@@ -40,7 +41,7 @@ export default function Login() {
         },
       });
     } else {
-      login({
+      userLogin({
         variables: {
           email: email,
           password: password,
@@ -50,14 +51,6 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (error) {
-      const newError = JSON.parse(JSON.stringify(error));
-      setDataError(newError.message);
-    }
-  }, [error]);
-
-  useEffect(() => {
-    console.log("data22", data);
     if (facilitatorError) {
       const errorMessage = JSON.parse(JSON.stringify(facilitatorError.message));
       toast.error(errorMessage);
@@ -75,13 +68,18 @@ export default function Login() {
   }, [facilitatorData, facilitatorError, dispatch]);
 
   useEffect(() => {
-    console.log("data", data);
-    if (data) {
-      localStorage.setItem("token", data.login.token);
-      localStorage.setItem("user", JSON.stringify(data.login));
-      dispatch(userLogin(data.login));
+    if (userLoginError) {
+      const errorMessage = JSON.parse(JSON.stringify(userLoginError.message));
+      toast.error(errorMessage);
+      setDataError(errorMessage);
     }
-  }, [data, error, dispatch]);
+    if (userLoginData) {
+      let userData = userLoginData.userLogin
+      localStorage.setItem("token", userData.token);
+      localStorage.setItem("user", JSON.stringify(userLoginData.userLogin));
+      dispatch(userLoginReducer(userData));
+    }
+  }, [userLoginData, userLoginError, dispatch]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -170,6 +168,20 @@ export default function Login() {
                       Login as Facilitator
                     </label>
                   </div>
+                  <div className=" d-flex justify-content-center">
+                  {" "}
+                  <span class=" mt-3 text-center ">
+                    <a>Not a member?</a>
+                    <Link to="/Signup">
+                      <a
+                        class="btn3 btn btn-light bg-transparent border-0 "
+                        role="button"
+                      >
+                        Signup
+                      </a>
+                    </Link>
+                  </span>
+                </div>
                 </form>
               </div>
               <div class=" col-lg-6 ms-lg-5 mt-5 ">

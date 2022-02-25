@@ -45,7 +45,6 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-
                   <Link smooth to="#Home-works">
                     <a class="btn btn2 border " role="button">
                       How it works

@@ -11,17 +11,6 @@ export const GET_USERS = gql`
   }
 `;
 
-export const LOGIN = gql`
-  mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      _id
-      first_name
-      last_name
-      email
-      token
-    }
-  }
-`;
 
 export const FACILITATOR_LOGIN = gql`
   mutation LoginFacilitator($email: String, $password: String) {

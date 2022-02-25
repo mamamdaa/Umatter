@@ -5,7 +5,7 @@ const Channel = require("../../../models/ChannelModel");
 const Facilitator = require("../../../models/FacilitatorModel");
 const generateToken = require("../../../utils/GenerateToken");
 
-const addUser = {
+const userRegister = {
   type: UserType,
   args: {
     first_name: {
@@ -20,10 +20,8 @@ const addUser = {
     password: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve: async function (root, params, { req, res }) {
-    console.log("params", params);
     let user = await User.findOne({ email: params.email });
     if (user) {
-      console.log("userexist");
       res.status(400);
       throw new Error("User already exists!");
     }
@@ -36,7 +34,7 @@ const addUser = {
   },
 };
 
-const updateUser = {
+const userUpdate = {
   type: UserType,
   args: {
     _id: {
@@ -53,14 +51,14 @@ const updateUser = {
     },
   },
   resolve: async function (root, param) {
-    let updateUser = {};
+    let userUpdate = {};
     if (param.name) {
-      updateUser.name = param.name;
+      userUpdate.name = param.name;
     }
     if (param.email) {
-      updateUser.email = param.email;
+      userUpdate.email = param.email;
     }
-    const uUser = await User.findByIdAndUpdate(param._id, updateUser, {
+    const uUser = await User.findByIdAndUpdate(param._id, userUpdate, {
       new: true,
     });
     console.log(uUser);
@@ -71,8 +69,8 @@ const updateUser = {
   },
 };
 const NEW_LOGIN = "NEW_LOGIN";
-const login = {
-  name: "login",
+const userLogin = {
+  name: "userLogin",
   type: UserType,
   args: {
     email: { type: GraphQLString },
@@ -208,9 +206,9 @@ const userLeaveRoom = {
 // }
 
 module.exports = {
-  addUser,
-  updateUser,
-  login,
+  userRegister,
+  userUpdate,
+  userLogin,
   userEnterQueue,
   userLeaveQueue,
   userLeaveRoom,

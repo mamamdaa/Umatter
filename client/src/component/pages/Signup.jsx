@@ -5,7 +5,8 @@ import background2 from "../img/background2.svg";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
-import { REGISTER } from "../../graphql/Mutations";
+import { USER_REGISTER } from "../../graphql/Mutations";
+import { toast } from "react-toastify";
 
 export default function Signup() {
   const [dataError, setDataError] = React.useState("");
@@ -14,13 +15,15 @@ export default function Signup() {
   const [password, setPassword] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
-  const [register, { error, data }] = useMutation(REGISTER, {
-    onError: (err) => {},
-  }); //refactor
+
+  const [userRegister, { error: userRegisterError, data: userRegisterData }] =
+    useMutation(USER_REGISTER, {
+      onError: (err) => {},
+    }); //refactor
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    register({
+    userRegister({
       variables: {
         first_name: firstName,
         last_name: lastName,
@@ -29,18 +32,20 @@ export default function Signup() {
       },
     });
   };
-  useEffect(() => {
-    if (data) {
-      history.push("/");
-    }
-  }, [data]);
 
   useEffect(() => {
-    if (error) {
-      const newError = JSON.parse(JSON.stringify(error));
+    if (userRegisterError) {
+      const newError = JSON.parse(JSON.stringify(userRegisterError));
       setDataError(newError.message);
+      toast.error(newError.message);
+    } else if (userRegisterData) {
+      toast.success("Successfully registered");
+      history.push("/login");
     }
-  }, [error]);
+  }, [userRegisterData, userRegisterError]);
+
+  useEffect(() => {}, [userRegisterError]);
+
   return (
     <div className="Signup-box " id="home">
       <ul class="navbar-nav text-center pt-5 ">
@@ -64,7 +69,7 @@ export default function Signup() {
                   </button>
                   <p class="text-center mt-3 mb-3 fw-bold">or</p>
                 </div>
-                {dataError && <p className="error">{dataError}</p>}
+                {dataError && <p className="userRegisterError">{dataError}</p>}
                 <form onSubmit={submitHandler}>
                   <div class="mb-3 ">
                     <label
@@ -134,13 +139,10 @@ export default function Signup() {
                       Terms and condition
                     </label>
                   </div>
-
                   <div class="sign-up d-grid gap-2 mt-5">
-                    <Link to="/User">
-                      <button class="btn btn2 fw-bold border-0" type="button">
-                        Create account
-                      </button>
-                    </Link>
+                    <button type="submit" class="btn btn2 fw-bold border-0">
+                      Create account
+                    </button>
                   </div>
                 </form>
                 <div className=" d-flex justify-content-center">
@@ -196,7 +198,7 @@ export default function Signup() {
                 </button>
                 <p class="text-center mt-3 mb-3 fw-bold">or</p>
               </div>
-              {dataError && <p className="error">{dataError}</p>}
+              {dataError && <p className="userRegisterError">{dataError}</p>}
               <form onSubmit={submitHandler}>
                 <div class="mb-3 ">
                   <label

@@ -1,13 +1,13 @@
 import { gql } from "@apollo/client";
 
-export const REGISTER = gql`
-  mutation addUser(
+export const USER_REGISTER = gql`
+  mutation userRegister(
     $last_name: String!
     $first_name: String!
     $email: String!
     $password: String!
   ) {
-    addUser(
+    userRegister(
       last_name: $last_name
       first_name: $first_name
       email: $email
@@ -18,6 +18,19 @@ export const REGISTER = gql`
     }
   }
 `;
+
+export const USER_LOGIN = gql`
+  mutation userLogin($email: String!, $password: String!) {
+    userLogin(email: $email, password: $password) {
+      _id
+      first_name
+      last_name
+      email
+      token
+    }
+  }
+`;
+
 
 export const SEND_MESSAGE = gql`
   mutation SendMessage(
