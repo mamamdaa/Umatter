@@ -16,7 +16,7 @@ export default function Footer() {
   const [channelId, setChannelId] = useState("61bb16983cf78801ece1007e");
   const [messages, setMessages] = useState([]);
   const [myMessage, setMyMessage] = useState("");
-  const { isLoggedIn, user } = useSelector((state) => state.user);
+  const { isLoggedIn,client } = useSelector((state) => state.client);
   const isUser = user._id
 
   const  { data:subscriptionData, error:subscriptionError } = useSubscription(SUBSCRIBE_CHANNEL, {

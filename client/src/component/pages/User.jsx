@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import "./css/user.css";
 
 export default function User() {
-  const { isLoggedIn, user } = useSelector((state) => state.user);
+  const { isLoggedIn,client } = useSelector((state) => state.client);
   const history = useHistory();
 
   useEffect(() => {

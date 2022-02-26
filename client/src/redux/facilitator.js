@@ -10,13 +10,13 @@ export const facilitatorSlice = createSlice({
     reducers: {
         facilitatorLoginReducer: (state, action) => {
             state.isLoggedIn = true;
-            state.user = action.payload;
+            state.client = action.payload;
         },
         facilitatorLogoutReducer: (state, action) => {
             localStorage.removeItem("user");
             localStorage.removeItem("token");
             state.isLoggedIn = false;
-            state.user = {};
+            state.client = {};
         }
     }
 });

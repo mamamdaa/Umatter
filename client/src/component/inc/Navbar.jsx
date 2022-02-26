@@ -3,7 +3,7 @@ import "./navbar.css";
 
 import { useQuery, gql } from "@apollo/client";
 import { useSelector, useDispatch } from "react-redux";
-import { userLogoutReducer } from "../../redux/user";
+import { clientLogoutReducer } from "../../redux/client";
 import { HashLink as Link } from "react-router-hash-link";
 import { Button } from "react-bootstrap";
 import "./UserNavbar.css";
@@ -11,7 +11,7 @@ import dropdown from "../img/dropdown.svg";
 import profile from "../img/profile.svg";
 
 export default function Navbar() {
-  const { isLoggedIn, user } = useSelector((state) => state.user);
+  const { isLoggedIn, client, role } = useSelector((state) => state.client);
   const dispatch = useDispatch();
   //navbar background
   const [color, setColor] = useState(false);
@@ -80,18 +80,25 @@ export default function Navbar() {
                 Contact
               </Link>
             </li>
-            <li class="nav-item me-5 comp">
-              <Link smooth to="/dashboard" class="nav-link">
-                Dashboard
-              </Link>
-            </li>
-            <li class="nav-item me-5 comp">
-              <Link smooth to="/connect" class="nav-link">
-                Connect
-              </Link>
-            </li>
-             {!isLoggedIn ?( 
-            <>
+            {isLoggedIn ? (
+              <>
+                {role === "facilitator" ? (
+                  <li class="nav-item me-5 comp">
+                    <Link smooth to="/dashboard" class="nav-link">
+                      Dashboard
+                    </Link>
+                  </li>
+                ) : (
+                  <li class="nav-item me-5 comp">
+                    <Link smooth to="/connect" class="nav-link">
+                      Connect
+                    </Link>
+                  </li>
+                )}
+              </>
+            ) : null}
+            {!isLoggedIn ? (
+              <>
                 <li class="nav-item">
                   <Link smooth to="/Login" class="nav-link">
                     Log in
@@ -107,26 +114,26 @@ export default function Navbar() {
               <>
                 {/* <li class="nav-item">
                   <Link to="/Profile" class="nav-link">
-                    Welcome {user.first_name}
+                    Welcome {client.first_name}
                   </Link>
                 </li>
                 <li class="nav-item">
                   <Button
                     variant="outline-primary"
-                    onClick={() => dispatch(userLogoutReducer())}
+                    onClick={() => dispatch(clientLogoutReducer())}
                   >
                     Logout
                   </Button>{" "}
                 </li> */}
-                <li class="nav-item me-5 comp">
+                {/* <li class="nav-item me-5 comp">
                   <Link smooth to="/User" class="nav-link">
                     Chat
                   </Link>
-                </li>
+                </li> */}
                 <li>
                   <div class="dropdown me-5">
                     <img src={profile} alt="profile" />
-                    Welcome {user.first_name}
+                    Welcome {client.first_name}
                     <button
                       class="btn"
                       type="button"
@@ -141,13 +148,13 @@ export default function Navbar() {
                       aria-labelledby="dropdownMenuButton1"
                     >
                       <li class="border-bottom">
-                        <a class="dropdown-item user-name" href="#">
+                        <a class="dropdown-item client-name" href="#">
                           <img
-                            class="user-profile me-2"
+                            class="client-profile me-2"
                             src={profile}
                             alt="profile"
                           />
-                          {user.first_name}
+                          {client.first_name}
                         </a>
                       </li>
                       <li>
@@ -165,7 +172,7 @@ export default function Navbar() {
                           <a
                             class="dropdown-item"
                             href=""
-                            onClick={() => dispatch(userLogoutReducer())}
+                            onClick={() => dispatch(clientLogoutReducer())}
                           >
                             Sign out
                           </a>

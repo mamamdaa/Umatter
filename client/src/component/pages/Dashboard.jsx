@@ -20,7 +20,8 @@ const Dashboard = () => {
   const [usersInQueue, setUsersInQueue] = useState([]);
   const [isInRoom, setIsInRoom] = useState(false);
   const [channelId, setChannelId] = useState("");
-  const { isLoggedIn, user: facilitator } = useSelector((state) => state.user);
+  const { isLoggedIn, client } = useSelector((state) => state.client);
+  const [currentUserId, setCurrentUserId] = useState("");
 
   const [
     getFacilitator,
@@ -33,7 +34,7 @@ const Dashboard = () => {
     () =>
       getFacilitator({
         variables: {
-          facilitatorId: facilitator._id,
+          clientId: client._id,
         },
       }),
     []
@@ -70,18 +71,19 @@ const Dashboard = () => {
       variables: {
         userId: user._id,
         channelId: user.channel_id,
-        facilitatorId: facilitator._id,
+        clientId: client._id,
       },
     });
+    setCurrentUserId(user._id);
     setChannelId(user.channel_id);
   };
 
   const facileaveRoom = () => {
-    console.log("leaving Room");
     faciLeaveRoom({
       variables: {
-        facilitatorId: facilitator._id,
+        clientId: client._id,
         channelId: channelId, //what if refreshed? channel id should stored in local storage
+        userId: currentUserId,
       },
     });
   };
@@ -90,11 +92,10 @@ const Dashboard = () => {
     if (getFacilitatorError) {
       toast.error(getFacilitatorError.message);
     } else if (getFacilitatorData) {
-      if (getFacilitatorData.getFacilitator.is_assigned) {
-        console.log(getFacilitatorData.getFacilitator.channel_id);
-        setChannelId(getFacilitatorData.getFacilitator.channel_id);
-        setIsInRoom(true);
-      }
+      let facilitatorData = getFacilitatorData.getFacilitator;
+      setChannelId(facilitatorData.channel_id);
+      setIsInRoom(facilitatorData.is_assigned);
+      setCurrentUserId(facilitatorData.assigned_to);
     }
   }, [getFacilitatorData, getFacilitatorError]);
 
@@ -102,8 +103,7 @@ const Dashboard = () => {
     if (queueUpdateError) {
       let errorMessage = JSON.parse(JSON.stringify(queueUpdateError.message));
       toast.error(errorMessage);
-    } else if (queueUpdateData) {
-      console.log("queueUpdateData", queueUpdateData);
+    } else if (queueUpdateData && !isInRoom) {
       let user = queueUpdateData.queueUpdate;
       if (user.action === "JOINED") {
         setUsersInQueue([...usersInQueue, user]);
@@ -147,17 +147,15 @@ const Dashboard = () => {
       <div className="container-fluid justify-content-center align-items-center bg-secondary vh-100 p-4 mt-5">
         <div className="row justify-content-center">
           <div className="col  board-content">
-            {usersInQueue.length > 0 ? (
-              usersInQueue.map((user) => (
-                <UserInQueue
-                  key={user._id}
-                  user={user}
-                  acceptHandler={acceptHandler}
-                />
-              ))
-            ) : (
-              <h1>No users in queue</h1>
-            )}
+            {usersInQueue.length > 0
+              ? usersInQueue.map((user) => (
+                  <UserInQueue
+                    key={user._id}
+                    user={user}
+                    acceptHandler={acceptHandler}
+                  />
+                ))
+              : null}
             {isInRoom ? (
               <FaciChatBox channelId={channelId} setIsInRoom={setIsInRoom} />
             ) : null}

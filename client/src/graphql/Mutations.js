@@ -27,10 +27,10 @@ export const USER_LOGIN = gql`
       last_name
       email
       token
+      role
     }
   }
 `;
-
 
 export const SEND_MESSAGE = gql`
   mutation SendMessage(
@@ -46,16 +46,16 @@ export const SEND_MESSAGE = gql`
 `;
 
 export const USER_ENTER_QUEUE = gql`
-  mutation UserEnterQueue($userId: String) {
-    userEnterQueue(userId: $userId) {
+  mutation UserEnterQueue($clientId: String) {
+    userEnterQueue(clientId: $clientId) {
       channel_id
     }
   }
 `;
 
 export const USER_LEAVE_QUEUE = gql`
-  mutation UserLeaveQueue($userId: String) {
-    userLeaveQueue(userId: $userId) {
+  mutation UserLeaveQueue($clientId: String) {
+    userLeaveQueue(clientId: $clientId) {
       channel_id
     }
   }
@@ -72,14 +72,14 @@ export const USER_LEAVE_QUEUE = gql`
 //data return some not necessary
 export const FACI_ENTER_ROOM = gql`
   mutation FaciEnterRoom(
-    $userId: String!
+    $clientId: String!
     $channelId: String!
-    $facilitatorId: String!
+    $clientId: String!
   ) {
     faciEnterRoom(
-      userId: $userId
+      clientId: $clientId
       channelId: $channelId
-      facilitatorId: $facilitatorId
+      clientId: $clientId
     ) {
       user {
         _id
@@ -92,16 +92,16 @@ export const FACI_ENTER_ROOM = gql`
 `;
 
 export const USER_LEAVE_ROOM = gql`
-  mutation UserLeaveRoom($userId: String, $channelId: String) {
-    userLeaveRoom(userId: $userId, channelId: $channelId) {
+  mutation UserLeaveRoom($clientId: String, $channelId: String, $facilitatorId: String) {
+    userLeaveRoom(clientId: $clientId, channelId: $channelId, facilitatorId: $facilitatorId) {
       _id
     }
   }
 `;
-
+//refactor, add action when faci or user leave room instead of websocket
 export const FACI_LEAVE_ROOM = gql`
-  mutation FaciLeaveRoom($facilitatorId: String, $channelId: String) {
-    faciLeaveRoom(facilitatorId: $facilitatorId, channelId: $channelId) {
+  mutation FaciLeaveRoom($clientId: String, $channelId: String, $userId: String) {
+    faciLeaveRoom(clientId: $clientId, channelId: $channelId, userId: $userId) {
       _id
     }
   }
@@ -109,15 +109,11 @@ export const FACI_LEAVE_ROOM = gql`
 
 export const FACI_JOIN_ROOM = gql`
   mutation FaciJoinRoom(
-    $facilitatorId: String
+    $clientId: String
     $channelId: String
     $userId: String
   ) {
-    faciJoinRoom(
-      facilitatorId: $facilitatorId
-      channelId: $channelId
-      userId: $userId
-    ) {
+    faciJoinRoom(clientId: $clientId, channelId: $channelId, userId: $userId) {
       _id
     }
   }

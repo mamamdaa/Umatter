@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 
 const FaciChatBox = ({ channelId, setIsInRoom }) => {
-  const { isLoggedIn, user: facilitator } = useSelector((state) => state.user);
+  const { isLoggedIn,client } = useSelector((state) => state.client);
   const [chatTitle, setChatTitle] = useState("");
   
   const { data: channelUpdatesData, error: channelUpdatesError } =
@@ -28,7 +28,7 @@ const FaciChatBox = ({ channelId, setIsInRoom }) => {
     sendMessage({
       variables: {
         text: newMessage,
-        senderId: facilitator._id,
+        senderId: client._id,
         channelId: channelId,
       },
     });
@@ -55,7 +55,7 @@ const FaciChatBox = ({ channelId, setIsInRoom }) => {
       if (channelUpdatesData.channelUpdates.message) {
         if (
           channelUpdatesData.channelUpdates.message.sender_id ===
-          facilitator._id
+          client._id
         ) {
           console.log("Message Sent");
         } else {

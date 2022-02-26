@@ -1,10 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./user";
-import facilitartorReducer from "./facilitator";
-
+import clientReducer from "./client";
 export default configureStore({
     reducer: {
-        user: userReducer,
-        facilitator: facilitartorReducer
+        client: clientReducer,
     }
 });
