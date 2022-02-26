@@ -9,7 +9,7 @@ const NoMatch = () => {
   return (
     <div className="container-fluid mt-5">
       <div className="row justify-content-center">
-        <img src={notFound} alt="404" />
+        <img src={notFound} className="not-found" alt="404" />
         <p className="text-center">
           No match for <code>{location.pathname}</code>
         </p>

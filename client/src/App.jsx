@@ -97,7 +97,17 @@ function App() {
       <Provider store={store}>
         <Router>
           <Switch>
-          <Route exact path="/" component={Home} />
+            <Route exact path="/">
+              <div className="navs">
+                <Navbar />
+                <Home />
+                <Works />
+                <About />
+                <Facilitators />
+                <Testimonials />
+                <Contact />
+              </div>
+            </Route>
             <Route exact path="/Signup" component={Signup} />
             <Route exact path="/Login" component={Login} />
             <Route exact path="/User" component={User} />
@@ -106,15 +116,6 @@ function App() {
             <Route path="*">
               <NoMatch />
             </Route>
-            <div className="navs">
-              <Navbar />
-              <Home />
-              <Works />
-              <About />
-              <Facilitators />
-              <Testimonials />
-              <Contact />
-            </div>
           </Switch>
         </Router>
       </Provider>
