@@ -11,8 +11,7 @@ import Signup from "./component/pages/Signup.jsx";
 import Login from "./component/pages/Login";
 import Connect from "./component/pages/Connect/Connect.jsx";
 import User from "./component/pages/User.jsx";
-import Facilitators
- from "./component/pages/Facilitators.jsx";
+import Facilitators from "./component/pages/Facilitators.jsx";
 import Dashboard from "./component/pages/Dashboard.jsx";
 import store from "./redux/store";
 import { connect, Provider } from "react-redux";
@@ -28,10 +27,11 @@ import {
   gql,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import "./App.css"
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import "./App.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ProtectRoute from "./component/ProtectRoute.jsx";
+import NoMatch from "./component/pages/NoMatch/NoMatch.jsx";
 
 const baseLink = process.env.REACT_APP_API_URL;
 const environment = process.env.NODE_ENV;
@@ -93,15 +93,19 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <ToastContainer/>
+      <ToastContainer />
       <Provider store={store}>
         <Router>
           <Switch>
+          <Route exact path="/" component={Home} />
             <Route exact path="/Signup" component={Signup} />
             <Route exact path="/Login" component={Login} />
             <Route exact path="/User" component={User} />
-            <Route exact path="/Connect" component={Connect} />
-            <Route exact path="/Dashboard" component={Dashboard} />
+            <ProtectRoute exact path="/Connect" component={Connect} />
+            <ProtectRoute exact path="/Dashboard" component={Dashboard} />
+            <Route path="*">
+              <NoMatch />
+            </Route>
             <div className="navs">
               <Navbar />
               <Home />
