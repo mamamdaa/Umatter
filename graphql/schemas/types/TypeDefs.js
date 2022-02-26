@@ -71,4 +71,12 @@ const FacilitatorType = new GraphQLObjectType({
   }),
 });
 
-module.exports = { UserType, MessageType, ChannelType, FacilitatorType };
+const WaitlistType = new GraphQLObjectType({
+  name: "WaitlistType",
+  fields: () => ({
+    _id: { type: GraphQLString },
+    email: { type: GraphQLString },
+  }),
+});
+
+module.exports = { UserType, MessageType, ChannelType, FacilitatorType, WaitlistType };

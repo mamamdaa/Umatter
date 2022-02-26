@@ -92,15 +92,27 @@ export const FACI_ENTER_ROOM = gql`
 `;
 
 export const USER_LEAVE_ROOM = gql`
-  mutation UserLeaveRoom($clientId: String, $channelId: String, $facilitatorId: String) {
-    userLeaveRoom(clientId: $clientId, channelId: $channelId, facilitatorId: $facilitatorId) {
+  mutation UserLeaveRoom(
+    $clientId: String
+    $channelId: String
+    $facilitatorId: String
+  ) {
+    userLeaveRoom(
+      clientId: $clientId
+      channelId: $channelId
+      facilitatorId: $facilitatorId
+    ) {
       _id
     }
   }
 `;
 //refactor, add action when faci or user leave room instead of websocket
 export const FACI_LEAVE_ROOM = gql`
-  mutation FaciLeaveRoom($clientId: String, $channelId: String, $userId: String) {
+  mutation FaciLeaveRoom(
+    $clientId: String
+    $channelId: String
+    $userId: String
+  ) {
     faciLeaveRoom(clientId: $clientId, channelId: $channelId, userId: $userId) {
       _id
     }
@@ -114,6 +126,14 @@ export const FACI_JOIN_ROOM = gql`
     $userId: String
   ) {
     faciJoinRoom(clientId: $clientId, channelId: $channelId, userId: $userId) {
+      _id
+    }
+  }
+`;
+
+export const ADD_TO_WAITLIST = gql`
+  mutation Mutation($email: String!) {
+    addToWaitlist(email: $email) {
       _id
     }
   }

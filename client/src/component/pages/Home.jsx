@@ -1,9 +1,42 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import "./css/home.css";
 import background from "../img/background.svg";
 import { HashLink as Link } from "react-router-hash-link";
+import { toast } from "react-toastify";
+import { useMutation } from "@apollo/client";
+import { ADD_TO_WAITLIST } from "../../graphql/Mutations";
 
 export default function Home() {
+  const [isInWaitlist, setisInWaitlist] = useState(false);
+
+  const [
+    addToWaitlist,
+    { error: addToWaitlistError, data: addToWaitlistData },
+  ] = useMutation(ADD_TO_WAITLIST, {
+    onError: (err) => {},
+  }); //refactor
+
+  const joinWaitlist = async (e) => {
+    e.preventDefault();
+    addToWaitlist({
+      variables: {
+        email: e.target.elements.email.value,
+      },
+    });
+  };
+
+  useEffect(() => {
+    if (addToWaitlistError) {
+      const errorMessage = JSON.parse(
+        JSON.stringify(addToWaitlistError.message)
+      );
+      toast.error(errorMessage);
+    } else if (addToWaitlistData) {
+      toast.success("You have been added to the waitlist");
+      setisInWaitlist(true);
+    }
+  }, [addToWaitlistData, addToWaitlistError]);
+
   return (
     <div className="Home-box " id="home">
       <div className="Home ">
@@ -24,26 +57,40 @@ export default function Home() {
                       We are building your safe place, get notified when it’s
                       done*
                     </label>
-                    <div class="row g-2 justify-content-center justify-content-lg-start">
-                      <div class="col-12 col-md-7 col-lg-7">
-                        <input
-                          type="email"
-                          class="form-control border mw-10"
-                          id="exampleFormControlInput1"
-                          placeholder="Enter email address"
-                        />
-                      </div>
-                      <div class="col-12 col-md-5 col-lg-5">
+                    {isInWaitlist ? (
+                      <div class="col-12 ">
                         <div class="d-grid">
-                          <a
-                            class="btn btn1 btn-light fw-bold text-nowrap"
-                            role="button"
-                          >
-                            Join the waitlist
+                          <a class="btn btn1 btn-light fw-bold text-nowrap">
+                            You Are now in the Waitlist! Thank you!
                           </a>
                         </div>
                       </div>
-                    </div>
+                    ) : (
+                      <form
+                        class="row g-2 justify-content-center justify-content-lg-start"
+                        onSubmit={joinWaitlist}
+                      >
+                        <div class="col-12 col-md-7 col-lg-7">
+                          <input
+                            type="email"
+                            class="form-control border mw-10"
+                            id="exampleFormControlInput1"
+                            name="email"
+                            placeholder="Enter email address"
+                          />
+                        </div>
+                        <div class="col-12 col-md-5 col-lg-5">
+                          <div class="d-grid">
+                            <button
+                              type="submit"
+                              class="btn btn1 btn-light fw-bold text-nowrap"
+                            >
+                              Join the waitlist
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    )}
                   </div>
                   <Link smooth to="#Home-works">
                     <a class="btn btn2 border " role="button">

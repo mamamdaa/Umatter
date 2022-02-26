@@ -144,16 +144,18 @@ const Dashboard = () => {
   return (
     <>
       <Navbar />
-      <div className="container-fluid justify-content-center align-items-center bg-secondary vh-100 p-4 mt-5">
-        <div className="row justify-content-center">
-          <div className="col  board-content">
+      <div className="container-fluid main-background justify-content-center align-items-center vh-100 p-4">
+        <div className="row justify-content-center overflow-auto mt-5">
+          <div className="col-12 col-md-6 board-content p-2">
             {usersInQueue.length > 0
               ? usersInQueue.map((user) => (
-                  <UserInQueue
+                <>
+                 <UserInQueue
                     key={user._id}
                     user={user}
                     acceptHandler={acceptHandler}
                   />
+                </>
                 ))
               : null}
             {isInRoom ? (

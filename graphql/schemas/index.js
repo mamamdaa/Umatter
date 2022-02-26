@@ -5,6 +5,7 @@ const UserMutation = require("./mutations/UserMutation");
 const ChannelMutations = require("./mutations/ChannelMutations");
 const MessageMutations = require("./mutations/MessageMutations");
 const FacilitatorMutations = require("./mutations/FacilitatorMutations");
+const WaitlistMutations = require("./mutations/WaitlistMutations");
 const UserSubscription = require("./subscriptions/UserSubscription");
 const ChannelSubscription = require("./subscriptions/ChannelSubscription");
 const graphql = require("graphql");
@@ -22,6 +23,7 @@ const Mutation = new GraphQLObjectType({
     ...ChannelMutations,
     ...MessageMutations,
     ...FacilitatorMutations,
+    ...WaitlistMutations
   },
 });
 
