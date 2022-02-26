@@ -1,20 +1,20 @@
 import { useState, useMemo } from "react";
-import Navbar from "../inc/Navbar";
-import ChatBox from "../inc/ChatBox";
+import Navbar from "../../inc/Navbar";
+import ChatBox from "../../inc/ChatBox";
 import { useEffect } from "react";
 import {
   USER_ENTER_QUEUE,
   USER_LEAVE_QUEUE,
   USER_LEAVE_ROOM,
-} from "../../graphql/Mutations";
-import { GET_USER } from "../../graphql/Queries";
+} from "../../../graphql/Mutations";
+import { GET_USER } from "../../../graphql/Queries";
 import { useMutation, useSubscription, useLazyQuery } from "@apollo/client";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import ConnectWaitingBtn from "../inc/Connect/connectWaitingBtn";
-import ConnectLeaveBtn from "../inc/Connect/connectLeaveBtn";
-import ConnectEnterBtn from "../inc/Connect/connectEnterBtn";
-import "./styles/Connect/connect.css";
+import ConnectWaitingBtn from "../../inc/Connect/connectWaitingBtn";
+import ConnectLeaveBtn from "../../inc/Connect/connectLeaveBtn";
+import ConnectEnterBtn from "../../inc/Connect/connectEnterBtn";
+import "./connect.css";
 
 const Connect = () => {
   const { isLoggedIn, user } = useSelector((state) => state.user);
@@ -136,34 +136,9 @@ const Connect = () => {
   return (
     <>
       <Navbar />
-      <div className="container-fluid justify-content-center align-items-center vh-100 p-4 mt-5">
-        <div className="row justify-content-center">
-          <div className="col-12 col-md-6 board-content ">
-            <button
-              type="button"
-              className="btn btn-primary btn-lg btn-block"
-              onClick={() => enterQueue()}
-            >
-              <span className="material-icons">chat</span>
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary btn-lg btn-block"
-              onClick={() => leaveQueue()}
-            >
-              <span className="material-icons">close</span>
-            </button>
-
-            {isInRoom ? (
-              <button
-                type="button"
-                className="btn btn-primary btn-lg btn-block"
-                onClick={() => leaveRoom()}
-              >
-                <span className="material-icons">exit_to_app</span>
-              </button>
-            ) : null}
-
+      <div className="container-fluid main-background justify-content-center align-items-center vh-100 p-4 ">
+        <div className="row justify-content-center mt-5">
+          <div className="col-12 col-md-6 board-content p-0">
             {isInQueue || isInRoom ? (
               <ChatBox
                 channelId={channelId}
