@@ -101,7 +101,7 @@ const userLogin = {
 
 /**
  * @brief: This mutation is used when user enters the queue
- * @param: userId - id of the user
+ * @param: clientId - id of the user
  * @return: user - user object
  * @note: change newUser to user
  */
@@ -109,17 +109,17 @@ const userEnterQueue = {
   name: "userEnterQueue",
   type: UserType,
   args: {
-    userId: { type: GraphQLString },
+    clientId: { type: GraphQLString },
   },
   resolve: async function (root, params, { req, res, pubsub }) {
     let channel = new Channel({
-      channel_name: params.userId,
-      user: params.userId,
+      channel_name: params.clientId,
+      user: params.clientId,
       facilitator: null,
     });
 
     let newChannel = await channel.save();
-    let newUser = await User.findOne({ _id: params.userId });
+    let newUser = await User.findOne({ _id: params.clientId });
 
     if (!newUser) {
       throw new Error("No User Found");
@@ -149,10 +149,10 @@ const userLeaveQueue = {
   name: "userLeaveQueue",
   type: UserType,
   args: {
-    userId: { type: GraphQLString },
+    clientId: { type: GraphQLString },
   },
   resolve: async function (root, params, { req, res, pubsub }) {
-    let user = await User.findOne({ _id: params.userId });
+    let user = await User.findOne({ _id: params.clientId });
     if (!user) {
       throw new Error("No User Found");
     }
@@ -161,7 +161,7 @@ const userLeaveQueue = {
     user.channel_id = null;
     user.save();
     user.action = "LEFT";
-    pubsub.publish("QUEUE_UPDATE", { queueUpdate: user });
+    pubsub.publish("QUEUE_UPDATE", { queueUpdate:user });
     return user;
   },
 };
@@ -170,20 +170,32 @@ const userLeaveRoom = {
   name: "userLeaveRoom",
   type: UserType,
   args: {
-    userId: { type: GraphQLString },
+    clientId: { type: GraphQLString },
     channelId: { type: GraphQLString },
+    facilitatorId: { type: GraphQLString },
   },
   resolve: async function (root, params, { req, res, pubsub }) {
-    let user = await User.findOne({ _id: params.userId });
+    let user = await User.findOne({ _id: params.clientId });
+    let facilitator = await Facilitator.findOne({ _id: params.facilitatorId });
     if (!user) {
       throw new Error("No User Found");
+    }
+    if (!facilitator) {
+      throw new Error("No Facilitator Found");
     }
     user.is_in_queue = false;
     user.is_assigned = false;
     user.channel_id = null;
+    user.assigned_to = null;
     user.save();
+    
+    facilitator.is_assigned = false;
+    facilitator.is_available = true;
+    facilitator.assigned_to = null;
+    facilitator.save();
+
     user.action = "LEFT";
-    pubsub.publish(params.channelId, { channelUpdates: { user: user } });
+    pubsub.publish(params.channelId, { channelUpdates: { user:user } });
     return user;
   },
 };

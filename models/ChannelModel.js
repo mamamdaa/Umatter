@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 channelSchema = new mongoose.Schema({
     channel_name: {
         type: String,
-        required: true,
+        required: false,
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,

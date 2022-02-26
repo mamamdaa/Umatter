@@ -104,20 +104,28 @@ const faciLeaveRoom = {
   name: "faciLeaveRoom",
   type: FacilitatorType,
   args: {
-    facilitatorId: { type: GraphQLString },
+    clientId: { type: GraphQLString },
     channelId: { type: GraphQLString },
+    userId: { type: GraphQLString },
   },
   resolve: async function (root, params, { req, res, pubsub }) {
-    let facilitator = await Facilitator.findById(params.facilitatorId);
+    let facilitator = await Facilitator.findById(params.clientId);
+    let user = await User.findById(params.userId);
     if (!facilitator) {
       throw new Error("Facilitator not found");
+    }
+    if (!user) {
+      throw new Error("User not found");
     }
     facilitator.is_assigned = false;
     facilitator.is_available = true;
     facilitator.channel = null;
+    facilitator.assigned_to = null; 
     facilitator.save();
+    user.is_assigned = false;
+    user.assigned_to = null;
+    user.save();
     facilitator.action = "LEFT";
-
     pubsub.publish(params.channelId, {
       channelUpdates: { facilitator: facilitator },
     });
@@ -130,12 +138,12 @@ const faciJoinRoom = {
   name: "faciJoinRoom",
   type: FacilitatorType,
   args: {
-    facilitatorId: { type: GraphQLString },
+    clientId: { type: GraphQLString },
     channelId: { type: GraphQLString },
     userId: { type: GraphQLString },
   },
   resolve: async function (root, params, { req, res, pubsub }) {
-    let facilitator = await Facilitator.findById(params.facilitatorId);
+    let facilitator = await Facilitator.findById(params.clientId);
 
     if (!facilitator) {
       throw new Error("Facilitator not found");
@@ -148,9 +156,11 @@ const faciJoinRoom = {
     facilitator.is_assigned = true;
     facilitator.is_available = false;
     facilitator.channel_id = params.channelId;
+    facilitator.assigned_to = user._id;
     facilitator.save();
     user.is_assigned = true;
     user.is_in_queue = false;
+    user.assigned_to = facilitator._id;
     user.save();
 
     user.action = "LEFT";
@@ -159,7 +169,7 @@ const faciJoinRoom = {
     pubsub.publish(params.channelId, {
       channelUpdates: { facilitator: facilitator },
     });
-    pubsub.publish("QUEUE_UPDATE", { queueUpdate: user });
+    pubsub.publish("QUEUE_UPDATE", { queueUpdate:user });
     return facilitator;
   },
 };

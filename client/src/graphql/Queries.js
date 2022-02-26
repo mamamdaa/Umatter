@@ -20,6 +20,7 @@ export const FACILITATOR_LOGIN = gql`
       last_name
       is_available
       is_assigned
+      role
     }
   }
 `;
@@ -47,23 +48,25 @@ export const GET_USERS_IN_QUEUE = gql`
 `;
 
 export const GET_USER = gql`
-  query GetUser($userId: String) {
-    getUser(userId: $userId) {
+  query GetUser($clientId: String) {
+    getUser(clientId: $clientId) {
       is_in_queue
       is_assigned
       action
       channel_id
+      assigned_to
     }
   }
 `;
 
 export const GET_FACILITATOR = gql`
-  query GetFacilitator($facilitatorId: String) {
-    getFacilitator(facilitatorId: $facilitatorId) {
+  query GetFacilitator($clientId: String) {
+    getFacilitator(clientId: $clientId) {
       is_available
       is_assigned
       action
       channel_id
+      assigned_to
     }
   }
 `;

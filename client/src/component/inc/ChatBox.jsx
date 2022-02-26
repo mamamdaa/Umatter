@@ -5,9 +5,9 @@ import { SEND_MESSAGE } from "../../graphql/Mutations";
 import { useSubscription, useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
-
-const ChatBox = ({ channelId, setIsInQueue, setIsInRoom }) => {
-  const { isLoggedIn, user } = useSelector((state) => state.user);
+//change to standalone component
+const ChatBox = ({ channelId, setIsInQueue, setIsInRoom,setCurrentFacilitatorId }) => {
+  const { isLoggedIn,client } = useSelector((state) => state.client);
   const [chatTitle, setChatTitle] = useState("Wait for your Peer Facilitator");
 
   const { data: channelUpdatesData, error: channelUpdatesError } =
@@ -26,7 +26,7 @@ const ChatBox = ({ channelId, setIsInQueue, setIsInRoom }) => {
     sendMessage({
       variables: {
         text: newMessage,
-        senderId: user._id,
+        senderId: client._id,
         channelId: channelId,
       },
     });
@@ -43,14 +43,17 @@ const ChatBox = ({ channelId, setIsInQueue, setIsInRoom }) => {
           toast(
             `${facilitator.first_name} ${facilitator.last_name} has joined the channel`
           );
+          console.log("setCurrentFacilitatorId", facilitator);
+          setCurrentFacilitatorId(facilitator._id);
         } else if (facilitator.action === "LEFT") {
           setIsInRoom(false);
           toast(
             `${facilitator.first_name} ${facilitator.last_name} has left the channel`
           );
+          setCurrentFacilitatorId("");
         }
       } else if (channelUpdatesData.channelUpdates.message) {
-        if (channelUpdatesData.channelUpdates.message.sender_id === user._id) {
+        if (channelUpdatesData.channelUpdates.message.sender_id === client._id) {
           console.log("Message Sent");
         } else {
           addResponseMessage(channelUpdatesData.channelUpdates.message.text);

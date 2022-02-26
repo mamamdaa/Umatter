@@ -8,11 +8,13 @@ export const CHANNEL_UPDATES = gql`
         sender_id
       }
       facilitator {
+        _id
         first_name
         last_name
         action
       }
       user {
+        _id
         first_name
         last_name
         action

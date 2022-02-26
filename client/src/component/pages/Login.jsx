@@ -8,12 +8,12 @@ import { FACILITATOR_LOGIN } from "../../graphql/Queries";
 import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { userLoginReducer } from "../../redux/user";
-import { facilitatorLoginAction } from "../../redux/facilitator";
+import { clientLoginReducer } from "../../redux/client";
+import { facilitatorLoginReducer } from "../../redux/facilitator";
 import { toast } from "react-toastify";
 
 export default function Login() {
-  const { isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn } = useSelector((state) => state.client);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [dataError, setDataError] = React.useState("");
@@ -49,21 +49,20 @@ export default function Login() {
       });
     }
   };
-
+  //refactor
   useEffect(() => {
     if (facilitatorError) {
       const errorMessage = JSON.parse(JSON.stringify(facilitatorError.message));
       toast.error(errorMessage);
       setDataError(errorMessage);
     } else if (facilitatorData) {
-      console.log("facilitatorData", facilitatorData);
       localStorage.setItem("token", facilitatorData.loginFacilitator.token);
       localStorage.setItem(
-        "user",
+        "client",
         JSON.stringify(facilitatorData.loginFacilitator)
       );
-      dispatch(facilitatorLoginAction(facilitatorData.loginFacilitator));
-      history.push("/");
+      localStorage.setItem("role", facilitatorData.loginFacilitator.role);
+      dispatch(clientLoginReducer(facilitatorData.loginFacilitator));
     }
   }, [facilitatorData, facilitatorError, dispatch]);
 
@@ -76,14 +75,15 @@ export default function Login() {
     if (userLoginData) {
       let userData = userLoginData.userLogin
       localStorage.setItem("token", userData.token);
-      localStorage.setItem("user", JSON.stringify(userLoginData.userLogin));
-      dispatch(userLoginReducer(userData));
+      localStorage.setItem("client", JSON.stringify(userLoginData.userLogin));
+      localStorage.setItem("role", userData.role);
+      dispatch(clientLoginReducer(userData));
     }
   }, [userLoginData, userLoginError, dispatch]);
 
   useEffect(() => {
     if (isLoggedIn) {
-      history.push("/User");
+      history.push("/");
     }
   }, [history, isLoggedIn]);
 

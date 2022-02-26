@@ -8,18 +8,18 @@ export const facilitatorSlice = createSlice({
         error: null,
     },
     reducers: {
-        facilitatorLoginAction: (state, action) => {
+        facilitatorLoginReducer: (state, action) => {
             state.isLoggedIn = true;
-            state.user = action.payload;
+            state.client = action.payload;
         },
-        facilitatorLogoutAction: (state, action) => {
+        facilitatorLogoutReducer: (state, action) => {
             localStorage.removeItem("user");
             localStorage.removeItem("token");
             state.isLoggedIn = false;
-            state.user = {};
+            state.client = {};
         }
     }
 });
 
-export const { facilitatorLoginAction,facilitatorLogoutAction } = facilitatorSlice.actions;
+export const { facilitatorLoginReducer,facilitatorLogoutReducer } = facilitatorSlice.actions;
 export default facilitatorSlice.reducer;

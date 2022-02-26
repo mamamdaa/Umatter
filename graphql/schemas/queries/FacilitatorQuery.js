@@ -27,7 +27,7 @@ const getFacilitators = {
 const getFacilitator = {
   type: FacilitatorType,
   args: {
-    facilitatorId: {
+    clientId: {
       type: GraphQLString,
     },
   },
@@ -37,7 +37,7 @@ const getFacilitator = {
     //   throw new Error("Not Authenticated");
     // }
 
-    let facilitator = await Facilitator.findById(params.facilitatorId).select("-password");;
+    let facilitator = await Facilitator.findById(params.clientId).select("-password");;
     if (!facilitator) {
       throw new Error("Facilitator not found");
     }

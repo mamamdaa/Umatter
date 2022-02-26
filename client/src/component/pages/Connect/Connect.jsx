@@ -17,10 +17,11 @@ import ConnectEnterBtn from "../../inc/Connect/connectEnterBtn";
 import "./connect.css";
 
 const Connect = () => {
-  const { isLoggedIn, user } = useSelector((state) => state.user);
+  const { isLoggedIn,client } = useSelector((state) => state.client);
   const [isInQueue, setIsInQueue] = useState(false);
   const [channelId, setChannel] = useState("");
   const [isInRoom, setIsInRoom] = useState(false);
+  const [currentFacilitatorId , setCurrentFacilitatorId] = useState("");
 
   const [getUser, { error: getUserError, data: getUserData }] = useLazyQuery(
     GET_USER,
@@ -33,7 +34,7 @@ const Connect = () => {
     () =>
       getUser({
         variables: {
-          userId: user._id,
+          clientId: client._id,
         },
       }),
     []
@@ -59,7 +60,7 @@ const Connect = () => {
   const enterQueue = () => {
     userEnterQueue({
       variables: {
-        userId: user._id,
+        clientId: client._id,
       },
     });
   };
@@ -68,7 +69,7 @@ const Connect = () => {
     console.log("leaving Queue");
     userLeaveQueue({
       variables: {
-        userId: user._id,
+        clientId: client._id,
       },
     });
   };
@@ -77,8 +78,9 @@ const Connect = () => {
     console.log("leaving Room");
     userLeaveRoom({
       variables: {
-        userId: user._id,
+        clientId: client._id,
         channelId: channelId, //what if refreshed? channel id should stored in local storage
+        facilitatorId: currentFacilitatorId,
       },
     });
   };
@@ -87,13 +89,12 @@ const Connect = () => {
     if (getUserError) {
       toast.error(getUserError.message);
     } else if (getUserData) {
+      let userData = getUserData.getUser;
       console.log("getUserData", getUserData);
-      if (getUserData.getUser.is_in_queue) {
-        setIsInQueue(true);
-      } else if (getUserData.getUser.is_assigned) {
-        setChannel(getUserData.getUser.channel_id);
-        setIsInRoom(true);
-      }
+      setIsInQueue(userData.is_in_queue);
+      setChannel(userData.channel_id);
+      setIsInRoom(userData.is_assigned);
+      setCurrentFacilitatorId(userData.assigned_to);
     }
   }, [getUserData]);
 
@@ -108,7 +109,7 @@ const Connect = () => {
       toast(errorMessage);
     }
   }, [userLeaveRoomData, userLeaveRoomError]);
-
+  //change to userEnterQueueData
   useEffect(() => {
     if (userEnterData) {
       setIsInQueue(true);
@@ -144,6 +145,7 @@ const Connect = () => {
                 channelId={channelId}
                 setIsInQueue={setIsInQueue}
                 setIsInRoom={setIsInRoom}
+                setCurrentFacilitatorId = {setCurrentFacilitatorId}
               />
             ) : (
               <div className="text-center">
