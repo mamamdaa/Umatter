@@ -9,7 +9,7 @@ import { useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userLoginReducer } from "../../redux/user";
-import { facilitatorLoginAction } from "../../redux/facilitator";
+import { facilitatorLoginReducer } from "../../redux/facilitator";
 import { toast } from "react-toastify";
 
 export default function Login() {
@@ -56,14 +56,12 @@ export default function Login() {
       toast.error(errorMessage);
       setDataError(errorMessage);
     } else if (facilitatorData) {
-      console.log("facilitatorData", facilitatorData);
       localStorage.setItem("token", facilitatorData.loginFacilitator.token);
       localStorage.setItem(
         "user",
         JSON.stringify(facilitatorData.loginFacilitator)
       );
-      dispatch(facilitatorLoginAction(facilitatorData.loginFacilitator));
-      history.push("/");
+      dispatch(facilitatorLoginReducer(facilitatorData.loginFacilitator));
     }
   }, [facilitatorData, facilitatorError, dispatch]);
 
@@ -83,7 +81,7 @@ export default function Login() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      history.push("/User");
+      history.push("/");
     }
   }, [history, isLoggedIn]);
 

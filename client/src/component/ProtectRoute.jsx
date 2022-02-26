@@ -4,6 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 
 const ProtectRoute = (props) => {
   const { isLoggedIn } = useSelector((state) => state.user);
+  console.log("isLoggedIn", isLoggedIn);
   return isLoggedIn ? <Route {...props} /> : <Redirect to="/login" />;
 
 };

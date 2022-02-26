@@ -41,6 +41,10 @@ const facilitatorSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Channel",
     },
+    role:{
+      type: String,
+      default: "facilitator"
+    }
   },
   {
     timestamps: true,

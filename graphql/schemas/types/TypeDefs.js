@@ -24,6 +24,7 @@ const UserType = new GraphQLObjectType({
     is_assigned: { type: GraphQLBoolean },
     channel_id: { type: GraphQLString },
     action : { type: GraphQLString },
+    role: { type: GraphQLString },
 
   }),
 });
@@ -66,6 +67,7 @@ const FacilitatorType = new GraphQLObjectType({
     is_assigned: { type: GraphQLBoolean },
     channel_id: { type: GraphQLString },
     action : { type: GraphQLString },
+    role: { type: GraphQLString },
   }),
 });
 
