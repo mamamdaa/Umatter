@@ -32,14 +32,14 @@ const Facilitators = () => {
               <div class="card-body">
                 <h4 class="card-title">Lorem Ipsum</h4>
                 <p class="card-text mb-3 px-4">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Marc Jofer C. Dimacutac
+BS Computer Engineering (Embedded System)
                 </p>
 
                 <p class="card-text">
-                  We hope to be a part of a future that the mental health
-                  advocacy aims to create, one of which has significant
-                  improvements in the state of mental well-being for our
-                  students.
+If you're happy and you know it Clap your hands
+
+Gemini, multitalented, former sugar baby
                 </p>
               </div>
             </div>
