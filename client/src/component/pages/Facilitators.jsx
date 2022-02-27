@@ -26,41 +26,20 @@ const Facilitators = () => {
             <div class="card border-2">
               <img
                 class="align-self-center card-img-top"
-                src={faciTwo}
-                alt="vision"
-              />
-              <div class="card-body">
-                <h4 class="card-title">Lorem Ipsum</h4>
-                <p class="card-text mb-3 px-4">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-
-                <p class="card-text">
-                  We hope to be a part of a future that the mental health
-                  advocacy aims to create, one of which has significant
-                  improvements in the state of mental well-being for our
-                  students.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-5 col-lg-4 text-center mt-md-3">
-            <div class="card border-2">
-              <img
-                class="align-self-center card-img-top"
                 src={faciThree}
                 alt="vision"
               />
               <div class="card-body">
                 <h4 class="card-title">Lorem Ipsum</h4>
                 <p class="card-text mb-3 px-4">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Marc Jofer C. Dimacutac
+BS Computer Engineering (Embedded System)
                 </p>
+
                 <p class="card-text">
-                  We hope to be a part of a future that the mental health
-                  advocacy aims to create, one of which has significant
-                  improvements in the state of mental well-being for our
-                  students.
+If you're happy and you know it Clap your hands
+
+Gemini, multitalented, former sugar baby
                 </p>
               </div>
             </div>
@@ -69,19 +48,40 @@ const Facilitators = () => {
             <div class="card border-2">
               <img
                 class="align-self-center card-img-top"
-                src={faciOne}
+                src={faciOnd}
                 alt="vision"
               />
               <div class="card-body">
-                <h4 class="card-title">Lorem Ipsum</h4>
+                <h4 class="card-title">Ma. Judea Paguntalan </h4>
+</h4>
+                <p class="card-text mb-3 px-4">
+                  BS Psychology
+                </p>
+                <p class="card-text">
+                   
+
+Enjoy and appreciate the tiny details of life. 
+
+Dancer, artist, reader, motocross "noob" rider and a professional stay at home daughter
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="col-12 col-md-5 col-lg-4 text-center mt-md-3">
+            <div class="card border-2">
+              <img
+                class="align-self-center card-img-top"
+                src={facieTwo}
+                alt="vision"
+              />
+              <div class="card-body">
+                <h4 class="card-title">Mary Charl</h4>
                 <p class="card-text mb-3 px-4">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </p>
-                <p class="card-text">
-                  We hope to be a part of a future that the mental health
-                  advocacy aims to create, one of which has significant
-                  improvements in the state of mental well-being for our
-                  students.
+                <p class="card-text">          
+I'm not Sigmund Freud, and that's exactly why you can trust me 😌 
+Reader, writer, jedi, demigod
                 </p>
               </div>
             </div>

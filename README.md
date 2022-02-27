@@ -1,54 +1,15 @@
-# Getting Started with Create React App
+<h1 align="center">
+ Ummatter</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center"> <img height="55" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/1200px-GraphQL_Logo.svg.png"/> <img width="55" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/bootstrap.svg"/> <img width="55" src="https://seeklogo.com/images/N/nodejs-logo-FBE122E377-seeklogo.com.png"/> <img width="55" src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png"/><img height="55" src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/javascript.svg"/> <img height="55" src="https://redux.js.org/img/redux-logo-landscape.png"/> <img width="55" src="https://sunny-mittal.gallerycdn.vsassets.io/extensions/sunny-mittal/vscode-apollo/1.15.6/1589820786566/Microsoft.VisualStudio.Services.Icons.Default"/> </div>
 
-## Available Scripts
-## Install dependecie first before running
-In the project directory, you can run:
+<h2 align="center">
+  <a href=https://umatterph.herokuapp.com/">[LIVE APP]</a>
+</h2>
 
-### `npm i`
-### `cd client`
-### `npm i`
-### `cd ..`
-### `npm run dev`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-Control GraphQL queries on http://localhost:5000/graphqli?
-Apollo Subcription is listening on http://localhost:4000/
-
-ENV File is included on the repo for the judges to use
-for any questions, clarifications email me at cdmontalban@usa.edu.ph or mamada@usa.edu.ph
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Development server
+[1] Run `npm run i` install dependencies <br/>
+[2] Run `cd client` <br/>
+[3] Run `npm run i` install dependencies<br/>
+[4] Run `cd ..` <br/>
+[5] Run `npm run dev` for a dev server. Navigate to `http://localhost:3000/`. The app will automatically reload if you change any of the source files.
