@@ -4,26 +4,27 @@
 
 .facilitators {
   background: linear-gradient(250deg, #86e7cf 0%, #ffffff 60%);
-//   height: 100vh !important;
-//   padding-top: 10vh !important;
+  //   height: 100vh !important;
+  //   padding-top: 10vh !important;
   padding: 2vh;
   text-align: center;
 }
 
 .facilitators .card {
   width: 100%;
+  height: 500px;
   overflow: hidden;
   border-radius: 10px;
   background-color: transparent;
+  margin-top: 1rem;
 }
 .facilitators .card img {
-    height: 300px;
-    width: auto;
-    object-fit: cover;
-    object-position: 0% 10%;
-    display: block;
-    margin: 0 !important;
-   
+  height: 300px;
+  width: auto;
+  object-fit: cover;
+  object-position: 0% 10%;
+  display: block;
+  margin: 0 !important;
 }
 
 .facilitators .card-body {
@@ -36,8 +37,8 @@
   max-width: fit-content;
 }
 
-@include media-breakpoint-up(lg) {
-  facilitators {
-    text-align: left;
+@include media-breakpoint-up(md) {
+  .facilitators .card {
+    height: 600px;
   }
 }

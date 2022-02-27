@@ -29,17 +29,14 @@ const Facilitators = () => {
                 src={faciThree}
                 alt="vision"
               />
-              <div class="card-body">
-                <h4 class="card-title">Lorem Ipsum</h4>
-                <p class="card-text mb-3 px-4">
-                  Marc Jofer C. Dimacutac
-BS Computer Engineering (Embedded System)
+              <div class="card-body ">
+                <h4 class="card-title">Marc Jofer C. Dimacutac </h4>
+                <p class="text-center">
+                  BS Computer Engineering 
                 </p>
-
-                <p class="card-text">
-If you're happy and you know it Clap your hands
-
-Gemini, multitalented, former sugar baby
+                <p class="text-center">
+                  If you're happy and you know it Clap your hands. Gemini,
+                  multitalented, former sugar baby.
                 </p>
               </div>
             </div>
@@ -48,21 +45,16 @@ Gemini, multitalented, former sugar baby
             <div class="card border-2">
               <img
                 class="align-self-center card-img-top"
-                src={faciOnd}
+                src={faciOne}
                 alt="vision"
               />
               <div class="card-body">
                 <h4 class="card-title">Ma. Judea Paguntalan </h4>
-</h4>
-                <p class="card-text mb-3 px-4">
-                  BS Psychology
-                </p>
-                <p class="card-text">
-                   
-
-Enjoy and appreciate the tiny details of life. 
-
-Dancer, artist, reader, motocross "noob" rider and a professional stay at home daughter
+                <p class="text-center">BS Psychology</p>
+                <p class="text-center">
+                  Enjoy and appreciate the tiny details of life. Dancer, artist,
+                  reader, motocross "noob" rider and a professional stay at home
+                  daughter.
                 </p>
               </div>
             </div>
@@ -71,17 +63,15 @@ Dancer, artist, reader, motocross "noob" rider and a professional stay at home d
             <div class="card border-2">
               <img
                 class="align-self-center card-img-top"
-                src={facieTwo}
+                src={faciTwo}
                 alt="vision"
               />
               <div class="card-body">
-                <h4 class="card-title">Mary Charl</h4>
-                <p class="card-text mb-3 px-4">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                </p>
-                <p class="card-text">          
-I'm not Sigmund Freud, and that's exactly why you can trust me 😌 
-Reader, writer, jedi, demigod
+                <h4 class="card-title">Mary Charl M. Pamplona</h4>
+                <p class="text-center">BS Psych 3A</p>
+                <p class="text-center">
+                  I'm not Sigmund Freud, and that's exactly why you can trust me
+                  😌 Reader, writer, jedi, demigod.
                 </p>
               </div>
             </div>

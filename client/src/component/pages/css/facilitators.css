@@ -6,9 +6,11 @@
 
 .facilitators .card {
   width: 100%;
+  height: 500px;
   overflow: hidden;
   border-radius: 10px;
   background-color: transparent;
+  margin-top: 1rem;
 }
 
 .facilitators .card img {
@@ -34,9 +36,9 @@
   max-width: fit-content;
 }
 
-@media (min-width: 992px) {
-  facilitators {
-    text-align: left;
+@media (min-width: 768px) {
+  .facilitators .card {
+    height: 600px;
   }
 }
 /*# sourceMappingURL=facilitators.css.map */
