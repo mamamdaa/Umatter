@@ -164,7 +164,7 @@ export default function Navbar() {
                       </li>
                       <li class="border-bottom">
                         <a class="dropdown-item" href="#">
-                          Acoount setting
+                          Account setting
                         </a>
                       </li>
                       <li>
