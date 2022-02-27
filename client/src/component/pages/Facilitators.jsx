@@ -26,7 +26,7 @@ const Facilitators = () => {
             <div class="card border-2">
               <img
                 class="align-self-center card-img-top"
-                src={faciTwo}
+                src={faciThree}
                 alt="vision"
               />
               <div class="card-body">
@@ -48,7 +48,7 @@ Gemini, multitalented, former sugar baby
             <div class="card border-2">
               <img
                 class="align-self-center card-img-top"
-                src={faciThree}
+                src={faciOnd}
                 alt="vision"
               />
               <div class="card-body">
@@ -71,7 +71,7 @@ Dancer, artist, reader, motocross "noob" rider and a professional stay at home d
             <div class="card border-2">
               <img
                 class="align-self-center card-img-top"
-                src={faciOne}
+                src={facieTwo}
                 alt="vision"
               />
               <div class="card-body">
