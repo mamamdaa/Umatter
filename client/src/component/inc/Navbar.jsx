@@ -56,27 +56,27 @@ export default function Navbar() {
         >
           <ul class="nav navbar-nav m-3 ms-auto">
             <li class="nav-item me-4">
-              <Link smooth to="#home" class="nav-link">
+              <Link smooth to="/#home" class="nav-link">
                 Home
               </Link>
             </li>
             <li class="nav-item me-4">
-              <Link smooth to="#about" class="nav-link">
+              <Link smooth to="/#about" class="nav-link">
                 About
               </Link>
             </li>
             <li class="nav-item me-4 ">
-              <Link smooth to="#facilitators" class="nav-link">
+              <Link smooth to="/#facilitators" class="nav-link">
                 Facilitators
               </Link>
             </li>
             <li class="nav-item me-4">
-              <Link smooth to="#testimonials" class="nav-link">
+              <Link smooth to="/#testimonials" class="nav-link">
                 Testimonials
               </Link>
             </li>
             <li class="nav-item me-5 pe-5 ">
-              <Link smooth to="#contact" class="nav-link">
+              <Link smooth to="/#contact" class="nav-link">
                 Contact
               </Link>
             </li>
