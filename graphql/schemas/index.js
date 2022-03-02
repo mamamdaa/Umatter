@@ -6,6 +6,7 @@ const ChannelMutations = require("./mutations/ChannelMutations");
 const MessageMutations = require("./mutations/MessageMutations");
 const FacilitatorMutations = require("./mutations/FacilitatorMutations");
 const WaitlistMutations = require("./mutations/WaitlistMutations");
+const FacilitatorSubscription = require("./subscriptions/FacilitatorSubscription");
 const UserSubscription = require("./subscriptions/UserSubscription");
 const ChannelSubscription = require("./subscriptions/ChannelSubscription");
 const graphql = require("graphql");
@@ -13,7 +14,7 @@ const { GraphQLObjectType, GraphQLList, GraphQLInt } = graphql;
 
 const Query = new GraphQLObjectType({
   name: "Query",
-  fields: { ...UserQuery, ...ChannelQuery,...FacilitatorQuery },
+  fields: { ...UserQuery, ...ChannelQuery, ...FacilitatorQuery },
 });
 
 const Mutation = new GraphQLObjectType({
@@ -23,13 +24,17 @@ const Mutation = new GraphQLObjectType({
     ...ChannelMutations,
     ...MessageMutations,
     ...FacilitatorMutations,
-    ...WaitlistMutations
+    ...WaitlistMutations,
   },
 });
 
 const Subscription = new GraphQLObjectType({
   name: "Subscription",
-  fields: { ...UserSubscription, ...ChannelSubscription },
+  fields: {
+    ...UserSubscription,
+    ...ChannelSubscription,
+    ...FacilitatorSubscription,
+  },
 });
 
 const schema = new graphql.GraphQLSchema({

@@ -11,7 +11,6 @@ export const GET_USERS = gql`
   }
 `;
 
-
 export const FACILITATOR_LOGIN = gql`
   mutation LoginFacilitator($email: String, $password: String) {
     loginFacilitator(email: $email, password: $password) {
@@ -67,6 +66,21 @@ export const GET_FACILITATOR = gql`
       action
       channel_id
       assigned_to
+    }
+  }
+`;
+
+export const GET_AVAILABLE_FACILITATORS = gql`
+  query GetAvailableFacilitators {
+    getAvailableFacilitators {
+      _id
+      first_name
+      last_name
+      is_available
+      is_assigned
+      assigned_to
+      channel_id
+      action
     }
   }
 `;

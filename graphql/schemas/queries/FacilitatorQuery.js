@@ -45,5 +45,16 @@ const getFacilitator = {
   },
 };
 
+const getAvailableFacilitators = {
+  type: new GraphQLList(FacilitatorType),
+  resolve: async function (root, params, { req, res }) {
+    // if(!req.isAuth) {
+    //   res.status(401)
+    //   throw new Error("Not Authenticated");
+    // }
+    return Facilitator.find({is_available: true}).select("-password");
+  },
+};
 
-module.exports = { getFacilitators, getFacilitator };
+
+module.exports = { getFacilitators, getFacilitator, getAvailableFacilitators};

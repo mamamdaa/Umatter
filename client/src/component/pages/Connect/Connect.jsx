@@ -7,8 +7,14 @@ import {
   USER_LEAVE_QUEUE,
   USER_LEAVE_ROOM,
 } from "../../../graphql/Mutations";
-import { GET_USER } from "../../../graphql/Queries";
-import { useMutation, useSubscription, useLazyQuery } from "@apollo/client";
+import { GET_USER, GET_AVAILABLE_FACILITATORS } from "../../../graphql/Queries";
+import { AVAILABLE_FACILITATORS_UPDATES } from "../../../graphql/Subscriptions";
+import {
+  useMutation,
+  useSubscription,
+  useLazyQuery,
+  useQuery,
+} from "@apollo/client";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import ConnectWaitingBtn from "../../inc/Connect/connectWaitingBtn";
@@ -17,11 +23,12 @@ import ConnectEnterBtn from "../../inc/Connect/connectEnterBtn";
 import "./connect.css";
 
 const Connect = () => {
-  const { isLoggedIn,client } = useSelector((state) => state.client);
+  const { isLoggedIn, client } = useSelector((state) => state.client);
   const [isInQueue, setIsInQueue] = useState(false);
   const [channelId, setChannel] = useState("");
   const [isInRoom, setIsInRoom] = useState(false);
-  const [currentFacilitatorId , setCurrentFacilitatorId] = useState("");
+  const [currentFacilitatorId, setCurrentFacilitatorId] = useState("");
+  const [availableFacilitators, setAvailableFacilitators] = useState([]);
 
   const [getUser, { error: getUserError, data: getUserData }] = useLazyQuery(
     GET_USER,
@@ -39,6 +46,22 @@ const Connect = () => {
       }),
     []
   );
+
+  const { error: availableFacilitatorsError, data: availableFacilitatorsData } =
+    useSubscription(AVAILABLE_FACILITATORS_UPDATES, {
+      variables: {
+        clientId: client._id,
+        role: client.role,
+      },
+      onError: (err) => {},
+    });
+
+  const {
+    error: getAvailableFacilitatorsError,
+    data: getAvailableFacilitatorsData,
+  } = useQuery(GET_AVAILABLE_FACILITATORS, {
+    onError: (err) => {},
+  });
 
   const [userEnterQueue, { error: userEnterError, data: userEnterData }] =
     useMutation(USER_ENTER_QUEUE, {
@@ -134,6 +157,33 @@ const Connect = () => {
     }
   }, [userLeaveError, userLeaveData]);
 
+  useEffect(() => {
+    if (getAvailableFacilitatorsError) {
+      toast.error(getAvailableFacilitatorsError.message);
+    } else if (getAvailableFacilitatorsData) {
+      let facilitators = getAvailableFacilitatorsData.getAvailableFacilitators;
+      setAvailableFacilitators(facilitators);
+    }
+  }, [getAvailableFacilitatorsData, getAvailableFacilitatorsError]);
+
+  useEffect(() => {
+    if (availableFacilitatorsError) {
+      toast.error(availableFacilitatorsError.message);
+    } else if (availableFacilitatorsData) {
+      let facilitator = availableFacilitatorsData.availableFacilitatorsUpdate;
+      console.log("facilitator", facilitator);
+      if (facilitator.action === "IS_AVAILABLE") {
+        setAvailableFacilitators((prev) => [...prev, facilitator]);
+      }
+      if (facilitator.action === "IS_NOT_AVAILABLE") {
+ 
+        setAvailableFacilitators((prev) =>
+          prev.filter((f) => f._id !== facilitator._id)
+        );
+      }
+    }
+  }, [availableFacilitatorsError, availableFacilitatorsData]);
+
   return (
     <>
       <Navbar />
@@ -145,11 +195,14 @@ const Connect = () => {
                 channelId={channelId}
                 setIsInQueue={setIsInQueue}
                 setIsInRoom={setIsInRoom}
-                setCurrentFacilitatorId = {setCurrentFacilitatorId}
+                setCurrentFacilitatorId={setCurrentFacilitatorId}
               />
             ) : (
-              <div className="text-center">
-                <h1>Connect to a channel</h1>
+              <div className="d-flex text-center align-items-center justify-content-center m-2">
+                <span class="material-icons-outlined">people</span>
+                <p className="d-inline m-0">
+                  Available Facilitators: {availableFacilitators.length}
+                </p>
               </div>
             )}
           </div>

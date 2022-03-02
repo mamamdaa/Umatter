@@ -7,10 +7,10 @@ const generateToken = require("../../../utils/GenerateToken");
 const addFacilitator = {
   type: FacilitatorType,
   args: {
-    first_name: {
+    firstName: {
       type: new GraphQLNonNull(GraphQLString),
     },
-    last_name: {
+    lastName: {
       type: new GraphQLNonNull(GraphQLString),
     },
     email: {
@@ -24,7 +24,12 @@ const addFacilitator = {
       res.status(400);
       throw new Error("Facilitator already exists!");
     }
-    const facilitatorModel = new Facilitator(params);
+    const facilitatorModel = new Facilitator({
+      first_name: params.firstName,
+      last_name: params.lastName,
+      email: params.email,
+      password: params.password,
+    });
     const newFacilitator = await facilitatorModel.save();
     if (!newFacilitator) {
       throw new Error("Error");
@@ -92,10 +97,36 @@ const loginFacilitator = {
       facilitator.is_available = true;
       facilitator.is_assigned = false;
       facilitator.save();
-
-      pubsub.publish(NEW_LOGIN, { newLogin: { _id: "123" } });
+      facilitator.action = "IS_AVAILABLE";
+      pubsub.publish("AVAILABLE_FACILITATORS_UPDATE", {
+        availableFacilitatorsUpdate: facilitator,
+      });
 
       return convertedFacilitator;
+    }
+  },
+};
+
+const facilitatorLogout = {
+  name: "facilitatorLogout",
+  type: FacilitatorType,
+  args: {
+    clientId: { type: GraphQLString },
+  },
+  resolve: async function (root, params, { req, res, pubsub }) {
+    let facilitator = await Facilitator.findOne({ _id: params.clientId });
+    if (!facilitator) {
+      res.status(400);
+      throw new Error("Invalid email or password");
+    } else {
+      facilitator.is_available = false;
+      facilitator.is_assigned = false;
+      facilitator.save();
+      facilitator.action = "IS_NOT_AVAILABLE";
+      pubsub.publish("AVAILABLE_FACILITATORS_UPDATE", {
+        availableFacilitatorsUpdate: facilitator,
+      });
+      return facilitator;
     }
   },
 };
@@ -120,12 +151,15 @@ const faciLeaveRoom = {
     facilitator.is_assigned = false;
     facilitator.is_available = true;
     facilitator.channel = null;
-    facilitator.assigned_to = null; 
+    facilitator.assigned_to = null;
+    pubsub.publish("AVAILABLE_FACILITATORS_UPDATE", {
+      availableFacilitatorsUpdate: { ...facilitator, action: "IS_AVAILABLE" },
+    });
     facilitator.save();
     user.is_assigned = false;
     user.assigned_to = null;
     user.save();
-    facilitator.action = "LEFT";
+    facilitator.action = "LEAVE_ROOM";
     pubsub.publish(params.channelId, {
       channelUpdates: { facilitator: facilitator },
     });
@@ -157,6 +191,12 @@ const faciJoinRoom = {
     facilitator.is_available = false;
     facilitator.channel_id = params.channelId;
     facilitator.assigned_to = user._id;
+    pubsub.publish("AVAILABLE_FACILITATORS_UPDATE", {
+      availableFacilitatorsUpdate: {
+        ...facilitator,
+        action: "IS_NOT_AVAILABLE",
+      },
+    });
     facilitator.save();
     user.is_assigned = true;
     user.is_in_queue = false;
@@ -164,12 +204,13 @@ const faciJoinRoom = {
     user.save();
 
     user.action = "LEFT";
-    facilitator.action = "JOINED";
+    facilitator.action = "JOIN_ROOM";
 
     pubsub.publish(params.channelId, {
       channelUpdates: { facilitator: facilitator },
     });
-    pubsub.publish("QUEUE_UPDATE", { queueUpdate:user });
+    pubsub.publish("QUEUE_UPDATE", { queueUpdate: user });
+
     return facilitator;
   },
 };
@@ -197,4 +238,5 @@ module.exports = {
   loginFacilitator,
   faciLeaveRoom,
   faciJoinRoom,
+  facilitatorLogout,
 };

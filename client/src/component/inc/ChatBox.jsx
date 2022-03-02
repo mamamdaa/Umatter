@@ -36,7 +36,7 @@ const ChatBox = ({ channelId, setIsInQueue, setIsInRoom,setCurrentFacilitatorId 
     if (channelUpdatesData) {
       if (channelUpdatesData.channelUpdates.facilitator) {
         let facilitator = channelUpdatesData.channelUpdates.facilitator;
-        if (facilitator.action === "JOINED") {
+        if (facilitator.action === "JOIN_ROOM") {
           setChatTitle(`${facilitator.first_name} ${facilitator.last_name}`);
           setIsInQueue(false);
           setIsInRoom(true);
@@ -45,7 +45,7 @@ const ChatBox = ({ channelId, setIsInQueue, setIsInRoom,setCurrentFacilitatorId 
           );
           console.log("setCurrentFacilitatorId", facilitator);
           setCurrentFacilitatorId(facilitator._id);
-        } else if (facilitator.action === "LEFT") {
+        } else if (facilitator.action === "LEAVE_ROOM") {
           setIsInRoom(false);
           toast(
             `${facilitator.first_name} ${facilitator.last_name} has left the channel`

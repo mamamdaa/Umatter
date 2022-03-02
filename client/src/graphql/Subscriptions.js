@@ -36,3 +36,16 @@ export const QUEUE_UPDATES = gql`
     }
   }
 `;
+
+export const AVAILABLE_FACILITATORS_UPDATES = gql`
+  subscription AvailableFacilitatorsUpdate($clientId: String, $role: String) {
+    availableFacilitatorsUpdate(clientId: $clientId, role: $role) {
+      action
+      _id
+      first_name
+      last_name
+      is_assigned
+      is_available
+    }
+  }
+`;

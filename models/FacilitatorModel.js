@@ -35,7 +35,7 @@ const facilitatorSchema = new mongoose.Schema(
     },
     is_available: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     channel_id: {
       type: mongoose.Schema.Types.ObjectId,

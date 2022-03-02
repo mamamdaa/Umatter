@@ -16,7 +16,7 @@ const newLogin = {
        return pubsub.asyncIterator(NEW_LOGIN);
     },
 }
-
+//fix access/ only facilitator can access
 const queueUpdate = {
     name: 'queueUpdate',
     type: UserType,

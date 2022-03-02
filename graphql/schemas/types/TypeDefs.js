@@ -6,6 +6,7 @@ const {
   GraphQLObject,
   GraphQLList,
   GraphQLBoolean,
+  GraphQLEnumType,
 } = graphql;
 
 //diff between new and direct ref
@@ -66,7 +67,7 @@ const FacilitatorType = new GraphQLObjectType({
     is_available: { type: GraphQLBoolean },
     is_assigned: { type: GraphQLBoolean },
     channel_id: { type: GraphQLString },
-    action : { type: GraphQLString },
+    action : { type: FacilitatorActionType },
     role: { type: GraphQLString },
   }),
 });
@@ -79,4 +80,25 @@ const WaitlistType = new GraphQLObjectType({
   }),
 });
 
-module.exports = { UserType, MessageType, ChannelType, FacilitatorType, WaitlistType };
+const QueueActionType = new GraphQLEnumType({
+  name: "QueueActionType",
+  values: {
+    ENTER_QUEUE: { value: "ENTER_QUEUE" },
+    LEAVE_QUEUE: { value: "LEAVE_QUEUE" },
+  },
+});
+
+const FacilitatorActionType = new GraphQLEnumType({
+  name: "FacilitatorActionType",
+  values: {
+    JOIN_ROOM: { value: "JOIN_ROOM" },
+    LEAVE_ROOM: { value: "LEAVE_ROOM" },
+    LOGOUT : { value: "LOGOUT" },
+    LOGIN : { value: "LOGIN" },
+    IS_AVAILABLE: { value: "IS_AVAILABLE" },
+    IS_NOT_AVAILABLE: { value: "IS_NOT_AVAILABLE" },
+  },
+});
+
+
+module.exports = { UserType, MessageType, ChannelType, FacilitatorType, WaitlistType,FacilitatorActionType };
