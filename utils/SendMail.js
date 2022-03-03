@@ -24,7 +24,7 @@ const MailHandler = async ({ email, subject, message, access_token }) => {
 
   let url = null;
   if (process.env.NODE_ENV === "production") {
-    url = process.env.LINK + "/verification/" + verificationToken;
+    url = process.env.LINK + "verification/" + verificationToken;
   } else {
     url = "http://localhost:3000/verification/" + verificationToken;
   }
