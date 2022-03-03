@@ -28,6 +28,7 @@ export const USER_LOGIN = gql`
       email
       token
       role
+      is_verified
     }
   }
 `;
@@ -135,6 +136,28 @@ export const ADD_TO_WAITLIST = gql`
   mutation Mutation($email: String!) {
     addToWaitlist(email: $email) {
       _id
+    }
+  }
+`;
+
+export const USER_VERIFY_EMAIL = gql`
+  mutation UserVerifyEmail($token: String) {
+    userVerifyEmail(token: $token) {
+      _id
+      first_name
+      last_name
+      is_verified
+    }
+  }
+`;
+
+export const USER_CONFIRM_EMAIL = gql`
+  mutation UserConfirmEmail($email: String) {
+    userConfirmEmail(email: $email) {
+      _id
+      first_name
+      last_name
+      is_verified
     }
   }
 `;

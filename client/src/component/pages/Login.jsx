@@ -73,7 +73,7 @@ export default function Login() {
       setDataError(errorMessage);
     }
     if (userLoginData) {
-      let userData = userLoginData.userLogin
+      let userData = userLoginData.userLogin;
       localStorage.setItem("token", userData.token);
       localStorage.setItem("client", JSON.stringify(userLoginData.userLogin));
       localStorage.setItem("role", userData.role);
@@ -169,19 +169,26 @@ export default function Login() {
                     </label>
                   </div>
                   <div className=" d-flex justify-content-center">
-                  {" "}
+                    {" "}
+                    <span class=" mt-3 text-center ">
+                      <a>Not a member?</a>
+                      <Link to="/Signup">
+                        <a
+                          class="btn3 btn btn-light bg-transparent border-0 "
+                          role="button"
+                        >
+                          Signup
+                        </a>
+                      </Link>
+                    </span>
+                  </div>
+                  <div class="d-flex justify-content-center mt-5">
                   <span class=" mt-3 text-center ">
-                    <a>Not a member?</a>
-                    <Link to="/Signup">
-                      <a
-                        class="btn3 btn btn-light bg-transparent border-0 "
-                        role="button"
-                      >
-                        Signup
-                      </a>
-                    </Link>
+                    <a href="/registerverification">
+                      Didn't receive email confirmation?
+                    </a>
                   </span>
-                </div>
+                  </div>
                 </form>
               </div>
               <div class=" col-lg-6 ms-lg-5 mt-5 ">

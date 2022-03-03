@@ -32,6 +32,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProtectRoute from "./component/ProtectRoute.jsx";
 import NoMatch from "./component/pages/NoMatch/NoMatch.jsx";
+import Verification from "./component/pages/Verification/Verification.jsx";
+import RegisterVerification from "./component/pages/RegisterVerification/RegisterVerification.jsx";
 
 const baseLink = process.env.REACT_APP_API_URL;
 const environment = process.env.NODE_ENV;
@@ -111,8 +113,12 @@ function App() {
             <Route exact path="/Signup" component={Signup} />
             <Route exact path="/Login" component={Login} />
             <Route exact path="/User" component={User} />
+            <Route exact path="/Verification" component={Verification} />
+            <Route exact path="/Verification/:token" component={Verification} />
+            <Route exact path="/RegisterVerification" component={RegisterVerification} />
             <ProtectRoute exact path="/Connect" component={Connect} />
             <ProtectRoute exact path="/Dashboard" component={Dashboard} />
+
             <Route path="*">
               <NoMatch />
             </Route>

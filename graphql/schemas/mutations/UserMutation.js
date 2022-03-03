@@ -102,7 +102,10 @@ const userLogin = {
       console.log("error", user);
       res.status(400);
       throw new Error("Invalid email or password");
-    } else {
+    } 
+    if(user.is_verified === false){
+      throw new Error("Please verify your email");
+    }
       let convertedUser = user.toJSON();
       convertedUser.token = generateToken(convertedUser._id);
       delete convertedUser.password;
@@ -115,7 +118,7 @@ const userLogin = {
       pubsub.publish(NEW_LOGIN, { newLogin: { _id: "123" } });
 
       return convertedUser;
-    }
+    
   },
 };
 
@@ -224,10 +227,42 @@ const userVerifyEmail = {
   name: "userVerifyEmail",
   type: UserType,
   args: {
-    email: { type: GraphQLString },
     token: { type: GraphQLString },
   },
   resolve: async function (root, params, { req, res, pubsub }) {
+    const { email } = jwt.verify(
+      params.token,
+      process.env.JWT_SECRET,
+      (err, user) => {
+        if (err) throw new Error("Invalid Token");
+        else return user;
+      }
+    );
+
+    if (!email) {
+      throw new Error("Something went wrong");
+    }
+    let user = await User.findOne({ email: email });
+    if (!user) {
+      throw new Error("No User Found");
+    }
+    if (user.is_verified) {
+      throw new Error("User is already verified");
+    }
+
+    user.is_verified = true;
+    user.save();
+    return user;
+  },
+};
+
+const userConfirmEmail = {
+  name: "userConfirmEmail",
+  type: UserType,
+  args: {
+    email: { type: GraphQLString },
+  },
+  resolve: async function (root, params, { req, res, access_token }) {
     let user = await User.findOne({ email: params.email });
     if (!user) {
       throw new Error("No User Found");
@@ -236,14 +271,21 @@ const userVerifyEmail = {
       throw new Error("User is already verified");
     }
 
-    const { email } = jwt.verify(params.token, process.env.JWT_SECRET);
+    let subject = "Email Verification";
+    let email = params.email;
+    let message = "Please verify your email";
 
-    if (user.email !== email) {
-      throw new Error("Invalid Token");
+    let isEmailSent = await MailHandler({
+      email,
+      subject,
+      message,
+      access_token,
+    });
+
+    if (!isEmailSent) {
+      res.status(400);
+      throw new Error("Cannot verify email");
     }
-
-    user.is_verified = true;
-    user.save();
     return user;
   },
 };
@@ -273,4 +315,5 @@ module.exports = {
   userLeaveQueue,
   userLeaveRoom,
   userVerifyEmail,
+  userConfirmEmail,
 };
