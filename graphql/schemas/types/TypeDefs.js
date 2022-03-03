@@ -24,9 +24,9 @@ const UserType = new GraphQLObjectType({
     assigned_to: { type: GraphQLString },
     is_assigned: { type: GraphQLBoolean },
     channel_id: { type: GraphQLString },
-    action : { type: GraphQLString },
+    action: { type: GraphQLString },
     role: { type: GraphQLString },
-
+    is_verified: { type: GraphQLBoolean },
   }),
 });
 
@@ -67,8 +67,9 @@ const FacilitatorType = new GraphQLObjectType({
     is_available: { type: GraphQLBoolean },
     is_assigned: { type: GraphQLBoolean },
     channel_id: { type: GraphQLString },
-    action : { type: FacilitatorActionType },
+    action: { type: FacilitatorActionType },
     role: { type: GraphQLString },
+    is_verified: { type: GraphQLBoolean },
   }),
 });
 
@@ -93,12 +94,18 @@ const FacilitatorActionType = new GraphQLEnumType({
   values: {
     JOIN_ROOM: { value: "JOIN_ROOM" },
     LEAVE_ROOM: { value: "LEAVE_ROOM" },
-    LOGOUT : { value: "LOGOUT" },
-    LOGIN : { value: "LOGIN" },
+    LOGOUT: { value: "LOGOUT" },
+    LOGIN: { value: "LOGIN" },
     IS_AVAILABLE: { value: "IS_AVAILABLE" },
     IS_NOT_AVAILABLE: { value: "IS_NOT_AVAILABLE" },
   },
 });
 
-
-module.exports = { UserType, MessageType, ChannelType, FacilitatorType, WaitlistType,FacilitatorActionType };
+module.exports = {
+  UserType,
+  MessageType,
+  ChannelType,
+  FacilitatorType,
+  WaitlistType,
+  FacilitatorActionType,
+};

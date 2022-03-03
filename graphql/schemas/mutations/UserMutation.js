@@ -4,6 +4,7 @@ const User = require("../../../models/UserModel");
 const Channel = require("../../../models/ChannelModel");
 const Facilitator = require("../../../models/FacilitatorModel");
 const generateToken = require("../../../utils/GenerateToken");
+const { MailHandler } = require("../../../utils/SendMail");
 
 const userRegister = {
   type: UserType,
@@ -19,12 +20,28 @@ const userRegister = {
     },
     password: { type: new GraphQLNonNull(GraphQLString) },
   },
-  resolve: async function (root, params, { req, res }) {
+  resolve: async function (root, params, { req, res, access_token }) {
     let user = await User.findOne({ email: params.email });
     if (user) {
       res.status(400);
       throw new Error("User already exists!");
     }
+    let subject = "Email Verification";
+    let email = params.email;
+    let message = "Please verify your email";
+
+    let isEmailSent = await MailHandler({
+      email,
+      subject,
+      message,
+      access_token,
+    });
+
+    if (!isEmailSent) {
+      res.status(400);
+      throw new Error("Cannot verify email");
+    }
+
     const userModel = new User(params);
     const newUser = await userModel.save();
     if (!newUser) {
@@ -161,7 +178,7 @@ const userLeaveQueue = {
     user.channel_id = null;
     user.save();
     user.action = "LEFT";
-    pubsub.publish("QUEUE_UPDATE", { queueUpdate:user });
+    pubsub.publish("QUEUE_UPDATE", { queueUpdate: user });
     return user;
   },
 };
@@ -188,14 +205,38 @@ const userLeaveRoom = {
     user.channel_id = null;
     user.assigned_to = null;
     user.save();
-    
+
     facilitator.is_assigned = false;
     facilitator.is_available = true;
     facilitator.assigned_to = null;
     facilitator.save();
 
     user.action = "LEFT";
-    pubsub.publish(params.channelId, { channelUpdates: { user:user } });
+    pubsub.publish(params.channelId, { channelUpdates: { user: user } });
+    return user;
+  },
+};
+
+const userVerifyEmail = {
+  name: "userVerifyEmail",
+  type: UserType,
+  args: {
+    email: { type: GraphQLString },
+    token: { type: GraphQLString },
+  },
+  resolve: async function (root, params, { req, res, pubsub }) {
+    let user = await User.findOne({ email: params.email });
+    if (!user) {
+      throw new Error("No User Found");
+    }
+    if (user.is_verified) {
+      throw new Error("User is already verified");
+    }
+    if (user.verification_token !== params.token) {
+      throw new Error("Invalid token");
+    }
+    user.is_verified = true;
+    user.save();
     return user;
   },
 };

@@ -25,7 +25,8 @@ const facilitatorSchema = new mongoose.Schema(
         ref: "Channel",
       },
     ],
-    assigned_to: { //remove this
+    assigned_to: {
+      //remove this
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
@@ -41,10 +42,14 @@ const facilitatorSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Channel",
     },
-    role:{
+    role: {
       type: String,
-      default: "facilitator"
-    }
+      default: "facilitator",
+    },
+    is_verified: {
+      type: Boolean,
+      default: true,
+    },
   },
   {
     timestamps: true,

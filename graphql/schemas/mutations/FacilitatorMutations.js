@@ -152,9 +152,11 @@ const faciLeaveRoom = {
     facilitator.is_available = true;
     facilitator.channel = null;
     facilitator.assigned_to = null;
+
     pubsub.publish("AVAILABLE_FACILITATORS_UPDATE", {
       availableFacilitatorsUpdate: { ...facilitator, action: "IS_AVAILABLE" },
     });
+    
     facilitator.save();
     user.is_assigned = false;
     user.assigned_to = null;
