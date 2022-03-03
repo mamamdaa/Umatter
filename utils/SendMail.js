@@ -17,8 +17,9 @@ const MailHandler = async ({ email, subject, message, access_token }) => {
       accessToken: access_token,
     },
   });
+ 
 
-  const verificationToken = jwt.sign({ email }, process.env.JWT_SECRET, {
+  const verificationToken = jwt.sign({ email: email }, process.env.JWT_SECRET, {
     expiresIn: "30d",
   });
 

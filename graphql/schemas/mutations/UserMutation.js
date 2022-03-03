@@ -5,6 +5,9 @@ const Channel = require("../../../models/ChannelModel");
 const Facilitator = require("../../../models/FacilitatorModel");
 const generateToken = require("../../../utils/GenerateToken");
 const { MailHandler } = require("../../../utils/SendMail");
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const userRegister = {
   type: UserType,
@@ -232,9 +235,13 @@ const userVerifyEmail = {
     if (user.is_verified) {
       throw new Error("User is already verified");
     }
-    if (user.verification_token !== params.token) {
-      throw new Error("Invalid token");
+
+    const { email } = jwt.verify(params.token, process.env.JWT_SECRET);
+
+    if (user.email !== email) {
+      throw new Error("Invalid Token");
     }
+
     user.is_verified = true;
     user.save();
     return user;
@@ -265,4 +272,5 @@ module.exports = {
   userEnterQueue,
   userLeaveQueue,
   userLeaveRoom,
+  userVerifyEmail,
 };
