@@ -35,7 +35,7 @@
   },
   "scripts": {
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm start\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1",
